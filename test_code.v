@@ -32,7 +32,7 @@ module test_code(
     output reg data_out;
     
     //// FSM 
-    localparam STATE_SIZE = 4;
+    localparam STATE_SIZE = 2;
     localparam S0 = 2'b00,
                S1 = 2'b01,
                S2 = 2'b10,
@@ -43,7 +43,7 @@ module test_code(
 always@(posedge clk, posedge reset)
     begin
         if(reset)
-            current_state <= S1;
+            current_state <= S0;
             else
             current_state <= next_state;
     end
@@ -71,7 +71,7 @@ always@(*)
           next_state <= current_state;
     
     S3 : if(data_in)
-          next_state <= S1;
+          next_state <= S0;
            else
           next_state <= current_state;
    default: next_state <= current_state;          
