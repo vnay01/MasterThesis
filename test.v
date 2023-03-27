@@ -1,4 +1,5 @@
 //// Module for initial tests
+//////// DO NOT USE ///////////
 
 module test( clk, reset, last, crc, data_in, data_out );
 
