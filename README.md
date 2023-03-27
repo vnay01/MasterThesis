@@ -14,3 +14,6 @@ repo contains code for Framework for Automatic Generation of Assertion
     |S1           | 1       |
     |S2           | 0       |
     |S3           | 1       |
+
+
+![alt text](https://github.com/vnay01/MasterThesis/blob/main/FSM.drawio.svg?raw=true)
