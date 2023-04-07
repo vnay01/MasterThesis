@@ -74,7 +74,7 @@ always@(*)
           next_state <= S0;
            else
           next_state <= current_state;
-   default: next_state <= current_state;          
+    default: next_state <= current_state;          
     endcase
     end                  
    
