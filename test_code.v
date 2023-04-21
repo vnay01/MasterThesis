@@ -51,7 +51,7 @@ always@(posedge clk, posedge reset)
 /// next state logic
 always@(*)
     begin
-    
+
     case(current_state)
     S0 : if(data_in)
             next_state <= S1;
