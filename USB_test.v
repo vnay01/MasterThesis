@@ -14,10 +14,10 @@ input tx_ready;
 output reg tx_valid;
 
 // State definitions
-parameter IDLE=3'000,
-          CRC1=3'001,
-          CRC2=3'011;
-parameter [2:0] current_state, next_state;
+parameter IDLE=3'b000,
+          CRC1=3'b001,
+          CRC2=3'b011;
+reg [2:0] current_state, next_state;
 
 // FSM Starts here
 // Register update
@@ -43,8 +43,11 @@ always@(current_state or send_data or tx_ready)
             if(tx_ready) next_state=IDLE;
             else next_state=CRC2;
             end
+        endcase
     end
 
 // FSM Ends here
-
+initial begin
+    $display("Done Compilation...");
+end
 endmodule
