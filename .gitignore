@@ -1,3 +1,9 @@
 build/
 *.kiss2
 *.ys
+MasterThesis/
+*.jou
+*.log
+*.str
+.Xil/
+

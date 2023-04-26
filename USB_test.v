@@ -4,7 +4,7 @@
     */
 
 
-module usb_test (clk, reset, send_data, tx_ready, tx_valid);
+module usb_test (clk, reset, send_data, tx_ready, tx_valid, buff);
 
 // Port direction
 input clk;
@@ -12,6 +12,7 @@ input reset;
 input send_data;
 input tx_ready;
 output reg tx_valid;
+output reg [9:0] buff;
 
 // State definitions
 parameter IDLE=3'b000,
@@ -43,10 +44,28 @@ always@(current_state or send_data or tx_ready)
             if(tx_ready) next_state=IDLE;
             else next_state=CRC2;
             end
+            default: begin next_state = current_state;
+                           tx_valid = 1'b0;
+                           end 
         endcase
     end
 
 // FSM Ends here
+
+// Adding a register buffer // use it to check the quality of FSM extraction
+always@(posedge clk)
+    begin
+        if (!reset) buff <= 0;
+        else
+            begin
+            buff[0] <= tx_valid;     // sample value of yx_valid
+            buff[9:1] <= buff[8:0]; // Left shift    
+            end
+            
+    end
+
+
+
 initial begin
     $display("Done Compilation...");
 end
