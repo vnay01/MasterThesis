@@ -1,16 +1,20 @@
+import os
 import subprocess
 import sys
 import typing
 
+
+
 def call_dataflow_analyzer(script_path, arguments ):
+    """ This function calls data_flow_analyzer from Pyverilog and returns file for further processing"""
     command = ['python3', script_path] + arguments
     subprocess.call(command)
-    return 
-
+    return
 
 
 
 def extract_module_name(file_path):
+    """Takes RTL file and produces module name """
     module_name = None
     with open(file_path, 'r') as file:
         for line in file:
@@ -22,31 +26,34 @@ def extract_module_name(file_path):
                 break
     return module_name
 
-def remove_parentheses(string):
-    return string.replace("(", "")
+def module_name_clean(module_name_unclean):
+    """Cleans extracted module name"""
+    if "#" in module_name_unclean:
+        index = module_name_unclean.index("#")
+
+    elif "(" in module_name_unclean:
+        index = module_name_unclean.index("(")
+        
+    else:
+        return module_name_unclean
+    return module_name_unclean[:index]
+    
 
 
-
-
-####### Working code ########
+####### Working Test code ########
 #### Module name extractor #####
-rtl_file_path = '/Users/vinaysingh/Desktop/NeuralNetworks/DesignFiles/SystolicArchitectureDesign/'  # Replace with the actual RTL file path
-rtl_file_name = 'controller.v'
+# rtl_file_path = "/Users/vinaysingh/Desktop/NeuralNetworks/DesignFiles/Convolution/"  # Replace with the actual RTL file path
+rtl_file_path = "/Users/vinaysingh/Desktop/MasterThesis/VerilogFiles/"
+rtl_file_name = "USB_test.v"
 
 module_name = extract_module_name(rtl_file_path + rtl_file_name)
-module_name_new = remove_parentheses(module_name)
-output_file =  'dataflow_'+ module_name_new +'.txt'
+module_name_new = module_name_clean(module_name)
 
-#### calling Dataflow analyzer module from pyverilog ####
-script_path = '/Users/vinaysingh/Desktop/Pyverilog/examples/example_dataflow_analyzer.py'
-arguments = ['-t' , module_name_new, rtl_file_path+rtl_file_name ]
+script_path="/Users/vinaysingh/Desktop/Pyverilog/examples/example_dataflow_analyzer.py"
+arguments = ['-t ', module_name_new , rtl_file_path+rtl_file_name ]
+##### Calling Data Flow Analyzer module #####
 
-##### generates dataflow #######
-sys.stdout= open(output_file,'w+')
-data_flow = call_dataflow_analyzer(script_path, arguments)
-
-
-
+data_flow=call_dataflow_analyzer(script_path, arguments)
 
 if module_name:
     print('\n')
