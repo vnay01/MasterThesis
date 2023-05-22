@@ -6,4 +6,14 @@ MasterThesis/
 *.log
 *.str
 .Xil/
-
+*.dot
+*.svg
+*.out
+kiss2dot.py
+parsetab.py
+*.txt
+ADD.py
+rtl2gate.py
+ADD_w/p.py
+.idea/
+*.png
