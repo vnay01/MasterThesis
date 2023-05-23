@@ -1,16 +1,17 @@
 import os
 import subprocess
+from subprocess import call
 import sys
 import typing
 
-from tree_extractor import tree_extractor
 
 
 
-def call_dataflow_analyzer(script_path, arguments ):
+def call_dataflow_analyzer(script_path, module_name_new , arguments):
     """ This function calls data_flow_analyzer from Pyverilog and returns file for further processing"""
-    command = ['python3', script_path] + arguments
-    subprocess.call(command)
+    command = ['python3', script_path, '-t' , module_name_new  ] + arguments
+    call(command)
+    print(sys.argv)
     
 
 
@@ -45,18 +46,18 @@ def module_name_clean(module_name_unclean):
 ####### Working Test code ########
 #### Module name extractor #####
 # rtl_file_path = "/Users/vinaysingh/Desktop/NeuralNetworks/DesignFiles/Convolution/"  # Replace with the actual RTL file path
-rtl_file_path = "/home/vnay01/Desktop/MasterThesis/VerilogFiles/"
+rtl_file_path = "/Users/vinaysingh/Desktop/MasterThesis/VerilogFiles/"
 rtl_file_name = "USB_test.v"
 file_path = rtl_file_path + rtl_file_name
 
 module_name = extract_module_name(rtl_file_path+rtl_file_name)
 module_name_new = module_name_clean(module_name)
 
-script_path="/home/vnay01/Desktop/Pyverilog/examples/example_dataflow_analyzer.py"
-arguments = ['-t ', module_name_new , file_path]
+script_path="/Users/vinaysingh/Desktop/Pyverilog/examples/example_dataflow_analyzer.py"
+arguments = [ file_path]
 ##### Calling Data Flow Analyzer module #####
 
-data_flow=call_dataflow_analyzer(script_path, arguments) 
+data_flow=call_dataflow_analyzer(script_path, module_name_new, arguments) 
 
 if module_name:
     print('\n')

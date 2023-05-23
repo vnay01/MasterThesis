@@ -1,7 +1,7 @@
 import os
 import sys
 
-def search_pattern_in_file(file_path, pattern, root_node):
+def search_pattern_in_file(file_path, pattern, module_name, root_node):
     """Takes .txt file as input and find tree """
     try:
         sys.stdout=open('data_flow_tree_' + root_node +'.txt',"w") 
@@ -22,7 +22,9 @@ def search_pattern_in_file(file_path, pattern, root_node):
         print("File not found.")
 
 # Example usage
+module_name="usb_test"
 root_node = "current_state"
-file_path = '/home/vnay01/Desktop/Pyverilog/data_flow_controller.txt'  # Replace with the actual file path
-pattern = "(Bind dest:controller." + root_node
-search_pattern_in_file(file_path, pattern, root_node)
+ # Replace with the actual file path
+file_path = '/Users/vinaysingh/Desktop/MasterThesis/data_flow_usb_test.txt'
+pattern = "(Bind dest:"+ module_name + '.' + root_node
+search_pattern_in_file(file_path, pattern, module_name, root_node)

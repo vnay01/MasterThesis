@@ -17,3 +17,4 @@ rtl2gate.py
 ADD_w/p.py
 .idea/
 *.png
+PythonCode/__pycache__/
