@@ -4,6 +4,7 @@ from subprocess import call
 import sys
 import typing
 
+from tree_extractor import search_pattern_in_file
 
 
 
@@ -46,21 +47,29 @@ def module_name_clean(module_name_unclean):
 ####### Working Test code ########
 #### Module name extractor #####
 # rtl_file_path = "/Users/vinaysingh/Desktop/NeuralNetworks/DesignFiles/Convolution/"  # Replace with the actual RTL file path
-rtl_file_path = "/Users/vinaysingh/Desktop/MasterThesis/VerilogFiles/"
-rtl_file_name = "USB_test.v"
+rtl_file_path = "/home/vnay01/Desktop/Fault/JGFF_2212/lab1_fsm/"
+rtl_file_name = "fsm_if.v"
 file_path = rtl_file_path + rtl_file_name
 
 module_name = extract_module_name(rtl_file_path+rtl_file_name)
 module_name_new = module_name_clean(module_name)
 
-script_path="/Users/vinaysingh/Desktop/Pyverilog/examples/example_dataflow_analyzer.py"
+script_path="/home/vnay01/Desktop/Pyverilog/examples/example_dataflow_analyzer.py"
 arguments = [ file_path]
 ##### Calling Data Flow Analyzer module #####
 
 data_flow=call_dataflow_analyzer(script_path, module_name_new, arguments) 
 
-if module_name:
-    print('\n')
-    print("Module name:", module_name_new)
-else:
-    print("No module found in the RTL file.")
+
+
+##### Exracting root node is not fixes yet. This needs to be made automatic
+
+root_node = "dq_en"
+
+pattern = "(Bind dest:"+ module_name + '.' + root_node
+output_file_path = "/home/vnay01/Desktop/MasterThesis/"+"data_flow_"+ module_name_new +".txt"
+
+search_pattern_in_file(output_file_path, pattern, module_name_new, root_node)
+
+
+
