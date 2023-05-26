@@ -10,6 +10,8 @@ from module_extractor import *
 from tree_extractor import search_pattern_in_file
 from graph_generator import graph_generator
 
+from rtl_modifier import replace_assignment_operator 
+
 
 
 """ Work starts here"""
@@ -45,9 +47,11 @@ data_flow=call_dataflow_analyzer(script_path, module_name, arguments)
 ##### Exracting root node is not fixes yet. This needs to be made automatic
 
 
-pattern = "(Bind dest:"+ module_name + '.' + root_node
-output_file_path = working_dir+"data_flow_"+ module_name +".txt"
-
+output_file = working_dir + module_name +'_translated.v'
 # search_pattern_in_file(output_file_path, pattern, module_name_new, root_node)
 script_path = parent_dir + "Desktop/Pyverilog/examples/example_graphgen.py"
+
+replace_assignment_operator( file_path , output_file)
+arguments = [output_file]
+
 graph_generator(script_path, module_name, root_node, arguments)
