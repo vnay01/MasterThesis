@@ -16,6 +16,10 @@ def replace_assignment_operator(input_file, output_file):
 
         if always_block and '<=' in line:
             modified_code += line + '\n'
+        elif always_block and '==' in line:
+            modified_code += line + '\n'
+        elif always_block and '!=' in line:
+            modified_code += line + '\n'
         elif (always_block == False ):
             modified_code += line + '\n'
         else:

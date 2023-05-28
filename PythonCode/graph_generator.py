@@ -8,4 +8,5 @@ def graph_generator(script_path, module_name, root_node ,arguments):
     root = module_name + '.' + root_node
     command = ['python3', script_path, '-t', module_name, '-s', root] + arguments
     call(command)
+    print("Graph generationn completed...")
     

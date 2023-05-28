@@ -2,3 +2,7 @@
 /PythonCode/__pycache__
 *.txt
 /.idea/
+/build/
+parsetab.py
+*.v
+*.sva
