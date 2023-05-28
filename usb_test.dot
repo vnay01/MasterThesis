@@ -4,9 +4,10 @@ strict digraph "" {
 		label="usb_test.next_state"];
 	Branch_graphrename_1	[color=black,
 		label=Branch];
-	"usb_test.next_state_graphrename_0" -> Branch_graphrename_1	[color=black];
+	"usb_test.next_state_graphrename_0" -> Branch_graphrename_1	[color=blue];
 	Eq_graphrename_2	[color=black,
 		label=Eq];
+		
 	Branch_graphrename_1 -> Eq_graphrename_2	[color=black,
 		label=COND];
 	Branch_graphrename_4	[color=black,

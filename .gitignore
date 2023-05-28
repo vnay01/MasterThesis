@@ -4,5 +4,4 @@
 /.idea/
 /build/
 parsetab.py
-*.v
 *.sva
