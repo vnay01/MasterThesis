@@ -24,10 +24,10 @@ working_dir = parent_dir + "Desktop/MasterThesis/"
 
 rtl_file_path = working_dir + "VerilogFiles/"
 
-rtl_file_name = "USB_test.v"
+rtl_file_name = "fulladder.v"
 file_path = rtl_file_path + rtl_file_name
 
-root_node = "next_state"
+root_node = "w_sum"
 
 
 

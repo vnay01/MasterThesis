@@ -27,7 +27,8 @@ always@(posedge clk)
     else current_state <= next_state;
 
 // State change logic
-always@(current_state or send_data or tx_ready)
+//always@(current_state or send_data or tx_ready)
+always@(*)
     begin
         case(current_state)
             IDLE: begin tx_valid = 1'b1;
