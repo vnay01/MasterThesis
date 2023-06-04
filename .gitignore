@@ -1,7 +1,0 @@
-*.out
-/PythonCode/__pycache__
-*.txt
-/.idea/
-/build/
-parsetab.py
-*.sva

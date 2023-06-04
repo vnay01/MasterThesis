@@ -1,0 +1,14 @@
+**** module/scope: usb_test
+     Flip-Flops   : 13
+     Logic Gates  : 46
+     MUX[2]: 22 slices
+     LPM[5]: 2 unaccounted
+     LOG[13]: 2 unaccounted
+     LOG[14]: 1 unaccounted
+**** TOTALS
+     Flip-Flops   : 13
+     Logic Gates  : 46
+     MUX[2]: 22 slices
+     LPM[5]: 2 unaccounted
+     LOG[13]: 2 unaccounted
+     LOG[14]: 1 unaccounted
