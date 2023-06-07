@@ -65,4 +65,4 @@ graph_generator(script_path, module_name, root_node, arguments)
 """ SVA file maker"""
 output_file = working_dir + module_name +'_p.sva'
 
-module_info_extractor(file_path, output_file)git
+module_info_extractor(file_path, output_file)
