@@ -21,13 +21,15 @@ from sva_file_maker import module_info_extractor
 ########## Book Keeping and setting up directory ######
 parent_dir = "/home/vnay01/"
 working_dir = parent_dir + "Desktop/MasterThesis/"
+output_dir = working_dir + "TestOutputs/"
+data_flow_dir = output_dir + "data_flow/"
+translated_verilog_dir = output_dir + "translated_verilog/"
 
+""" RTL file details & node selection"""
 rtl_file_path = working_dir + "VerilogFiles/"
-
-rtl_file_name = "fulladder.v"
+rtl_file_name = "USB_test.v"
 file_path = rtl_file_path + rtl_file_name
-
-root_node = "w_sum"
+root_node = "next_state"
 
 
 
@@ -43,18 +45,15 @@ module_name = extract_module_name(file_path)
 module_name = module_name_clean(module_name)
 
 
-
 ##### Calling Data Flow Analyzer module #####
 call_dataflow_analyzer(script_path, module_name, arguments) 
 
 
 ##### Exracting root node is not fixes yet. This needs to be made automatic
 
-
+###### vnay01: This section is required only for generating graphs in a proper way
 output_file = working_dir + module_name +'_translated.v'
-# search_pattern_in_file(output_file_path, pattern, module_name_new, root_node)
 script_path = parent_dir + "Desktop/Pyverilog/examples/example_graphgen.py"
-
 replace_assignment_operator( file_path , output_file)
 arguments = [output_file]
 
