@@ -4,5 +4,5 @@
 PythonCode/__pycache__/
 build/
 .idea/
-.pytest_cache/
-.vscode/
+/.pytest_cache/
+/.vscode/
