@@ -11,3 +11,5 @@
 3. VerilogFiles
 
 	Test designs
+	
+	This folder also contains graph representation files
