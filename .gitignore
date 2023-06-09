@@ -1,7 +1,7 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-PythonCode/__pycache__
+PythonCode/__pycache__/
 build/
 .idea/
 .pytest_cache/
