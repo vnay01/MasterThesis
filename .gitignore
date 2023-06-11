@@ -6,3 +6,7 @@ build/
 .idea/
 /.pytest_cache/
 /.vscode/
+/.sva
+/.out
+/.dot
+/.txt

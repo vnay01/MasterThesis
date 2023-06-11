@@ -4,8 +4,6 @@ from subprocess import call
 import sys
 import typing
 
-from tree_extractor import search_pattern_in_file
-
 
 def call_dataflow_analyzer(script_path, module_name_new, arguments):
     """ This function calls data_flow_analyzer from Pyverilog and returns file for further processing"""
