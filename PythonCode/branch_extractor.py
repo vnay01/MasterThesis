@@ -66,18 +66,57 @@ def tree_extractor(input_file):
 
 
 
-def sub_tree(branch_list):
+def operator_extractor(branch_list):
+    '''Takes sub-tree and returns operator type  used in COND block'''
     branch = ""
     copied_line = ""
     start_string ='Operator'
-    end_string = '))'               ## this does not work for inner terminals!! Needs to be fixed
+    end_string = 'Next:'               ## this does not work for inner terminals!! Needs to be fixed
+
     branch = str(branch_list).strip('[').strip(']')
     start_index = branch.index(start_string)
     end_index = branch.index(end_string)
-    copied_line = branch[start_index:end_index+1]
-    return copied_line
+    copied_line = branch[start_index+8:end_index]
+    print(copied_line.strip())
+    return copied_line.strip()
 
-
+def operator_type(operator):
+    ''' This block returns operators'''
+    match operator:
+        case 'Eq':
+            op_code = '=='
+        case 'GreaterEq':
+            op_code = '>='
+        case 'GreaterThan':
+            op_code = '>'
+        case 'LessThan':
+            op_code = '<'
+        case 'LessEq':
+            op_code = '<='
+        case 'NotEq':
+            op_code = '!='
+        case 'Ulnot':
+            op_code = '!'
+        case 'Lor':
+            op_code = '||'
+        case _:
+            op_code = None
+    return op_code
+'''
+    if 'Eq' in operator:
+        op_code = '=='
+    elif 'GreaterThan' in operator:
+        op_code = '>'
+    elif 'GreaterEq' in operator:
+        op_code = '>='        
+    elif 'LessEq' in operator:
+        op_code = '<='
+    elif 'LessThan' in operator:
+        op_code = '<'      
+    elif 'NotEq' in operator:
+        op_code = '!='                  
+    return op_code
+    '''
 ####### This section reads each list object and produces Antecedants. How many antecedants will be there?? and what will be the relation between these antecedant terms?? 
 
 # Steps:

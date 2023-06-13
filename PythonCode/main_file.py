@@ -26,7 +26,7 @@ translated_verilog_dir = output_dir + "translated_verilog/"
 
 """ RTL file details & node selection"""
 rtl_file_path = working_dir + "VerilogFiles/"
-rtl_file_name = "controller.v"
+rtl_file_name = "USB_test.v"
 file_path = rtl_file_path + rtl_file_name
 root_node = "next_state"
 
@@ -78,6 +78,10 @@ for i in range(count):
 
 
 print('\n*******************\n')
+test= 'True:(Branch Cond:(Operator Lor Next:(Terminal usb_test.send_data),(IntConst 10)) True:(Terminal usb_test._rn1_next_state) '
+operator = operator_extractor(test)
+print('\n Operator: ', operator)
+print(operator_type(operator))
 
 #######################################################################################
 
