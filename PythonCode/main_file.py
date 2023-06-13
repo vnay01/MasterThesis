@@ -7,6 +7,7 @@ import typing
 ### My modules ###
 from module_extractor import *
 from tree_generator import *
+from branch_extractor import *
 from graph_generator import graph_generator
 from rtl_modifier import replace_assignment_operator 
 from sva_file_maker import module_info_extractor
@@ -25,7 +26,7 @@ translated_verilog_dir = output_dir + "translated_verilog/"
 
 """ RTL file details & node selection"""
 rtl_file_path = working_dir + "VerilogFiles/"
-rtl_file_name = "controller.v"
+rtl_file_name = "USB_test.v"
 file_path = rtl_file_path + rtl_file_name
 root_node = "next_state"
 
@@ -53,7 +54,30 @@ data_flow_file_path = os.getcwd()+'/data_flow_'+ module_name + '.txt'
 ## This function extracts target node tree and returns the path to file where the tree is stored
 tree_path = data_flow(data_flow_file_path, pattern, module_name, root_node)
 
+## This extracts tree for selected node
 
+# input_file = os.getcwd() + '/'
+## Once tree is extracted, we need to separate sub-trees
+## branch_extractor() does this. It returns a list of all sub-branches
+# sub_branch_extractor() returns a tuple of (list of sub-trees, number of sub-trees)
+branch_list, new_string, count = tree_extractor(tree_path)
+# print('\n')
+# print('Generating sub_branches for target node : \n')
+# print(branch_list)
+# print('\n*******************\n')
+# print('\n*******************\n')
+# print(new_string)
+# print(count)
+#
+#for i in range(count):
+#    print(sub_tree(branch_list[i]))
+    
+
+
+#### Lets extract information from each sub-tree
+
+
+print('\n*******************\n')
 
 #######################################################################################
 
@@ -64,10 +88,10 @@ replace_assignment_operator( file_path , output_file)
 arguments = [output_file]
 
 #### Generate graph 
-graph_generator(script_path, module_name, root_node, arguments)
+# graph_generator(script_path, module_name, root_node, arguments)
 #######################################################################################
 
 """ SVA file maker"""
 output_file = working_dir + module_name +'_p.sva'
 
-module_info_extractor(file_path, output_file)
+# module_info_extractor(file_path, output_file)

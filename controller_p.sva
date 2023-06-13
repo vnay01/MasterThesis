@@ -1,0 +1,18 @@
+module controller(  
+                    clk,
+                    reset,  // ACTIVE LOW reset
+                    START,
+                    MEM_READ,         
+                    BUSY,
+                    DONE,
+                    input_matrix_ram_en,
+                    input_matrix_ram_read_en,
+                    input_matrix_ram_address,
+                    filter_matrix_rom_en,
+                    filter_matrix_rom_read_en,
+                    filter_matrix_rom_address,
+                    data_path_signal,
+                    fifo_command                             
+    );
+endmodule   
+

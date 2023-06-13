@@ -19,18 +19,17 @@ def branch_extractor(input_string):
     """ Takes input as a string and spits out tuple of the form ([branches], remaining_string)"""
     start_string = 'Branch Cond:'
     end_string = 'False:(Branch'
-    copy_branch = []            ## this list object holds extracted branches
-    try:
+    copy_branch = []    ## holds extracted tree
 
+    try:        
         start_index = input_string.index(start_string)  
         end_index = input_string.index(end_string)
-        copy_branch.append(input_string[start_index : end_index])
-        input_string = input_string[end_index:].strip('False:')   
-
+        copy_branch.append(input_string[start_index : end_index])       ## copy between indices
+        input_string = input_string[end_index:]         ## Update string
         return copy_branch, input_string
     except FileNotFoundError: 
         print('No input file')
-
+    
 
     
 ## Lets decide how many times do I need to call this function
@@ -41,29 +40,42 @@ def branch_extractor(input_string):
 
 
 """ Example Usage"""
-# input_string = '(Bind dest:usb_test.next_state tree:(Branch Cond:(Operator Eq Next:(Terminal usb_test.current_state),(Terminal usb_test.IDLE)) True:(Branch Cond:(Terminal usb_test.send_data) True:(Terminal usb_test._rn1_next_state) False:(Terminal usb_test._rn2_next_state)) False:(Branch Cond:(Operator Eq Next:(Terminal usb_test.current_state),(Terminal usb_test.CRC1)) True:(Branch Cond:(Terminal usb_test.tx_ready) True:(Terminal usb_test._rn4_next_state) False:(Terminal usb_test._rn5_next_state)) False:(Branch Cond:(Operator Eq Next:(Terminal usb_test.current_state),(Terminal usb_test.CRC2)) True:(Branch Cond:(Terminal usb_test.tx_ready) True:(Terminal usb_test._rn7_next_state) False:(Terminal usb_test._rn8_next_state)) False:(Branch Cond:(IntConst 1) True:(Terminal usb_test._rn9_next_state))))))'
 
-## Read file
-input_file = '/home/vnay01/Desktop/MasterThesis/data_flow_tree_state.txt'
-file_object = open(input_file,'r')
-input_string = file_object.read()
+def tree_extractor(input_file):
+    """Takes tree of selected node and returns a list of sub-branches"""  
+    file_object = open(input_file,'r')
+    input_string = file_object.read() 
+    end_string = 'False:(Branch'
+
+    branch_list = []    ## holds extracted tree
+#    branch_list = branch_extractor(input_string)[0]
+#    input_string = branch_extractor(input_string)[1]
+    count = input_string.count(end_string)          ## This decides the number of branch_extractor() calls
+    print(count)
+    i = 0
+    string = input_string
+    while ( i < count):
+        
+        branch, string = branch_extractor(string)
+        branch_list.append(branch)
+        i = i + 1
+#        print('tree_extractor_new_string \n',input_string)
+        print('\n i : ', i, string)
+
+    return branch_list, input_string, count
 
 
-end_string = 'False:(Branch'
-count = input_string.count(end_string)      ## count the total number of requried function calls
 
-branch_list = []    ## holds extracted tree
-
-for i in range(count):
-    branch_list.append(branch_extractor(input_string)[0])
-    input_string = branch_extractor(input_string)[1]
-
-"""
-for i in range(count):
-    print(branch_list[i])
-"""
-# print(len(branch_list))
-
+def sub_tree(branch_list):
+    branch = ""
+    copied_line = ""
+    start_string ='Operator'
+    end_string = '))'               ## this does not work for inner terminals!! Needs to be fixed
+    branch = str(branch_list).strip('[').strip(']')
+    start_index = branch.index(start_string)
+    end_index = branch.index(end_string)
+    copied_line = branch[start_index:end_index+1]
+    return copied_line
 
 
 ####### This section reads each list object and produces Antecedants. How many antecedants will be there?? and what will be the relation between these antecedant terms?? 
@@ -71,11 +83,12 @@ for i in range(count):
 # Steps:
 
 # Read each index from the list
-new_branch = str(branch_list[0]).strip('[').strip(']')
 
-print((new_branch))
+# new_branch = str(branch_list[0]).strip('[').strip(']')
+
 # Extract Conditions . What should I do to extract this information. 
 ## Search for Operator __ Next:(Terminal  string . Save its index
+"""
 start_string = 'Operator'
 end_string = '))'
 
@@ -149,3 +162,4 @@ print('Antecedant : ', antecedant)
 
 
 ## Use TRUE & False branches to assign values to (consequent)
+"""
