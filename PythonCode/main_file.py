@@ -3,6 +3,8 @@ import subprocess
 from subprocess import call
 import sys
 import typing
+import platform
+
 
 ### My modules ###
 from module_extractor import *
@@ -18,15 +20,32 @@ from sva_file_maker import module_info_extractor
 
 ####### Working Test code ########
 ########## Book Keeping and setting up directory ######
-parent_dir = "/home/vnay01/"
-working_dir = parent_dir + "Desktop/MasterThesis/"
-output_dir = working_dir + "TestOutputs/"
-data_flow_dir = output_dir + "data_flow/"
-translated_verilog_dir = output_dir + "translated_verilog/"
+system = platform.system()
+if system == "Linux":
+    parent_dir = "/home/vnay01/"
+    working_dir = parent_dir + "Desktop/MasterThesis/"
+    output_dir = working_dir + "TestOutputs/"
+    data_flow_dir = output_dir + "data_flow/"
+    translated_verilog_dir = output_dir + "translated_verilog/"
+elif system == "Darwin":
+    parent_dir = "/Users/vinaysingh/"
+    working_dir = parent_dir + "Desktop/MasterThesis/"
+    output_dir = working_dir + "TestOutputs/"
+    data_flow_dir = output_dir + "data_flow/"
+    translated_verilog_dir = output_dir + "translated_verilog/"
+elif system=="Windows":
+    parent_dir = "/home/vnay01/"
+    working_dir = parent_dir + "Desktop/MasterThesis/"
+    output_dir = working_dir + "TestOutputs/"
+    data_flow_dir = output_dir + "data_flow/"
+    translated_verilog_dir = output_dir + "translated_verilog/"
+else:
+    print("What the hell!? Which system are you on!!?")
+
 
 """ RTL file details & node selection"""
 rtl_file_path = working_dir + "VerilogFiles/"
-rtl_file_name = "USB_test.v"
+rtl_file_name = "controller.v"
 file_path = rtl_file_path + rtl_file_name
 root_node = "next_state"
 
@@ -78,21 +97,34 @@ for i in range(count):
 
 
 print('\n*******************\n')
-test= 'True:(Branch Cond:(Operator Lor Next:(Terminal usb_test.send_data),(IntConst 10)) True:(Terminal usb_test._rn1_next_state) '
-operator = operator_extractor(test)
+operator = operator_extractor(branch_list[0])
 print('\n Operator: ', operator)
-print(operator_type(operator))
+Operator = operator_type(operator)
+
+terminal = 'Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT))) True:(Branch Cond:(Terminal controller.START) True:(Terminal controller._rn6_next_state) False:(Terminal controller._rn0_next_state)) '
+LHS, RHS = terminal_extractor(branch_list[1])
+print('\n*******************\n')
+print(LHS)
+print('\n*******************\n')
+print(RHS)
+
+antecedant_tuple = (LHS, RHS, Operator)
+
+generate_antecedant(antecedant_tuple)
 
 #######################################################################################
 
 ###### vnay01: This section is required only for generating graphs in a proper way using Pyverilog's graphgen() function
-output_file = working_dir + module_name +'_translated.v'
-script_path = parent_dir + "Desktop/Pyverilog/examples/example_graphgen.py"
-replace_assignment_operator( file_path , output_file)
-arguments = [output_file]
+if system == "Linux":
+    output_file = working_dir + module_name +'_translated.v'
+    script_path = parent_dir + "Desktop/Pyverilog/examples/example_graphgen.py"
+    replace_assignment_operator( file_path , output_file)
+    arguments = [output_file]
+#### Generate graph only if the detected system is Linux
+    graph_generator(script_path, module_name, root_node, arguments)
+else:
+    pass
 
-#### Generate graph 
-# graph_generator(script_path, module_name, root_node, arguments)
 #######################################################################################
 
 """ SVA file maker"""
