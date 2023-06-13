@@ -26,7 +26,7 @@ translated_verilog_dir = output_dir + "translated_verilog/"
 
 """ RTL file details & node selection"""
 rtl_file_path = working_dir + "VerilogFiles/"
-rtl_file_name = "USB_test.v"
+rtl_file_name = "controller.v"
 file_path = rtl_file_path + rtl_file_name
 root_node = "next_state"
 
@@ -61,16 +61,16 @@ tree_path = data_flow(data_flow_file_path, pattern, module_name, root_node)
 ## branch_extractor() does this. It returns a list of all sub-branches
 # sub_branch_extractor() returns a tuple of (list of sub-trees, number of sub-trees)
 branch_list, new_string, count = tree_extractor(tree_path)
-# print('\n')
-# print('Generating sub_branches for target node : \n')
-# print(branch_list)
-# print('\n*******************\n')
-# print('\n*******************\n')
-# print(new_string)
-# print(count)
-#
-#for i in range(count):
-#    print(sub_tree(branch_list[i]))
+print('\n')
+print('Generating sub_branches for target node : \n')
+#print(branch_list)
+print('\n*******************\n')
+print('\n*******************\n')
+print(new_string)
+print(count)
+
+for i in range(count):
+    print(branch_list[i])
     
 
 

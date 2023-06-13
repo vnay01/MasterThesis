@@ -25,7 +25,7 @@ def branch_extractor(input_string):
         start_index = input_string.index(start_string)  
         end_index = input_string.index(end_string)
         copy_branch.append(input_string[start_index : end_index])       ## copy between indices
-        input_string = input_string[end_index:]         ## Update string
+        input_string = input_string[end_index:].strip('False:')         ## Update string
         return copy_branch, input_string
     except FileNotFoundError: 
         print('No input file')
@@ -60,7 +60,7 @@ def tree_extractor(input_file):
         branch_list.append(branch)
         i = i + 1
 #        print('tree_extractor_new_string \n',input_string)
-        print('\n i : ', i, string)
+#        print('\n i : ', i, string)
 
     return branch_list, input_string, count
 
