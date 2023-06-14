@@ -74,59 +74,71 @@ data_flow_file_path = os.getcwd()+'/data_flow_'+ module_name + '.txt'
 
 ## This function extracts target node tree and returns the path to file where the tree is stored
 tree_path = data_flow(data_flow_file_path, pattern, module_name, root_node)
-print(tree_path)
+# print(tree_path)
+
 ## This extracts tree for selected node
 root_node = root_node_extractor(tree_path)
+# print('\n Root Node :', root_node)
 
-print('\n Root Node :', root_node)
-# input_file = os.getcwd() + '/'
 ## Once tree is extracted, we need to separate sub-trees
-## branch_extractor() does this. It returns a list of all sub-branches
-# sub_branch_extractor() returns a tuple of (list of sub-trees, number of sub-trees)
 branch_list, new_string, count = tree_extractor(tree_path)
 print('\n')
 print('Generating sub_branches for target node : \n')
-#print(branch_list)
+# print(branch_list)
 print('\n*******************\n')
+print('\n Number of branches :', count)
 print('\n*******************\n')
-print(new_string)
-print(count)
-
+#print(new_string)
 for i in range(count):
     print(branch_list[i])
     
-
-graph_generator
 #### Lets extract information from each sub-tree
 
-
 print('\n*******************\n')
-operator = operator_extractor(branch_list[0])
-print('\n Operator: ', operator)
+operator = operator_extractor(branch_list[1])
+# print('\n Operator: ', operator)
 Operator = operator_type(operator)
 
-terminal = 'Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT))) True:(Branch Cond:(Terminal controller.START) True:(Terminal controller._rn6_next_state) False:(Terminal controller._rn0_next_state)) '
-LHS, RHS = terminal_extractor(branch_list[0])
+#terminal = 'Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT))) True:(Branch Cond:(Terminal controller.START) True:(Terminal controller._rn6_next_state) False:(Terminal controller._rn0_next_state)) '
+LHS, RHS = terminal_extractor(branch_list[1])
 print('\n*******************\n')
-print(LHS)
+#print('\nLHS: ', LHS)
 print('\n*******************\n')
-print(RHS)
+#print('\nRHS: ',RHS)
 
 antecedant_tuple = (LHS, RHS, Operator)
+ant_1 = generate_antecedant(antecedant_tuple)
 
-generate_antecedant(antecedant_tuple)
+true_path = True_path(str(branch_list[1]))
+antecedant_2 = test_antecdant_generator(true_path)
 
+antecedant = ant_1 + operator_type('Land') + antecedant_2 
+
+true_value, false_value = true_cond_value(true_path)
+consequent = generate_consequent(root_node, operator_type('Eq'), true_value)
+
+## Printing Properties 
+
+prop = property_writer(antecedant, consequent)
+print('\n Property ')
+print(prop)
+
+#print(cons_1)
+# test_antecdant_generator(True_path(branch_list[0]))
 #######################################################################################
 
 ###### vnay01: This section is required only for generating graphs in a proper way using Pyverilog's graphgen() function
 if system == "Linux":
-    pass
+    print('\n*******************\n')
+    print('\nprinting graph_generator_info: \n')
+    print('\n*******************\n')
     output_file = working_dir + module_name +'_translated.v'
     script_path = parent_dir + "Desktop/Pyverilog/examples/example_graphgen.py"
     replace_assignment_operator( file_path , output_file)
     arguments = [output_file]
 #### Generate graph only if the detected system is Linux
     graph_generator(script_path, module_name, root_node, arguments)
+    print('\n*******************\n')
 else:
     pass
 
