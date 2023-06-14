@@ -45,7 +45,7 @@ else:
 
 """ RTL file details & node selection"""
 rtl_file_path = working_dir + "VerilogFiles/"
-rtl_file_name = "controller.v"
+rtl_file_name = "USB_test.v"
 file_path = rtl_file_path + rtl_file_name
 root_node = "next_state"
 
@@ -62,6 +62,8 @@ arguments = [ file_path]
 module_name = extract_module_name(file_path)
 module_name = module_name_clean(module_name)
 
+print(module_name)
+
 
 ##### Calling Data Flow Analyzer module #####
 call_dataflow_analyzer(script_path, module_name, arguments) 
@@ -72,9 +74,11 @@ data_flow_file_path = os.getcwd()+'/data_flow_'+ module_name + '.txt'
 
 ## This function extracts target node tree and returns the path to file where the tree is stored
 tree_path = data_flow(data_flow_file_path, pattern, module_name, root_node)
-
+print(tree_path)
 ## This extracts tree for selected node
+root_node = root_node_extractor(tree_path)
 
+print('\n Root Node :', root_node)
 # input_file = os.getcwd() + '/'
 ## Once tree is extracted, we need to separate sub-trees
 ## branch_extractor() does this. It returns a list of all sub-branches
@@ -92,7 +96,7 @@ for i in range(count):
     print(branch_list[i])
     
 
-
+graph_generator
 #### Lets extract information from each sub-tree
 
 
@@ -102,7 +106,7 @@ print('\n Operator: ', operator)
 Operator = operator_type(operator)
 
 terminal = 'Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT))) True:(Branch Cond:(Terminal controller.START) True:(Terminal controller._rn6_next_state) False:(Terminal controller._rn0_next_state)) '
-LHS, RHS = terminal_extractor(branch_list[1])
+LHS, RHS = terminal_extractor(branch_list[0])
 print('\n*******************\n')
 print(LHS)
 print('\n*******************\n')
@@ -116,6 +120,7 @@ generate_antecedant(antecedant_tuple)
 
 ###### vnay01: This section is required only for generating graphs in a proper way using Pyverilog's graphgen() function
 if system == "Linux":
+    pass
     output_file = working_dir + module_name +'_translated.v'
     script_path = parent_dir + "Desktop/Pyverilog/examples/example_graphgen.py"
     replace_assignment_operator( file_path , output_file)

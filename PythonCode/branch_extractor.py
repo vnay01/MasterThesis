@@ -53,9 +53,6 @@ def tree_extractor(input_file):
         branch, string = branch_extractor(string)
         branch_list.append(branch)
         i = i + 1
-    #        print('tree_extractor_new_string \n',input_string)
-    #        print('\n i : ', i, string)
-
     return branch_list, input_string, count
 
 
@@ -113,7 +110,7 @@ def operator_type(operator):
 
 # Steps:
 def terminal_extractor(input_list):
-    '''Takes sub tree as input and extracts terminal to put into LHS and RHS'''
+    '''Takes sub-tree as input and extracts terminal to put into LHS and RHS'''
     input_string = str(input_list).strip('[').strip(']')
     LHS = ""
     RHS = ""
@@ -142,3 +139,27 @@ def generate_antecedant(antecedant_tuple):
     antecedant = '(' + LHS + Operator + RHS + ')'
     print('\n', antecedant)
     return antecedant
+
+def root_node_extractor(input_file):
+    """Takes the complete tree as input and returns root_node name"""
+    file_object = open(input_file, 'r')
+    input_string = file_object.read()
+    start_string = 'dest:'
+    end_string = 'tree'
+    start_index = input_string.index(start_string)
+    end_index = input_string.index(end_string, start_index) ## Look for end_string only after start_string has been indexed
+    root_string = input_string[start_index:end_index].strip()
+    root_node = root_string[root_string.index('.') : ].strip('.')
+    print(root_node)
+    return root_node
+
+
+def generate_consequent(root_node , operator, value):
+    """ Produces consequent in the form of < root_node == value >"""
+    consequent = '(' + root_node + operator + value + ')'
+    return consequent
+
+
+#input_string = '(Bind dest:usb_test.next_state tree:(Branch Cond:(Operator Eq Next:(Terminal usb_test.current_state),(Terminal usb_test.IDLE)) True:(Branch Cond:(Operator Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._rn0_tx_valid)) True:(Terminal usb_test._rn1_next_state) False:(Terminal usb_test._rn2_next_state)) False:(Branch Cond:(Operator Eq Next:(Terminal usb_test.current_state),(Terminal usb_test.CRC1)) True:(Branch Cond:(Terminal usb_test.tx_ready) True:(Terminal usb_test._rn4_next_state) False:(Terminal usb_test._rn5_next_state)) False:(Branch Cond:(Operator Eq Next:(Terminal usb_test.current_state),(Terminal usb_test.CRC2)) True:(Branch Cond:(Terminal usb_test.tx_ready) True:(Terminal usb_test._rn7_next_state) False:(Terminal usb_test._rn8_next_state)) False:(Branch Cond:(IntConst 1) True:(Terminal usb_test._rn9_next_state))))))'
+
+#root_node_extractor(input_string)
