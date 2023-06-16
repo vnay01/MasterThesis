@@ -152,6 +152,7 @@ else:
 
 """ SVA file maker"""
 
+
 property_file_name = 'prop_' + module_name + '_.sva'
 property_file_path = working_dir + property_file_name
 
