@@ -1,0 +1,32 @@
+module usb_test (clk, reset, send_data, tx_ready, tx_valid, buff)
+
+// Setting Port direction //
+input clk
+input  reset
+input  send_data
+input  tx_ready
+input  tx_valid
+input  buff
+
+// Property list
+
+property Prop_0; 
+	@(posedge clk) ((current_state==IDLE)&&(send_data||tx_ready)|->(next_state==_rn1_next_state));
+endproperty 
+
+assert_Prop_0: assert property (Prop_0);
+
+property Prop_1; 
+	@(posedge clk) ((current_state==CRC1)&&(tx_ready&&_rn3_tx_valid)|->(next_state==_rn4_next_state));
+endproperty 
+
+assert_Prop_1: assert property (Prop_1);
+
+property Prop_2; 
+	@(posedge clk) ((current_state==CRC2)&&(tx_ready&&_rn6_tx_valid)|->(next_state==_rn7_next_state));
+endproperty 
+
+assert_Prop_2: assert property (Prop_2);
+
+
+endmodule

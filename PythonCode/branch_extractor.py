@@ -12,6 +12,7 @@ def dict_creator(string):
 
 def branch_extractor(input_string):
     """ Takes input as a string and spits out tuple of the form ([branches], remaining_string)"""
+    print('\n Entering branch_extractor \n')
     start_string = 'Branch Cond:'
     end_string = 'False:(Branch'
     copy_branch = []  ## holds extracted tree
@@ -21,6 +22,7 @@ def branch_extractor(input_string):
         end_index = input_string.index(end_string)
         copy_branch.append(input_string[start_index: end_index])  ## copy between indices
         input_string = input_string[end_index:].strip('False:')  ## Update string
+        print('\n Exiting branch_extractor \n')
         return copy_branch, input_string
     except FileNotFoundError:
         print('No input file')
@@ -58,18 +60,24 @@ def tree_extractor(input_file):
 
 def operator_extractor(branch_list):
     '''Takes sub-tree and returns operator type  used in COND block'''
+    print('\n Entering operator_extractor \n')
     branch = ""
     copied_line = ""
     start_string = 'Operator'
     end_string = 'Next:'  ## this does not work for inner terminals!! Needs to be fixed
     branch = str(branch_list).replace(']','').replace('[','')
     print(branch)
-    start_index = branch.index(start_string)
-    end_index = branch.index(end_string)
-    copied_line = branch[start_index + 8:end_index]
-#    print(copied_line.strip())
+    if start_string in branch:
+        start_index = branch.index(start_string)
+        end_index = branch.index(end_string)
+        copied_line = branch[start_index + 8:end_index]
+    else:
+        print('Start_string not in branch')
+    print('\n Exiting operator_extractor \n')
     return copied_line.strip()
 
+def true_branch_extractor(input_string):
+    ''' takes the True path without operator and produces unary operator '''
 
 def operator_type(operator):
     ''' This block returns operators'''
@@ -113,6 +121,7 @@ def operator_type(operator):
 # Steps:
 def terminal_extractor(input_list):
     '''Takes sub-tree as input and extracts terminal to put into LHS and RHS'''
+    print('\n Entering terminal_extractor \n')
     input_string = str(input_list).strip('[').strip(']')
     LHS = ""
     RHS = ""
@@ -129,6 +138,7 @@ def terminal_extractor(input_list):
     LHS = LHS[LHS.index(start_string) + 1:].strip(')').strip('(')
     RHS = input_string[input_string.index(','):]
     RHS = RHS[RHS.index(start_string) + 1:].strip('(').strip(')')
+    print('\n Exiting terminal_extractor \n')
     return LHS, RHS
 
 
@@ -166,15 +176,18 @@ def generate_consequent(root_node , operator, value):
 
 
 """ Function to extract what happens in TRUE path"""
-def True_path(input_string):
+def True_path(branch):
     """Takes input string and extracts terminal information.
        This terminal information gets assigned to root_node"""
+    print('\n Entering True_path \n')
+    input_string = str(branch)
     start_string = 'Branch Cond:'
     start_index = input_string.index(start_string)
     end_string = ')) True'
     end_index = input_string.index(end_string, start_index) ## captures start of TRUE path
     input_string = input_string[end_index + 2 :].strip().strip(']').strip('[')
-    ## Calls operator_extractor , followed by operator_type 
+    ## Calls operator_extractor , followed by operator_type
+    print('\n Exiting True_path \n')
     return input_string
 
 
@@ -199,11 +212,13 @@ print('\n RHS :',true_COND_RHS)
 generate_antecedant(COND_tuple)
 """
 def test_antecdant_generator(input_string):
+    print('\n Entering Test_antecdanet_generator \n')
     true_path_operator=operator_extractor(input_string)
     true_path_operator = operator_type(true_path_operator)
     LHS, RHS = terminal_extractor(input_string)
     antecedant_tuple = (LHS, RHS ,true_path_operator)
     antecedant = generate_antecedant(antecedant_tuple)
+    print('\n Exiting Test_antecdanet_generator \n')
     return antecedant
 
 
@@ -241,4 +256,36 @@ print(false_path)
 
 
 def property_writer(antecedant, consequent):
-    return antecedant + '|=>' + consequent
+    return antecedant + '|->' + consequent
+
+
+
+
+########################################################
+#### Lets extract information from each sub-tree########
+########################################################
+
+print('\n*******************\n')
+def property_generator(branch, input_file):
+    root_node = root_node_extractor(input_file)
+    operator = operator_extractor(branch)   # extract operator
+    Operator = operator_type(operator)      # map operator type
+    LHS, RHS = terminal_extractor(branch)   # extract terminals
+
+    antecedant_tuple = (LHS, RHS, Operator) # antecedant
+    antecedant_tuple = generate_antecedant(antecedant_tuple)
+
+    true_path = True_path(branch)           # Extract True path when COND from previous step is met
+    antecedant_2 = test_antecdant_generator(true_path)
+
+    antecedant = antecedant_tuple + operator_type('Land') + antecedant_2 
+
+    true_value, false_value = true_cond_value(true_path)
+    consequent = generate_consequent(root_node, operator_type('Eq'), true_value)
+
+    ## Printing Properties 
+
+    prop = property_writer(antecedant, consequent)
+    print('\n Property ')
+    print(prop)
+    return prop

@@ -12,7 +12,7 @@ from tree_generator import *
 from branch_extractor import *
 from graph_generator import graph_generator
 from rtl_modifier import replace_assignment_operator 
-from sva_file_maker import module_info_extractor
+from sva_file_maker import *
 
 
 
@@ -91,25 +91,30 @@ print('\n*******************\n')
 #print(new_string)
 for i in range(count):
     print(branch_list[i])
-    
-#### Lets extract information from each sub-tree
+########################################################
+#### Lets extract information from each sub-tree########
+########################################################
 
+
+
+"""
 print('\n*******************\n')
-operator = operator_extractor(branch_list[1])
+operator = operator_extractor(branch)
 # print('\n Operator: ', operator)
 Operator = operator_type(operator)
 
 #terminal = 'Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT))) True:(Branch Cond:(Terminal controller.START) True:(Terminal controller._rn6_next_state) False:(Terminal controller._rn0_next_state)) '
-LHS, RHS = terminal_extractor(branch_list[1])
+LHS, RHS = terminal_extractor(branch)
 print('\n*******************\n')
-#print('\nLHS: ', LHS)
+print('\nLHS: ', LHS)
 print('\n*******************\n')
-#print('\nRHS: ',RHS)
+print('\nRHS: ',RHS)
 
 antecedant_tuple = (LHS, RHS, Operator)
 ant_1 = generate_antecedant(antecedant_tuple)
 
-true_path = True_path(str(branch_list[1]))
+true_path = True_path(branch)
+#print(true_path)
 antecedant_2 = test_antecdant_generator(true_path)
 
 antecedant = ant_1 + operator_type('Land') + antecedant_2 
@@ -122,6 +127,7 @@ consequent = generate_consequent(root_node, operator_type('Eq'), true_value)
 prop = property_writer(antecedant, consequent)
 print('\n Property ')
 print(prop)
+"""
 
 #print(cons_1)
 # test_antecdant_generator(True_path(branch_list[0]))
@@ -145,6 +151,18 @@ else:
 #######################################################################################
 
 """ SVA file maker"""
-output_file = working_dir + module_name +'_p.sva'
 
-# module_info_extractor(file_path, output_file)
+property_file_name = 'prop_' + module_name + '_.sva'
+property_file_path = working_dir + property_file_name
+
+
+
+prop = []
+for i in range(count):
+    property = property_generator(branch_list[i],tree_path)
+    prop.append(property)
+
+module_info_extractor(file_path, property_file_path)
+property_add(property_file_path, count, prop)
+
+
