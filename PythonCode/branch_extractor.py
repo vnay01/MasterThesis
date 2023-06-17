@@ -140,24 +140,35 @@ def terminal_extractor(input_list):
         start_index = input_string.index(start_string)
         end_index = input_string.index(end_string, start_index)
         input_string = input_string[start_index: end_index + 1]
-#    print('\n Printing copied string :\n', input_string)
+        print('\n Printing copied string :\n', input_string)
         terminal_string = 'Terminal'
-        terminal_index = input_string.index(terminal_string, start_index)
-        input_string = input_string[terminal_index - 1:]
+        #terminal_index = input_string.index(terminal_string, start_index)
+        terminal_index = input_string.index(terminal_string)
+        input_string = input_string[terminal_index - 1 : ]        ## Updates input_string from Terminal
+        print('\n *** Updated Input_string : ', input_string)
         if ',' in input_string:
             LHS = input_string[: input_string.index(',')]
             print('\n Printing LHS',LHS)
             start_string = '.'
-            LHS = LHS[LHS.index(start_string) + 1:].strip(')').strip('(')        
-            RHS = input_string[input_string.index(','):]
-            RHS = RHS[RHS.index(start_string) + 1:].strip('(').strip(')')
-            print('\n remaining string to terminal_extractor :',input_string)
-            print('\n Exiting terminal_extractor \n')
+            LHS = LHS[LHS.index(start_string) + 1:].strip(')').strip('(')
+            if 'IntConst' not in input_string:        
+                RHS = input_string[input_string.index(','):]
+                RHS = RHS[RHS.index(start_string) + 1:].strip('(').strip(')')
+                print('\n remaining string to terminal_extractor with IntCosnt :',input_string)
+                print('\n Exiting terminal_extractor \n')
+            else:
+                RHS = input_string[input_string.index(','):]
+                start_string = 'IntConst'
+                RHS = RHS[RHS.index(start_string) + 8 :].strip('(').strip(')')
+                print('\n remaining string to terminal_extractor :',input_string)
+                print('\n Exiting terminal_extractor \n')
+
         else:
             LHS = input_string[: input_string.index(')')]
             print('\n Printing LHS',LHS)
             start_string = '.'
             LHS = LHS[LHS.index(start_string) + 1:].strip(')').strip('(')        
+            RHS = ''
 #            RHS = input_string[input_string.index(','):]
 #            RHS = RHS[RHS.index(start_string) + 1:].strip('(').strip(')')
             print('\n remaining string to terminal_extractor :',input_string)
@@ -193,7 +204,10 @@ else:
 def generate_antecedant(antecedant_tuple):
     """ This function takes LHS, RHS and Operator and returns antecedant """
     LHS,RHS,Operator = antecedant_tuple
-    antecedant = '(' + LHS + ' ' + Operator + ' ' + RHS + ')'
+    if len(RHS) == 0:
+        antecedant = '(' + RHS  + Operator + LHS + ')'
+    else:
+        antecedant = '(' + LHS + ' ' + Operator + ' ' + RHS + ')'
     #print('\n', antecedant)
     return antecedant
 
@@ -224,7 +238,7 @@ def True_path(branch):
     """Takes input string and extracts terminal information.
        This terminal information gets assigned to root_node"""
     print('\n Entering True_path \n')
-    input_string = str(branch)
+    input_string = str(branch).replace('[','').replace(']','').replace("'",'')
     start_string = 'Branch Cond:'
     start_index = input_string.index(start_string)
     end_string = ')) True'
@@ -273,34 +287,52 @@ def test_antecdant_generator(input_string):
 
 
 def true_cond_value(input_string):
-    start_string = 'Branch Cond:'       
-    start_index = input_string.index(start_string)  ## searches for 'Branch Cond'
-    end_string = ')) True:'
-    if end_string in input_string:
-        end_index = input_string.index(end_string, start_index) ## captures start of TRUE path
-    #print(input_string[start_index : end_index+20 ])
-        true_value = input_string[end_index : ]           ## captures True Path
-        true_value, false_value = true_value.split(' False')
-        true_value = true_value[true_value.index('.') + 1: ].replace(')','').replace('(','')
-#    print(false_value)
-        false_value = false_value[false_value.index('.') +1 : ]
-        false_value = false_value.replace(')','').replace('(','')
-    #print(false_value)
+    print('\n Entering true_cond_value() : \n')
+    start_string = 'Branch Cond:' 
+    if start_string in input_string:
+        start_index = input_string.index(start_string)  ## searches for 'Branch Cond'
+        end_string = ')) True:'
+        print('\n Input string to true_cond_vale() : ', input_string)
+        if end_string in input_string:
+            end_index = input_string.index(end_string, start_index) ## captures start of TRUE path
+        #print(input_string[start_index : end_index+20 ])
+            true_value = input_string[end_index : ]           ## captures True Path
+            if 'False' in input_string:
+                true_value, false_value = true_value.split(' False')
+                true_value = true_value[true_value.index('.') + 1: ].replace(')','').replace('(','')
+    #    print(false_value)
+                false_value = false_value[false_value.index('.') +1 : ]
+                false_value = false_value.replace(')','').replace('(','')
+            else:
+                true_value = true_value[true_value.index('.') + 1: ].replace(')','').replace('(','')
+                false_value = ''
+        #print(false_value)
+        else:
+            start_string = 'False:'
+            if start_string in input_string:
+                start_index = input_string.index(start_string)
+                end_string = '))'
+                end_index = input_string.index(end_string, start_index) ## captures start of TRUE path
+        #print(input_string[start_index : end_index+20 ])
+                true_value = input_string[start_index : end_index ]           ## captures True Path
+                print('\n Updated Start Index : ', input_string[start_index:end_index + 2])
+                print('\n Printing True_value',true_value)
+            #true_value, false_value = true_value.split(' False')
+                true_value = true_value[true_value.index('.') + 1: ].replace(')','').replace('(','')
+    #    print(false_value)
+                false_value = ''
+            else:
+                pass
+            print('\n Exiting true_cond_value() : \n')    
+        
     else:
-        start_string = 'False:'
-        start_index = input_string.index(start_string)
-        end_string = '))'
-        end_index = input_string.index(end_string, start_index) ## captures start of TRUE path
-    #print(input_string[start_index : end_index+20 ])
-        true_value = input_string[start_index : end_index ]           ## captures True Path
-        print('\n Updated Start Index : ', input_string[start_index:end_index + 2])
-        print('\n Printing True_value',true_value)
-        #true_value, false_value = true_value.split(' False')
-        true_value = true_value[true_value.index('.') + 1: ].replace(')','').replace('(','')
-#    print(false_value)
-        false_value = ''
+        true_value = 'why'
+        false_value = 'Not'
 
-    return true_value, false_value
+    return true_value, false_value   
+    
+
+    
 
 '''
 true_path = True_path(input_string)
@@ -334,7 +366,7 @@ def property_generator(branch, input_file):
 
     antecedant_tuple = (LHS, RHS, Operator) # antecedant
     antecedant_tuple = generate_antecedant(antecedant_tuple)
-
+    print(branch)
     true_path = True_path(branch)           # Extract True path when COND from previous step is met
     antecedant_2 = test_antecdant_generator(true_path)
     print('Antecedant')
@@ -342,12 +374,14 @@ def property_generator(branch, input_file):
     antecedant = antecedant_tuple + operator_type('Land') + antecedant_2 
 
     true_value, false_value = true_cond_value(true_path)
+    print(true_value)
 
     consequent = generate_consequent(root_node, operator_type('Eq'), true_value)
 
     ## Printing Properties 
 
     prop = property_writer(antecedant, consequent)
+    prop.strip("\'")
     print('\n Property ')
-    print(prop)
+    print(type(prop))
     return prop

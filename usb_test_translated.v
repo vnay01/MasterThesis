@@ -35,7 +35,7 @@ always@(*)
     begin
         case(current_state)
             IDLE: begin tx_valid <= 1'b1;
-                  if(send_data & tx_ready) next_state<=CRC1;
+                  if(send_data) next_state<=CRC1;
                   else next_state<=IDLE;
             end
 

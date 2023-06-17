@@ -45,7 +45,7 @@ else:
 
 """ RTL file details & node selection"""
 rtl_file_path = working_dir + "VerilogFiles/"
-rtl_file_name = "USB_test.v"
+rtl_file_name = "controller.v"
 file_path = rtl_file_path + rtl_file_name
 root_node = "next_state"
 
@@ -162,8 +162,14 @@ property_file_path = working_dir + property_file_name
     3) operator_type()
     4) terminal_extractor()     ## this is where single terminal values need to be handled
 '''
+print('\nprinting branches ::: \n ')
+for i in range(count):    
+    print(str(branch_list[i]).strip(']').strip('[').strip("'"))
+
+print('\n *****************************\n')
 prop = []
-for i in range(count):
+for i in range(count):       ## Calls property_generator (no. of branch ) times
+    print('\n \t \t *** Calling property_generator( ) *** \t', i)
     property = property_generator(branch_list[i],tree_path)     ## takes one branch at a time and returns a property for the branch
     prop.append(property)
 
