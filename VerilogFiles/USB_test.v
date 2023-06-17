@@ -40,7 +40,7 @@ always@(*)
             end
 
             CRC1: begin tx_valid = 1'b1;
-                  if(tx_ready) next_state=CRC2;
+                  if(!tx_ready) next_state=CRC2;
                   else next_state=CRC1;
             end
 

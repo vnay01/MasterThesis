@@ -17,7 +17,7 @@ endproperty
 assert_Prop_0: assert property (Prop_0);
 
 property Prop_1; 
-	@(posedge clk) ((current_state == CRC1)&&(tx_ready   ) |-> (next_state == _rn5_next_state));
+	@(posedge clk) ((current_state == CRC1)&&(tx_ready ! ) |-> (next_state == _rn4_next_state));
 endproperty 
 
 assert_Prop_1: assert property (Prop_1);
