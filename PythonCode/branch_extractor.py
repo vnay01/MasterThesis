@@ -134,7 +134,8 @@ def terminal_extractor(input_list):
     end_index = input_string.index(end_string, start_index)
     input_string = input_string[start_index: end_index + 1]
 #    print('\n Printing copied string :\n', input_string)
-    terminal_index = input_string.index('Terminal', start_index)
+    terminal_string = 'Terminal'
+    terminal_index = input_string.index(terminal_string, start_index)
     input_string = input_string[terminal_index - 1:]
     LHS = input_string[: input_string.index(',')]
     start_string = '.'
@@ -144,7 +145,9 @@ def terminal_extractor(input_list):
     print('\n Exiting terminal_extractor \n')
     return LHS, RHS
 
-
+def single_terminal(inåut_list):
+    '''handles leaf-nodes with single terminals'''
+    pass
 
 
 

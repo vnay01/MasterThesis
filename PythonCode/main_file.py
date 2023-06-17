@@ -81,7 +81,7 @@ root_node = root_node_extractor(tree_path)
 # print('\n Root Node :', root_node)
 
 ## Once tree is extracted, we need to separate sub-trees
-branch_list, new_string, count = tree_extractor(tree_path)
+branch_list, new_string, count = tree_extractor(tree_path)      ## tree_extractor() calls branch_extractor()
 print('\n')
 print('Generating sub_branches for target node : \n')
 # print(branch_list)
@@ -156,11 +156,15 @@ else:
 property_file_name = 'prop_' + module_name + '_.sva'
 property_file_path = working_dir + property_file_name
 
-
-
+''' property_genrator() calls
+    1) root_node_extractor()
+    2) operator_extractor()
+    3) operator_type()
+    4) terminal_extractor()     ## this is where single terminal values need to be handled
+'''
 prop = []
 for i in range(count):
-    property = property_generator(branch_list[i],tree_path)
+    property = property_generator(branch_list[i],tree_path)     ## takes one branch at a time and returns a property for the branch
     prop.append(property)
 
 module_info_extractor(file_path, property_file_path)
