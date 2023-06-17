@@ -40,12 +40,12 @@ always@(*)
             end
 
             CRC1: begin tx_valid <= 1'b1;
-                  if(tx_ready && tx_valid) next_state<=CRC2;
+                  if(tx_ready) next_state<=CRC2;
                   else next_state<=CRC1;
             end
 
             CRC2: begin tx_valid <= 1'b0;
-            if(tx_ready && (!tx_valid) ) next_state<=IDLE;
+            if(tx_ready ) next_state<=IDLE;
             else next_state<=CRC2;
             end
             default: begin next_state <= current_state;

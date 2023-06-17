@@ -73,6 +73,9 @@ def operator_extractor(branch_list):
         copied_line = branch[start_index + 8:end_index]
     else:
         print('Start_string not in branch')
+        print('\n sending into single terminal extractor')
+        single_terminal(branch)
+        copied_line = 'single_operator'
     print('\n Exiting operator_extractor \n')
     return copied_line.strip()
 
@@ -102,6 +105,8 @@ def operator_type(operator):
             op_code = '&&'
         case 'And':
             op_code = '&'
+        case 'single_operator':
+            op_code = ' '
         case _:
             op_code = None
         
@@ -126,36 +131,69 @@ def terminal_extractor(input_list):
     '''Takes sub-tree as input and extracts terminal to put into LHS and RHS'''
     print('\n Entering terminal_extractor \n')
     input_string = str(input_list).strip('[').strip(']')
+    print('\n Input string to terminal_extractor :', input_string)
     LHS = ""
     RHS = ""
     start_string = 'Operator'
     end_string = ') True'
-    start_index = input_string.index(start_string)
-    end_index = input_string.index(end_string, start_index)
-    input_string = input_string[start_index: end_index + 1]
+    if start_string in input_string:
+        start_index = input_string.index(start_string)
+        end_index = input_string.index(end_string, start_index)
+        input_string = input_string[start_index: end_index + 1]
 #    print('\n Printing copied string :\n', input_string)
-    terminal_string = 'Terminal'
-    terminal_index = input_string.index(terminal_string, start_index)
-    input_string = input_string[terminal_index - 1:]
-    LHS = input_string[: input_string.index(',')]
-    start_string = '.'
-    LHS = LHS[LHS.index(start_string) + 1:].strip(')').strip('(')
-    RHS = input_string[input_string.index(','):]
-    RHS = RHS[RHS.index(start_string) + 1:].strip('(').strip(')')
-    print('\n Exiting terminal_extractor \n')
+        terminal_string = 'Terminal'
+        terminal_index = input_string.index(terminal_string, start_index)
+        input_string = input_string[terminal_index - 1:]
+        if ',' in input_string:
+            LHS = input_string[: input_string.index(',')]
+            print('\n Printing LHS',LHS)
+            start_string = '.'
+            LHS = LHS[LHS.index(start_string) + 1:].strip(')').strip('(')        
+            RHS = input_string[input_string.index(','):]
+            RHS = RHS[RHS.index(start_string) + 1:].strip('(').strip(')')
+            print('\n remaining string to terminal_extractor :',input_string)
+            print('\n Exiting terminal_extractor \n')
+        else:
+            LHS = input_string[: input_string.index(')')]
+            print('\n Printing LHS',LHS)
+            start_string = '.'
+            LHS = LHS[LHS.index(start_string) + 1:].strip(')').strip('(')        
+#            RHS = input_string[input_string.index(','):]
+#            RHS = RHS[RHS.index(start_string) + 1:].strip('(').strip(')')
+            print('\n remaining string to terminal_extractor :',input_string)
+            print('\n Exiting terminal_extractor \n')
+    else:
+        print('Remaining branch does not have Terminals \n')
+        print('\n remaining string to terminal_extractor :',input_string)
+        LHS = single_terminal(input_string)
     return LHS, RHS
 
-def single_terminal(inåut_list):
+def single_terminal(input_string):
     '''handles leaf-nodes with single terminals'''
-    pass
+    print('\n Entering Single Terminal Extractor')
+    print(input_string)
+    start_string = 'Terminal'
+    end_string = ')'
+    terminal_start_index = input_string.index(start_string)
+    terminal_end_index = input_string.index(end_string,terminal_start_index)
+    LHS = input_string[terminal_start_index : terminal_end_index]
+    LHS = LHS[LHS.index('.') + 1 :]
+    single_terminal = LHS
+    print('\n Terminal information: ',LHS)
+    return single_terminal
 
-
+input_string = 'True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._rn0_tx_valid)) True:(Terminal usb_test._rn1_next_state) False:(Terminal usb_test._rn2_next_state))'
+start_string = 'Operator'
+if start_string in input_string:
+    print('Operator string found in input_string\n')
+else:
+    single_terminal(input_string)
 
 """ Function to generate Antecedants """
 def generate_antecedant(antecedant_tuple):
     """ This function takes LHS, RHS and Operator and returns antecedant """
     LHS,RHS,Operator = antecedant_tuple
-    antecedant = '(' + LHS + Operator + RHS + ')'
+    antecedant = '(' + LHS + ' ' + Operator + ' ' + RHS + ')'
     #print('\n', antecedant)
     return antecedant
 
@@ -176,7 +214,7 @@ def root_node_extractor(input_file):
 """ Function to create consequent """
 def generate_consequent(root_node , operator, value):
     """ Produces consequent in the form of < root_node == value >"""
-    consequent = '(' + root_node + operator + value + ')'
+    consequent = '(' + root_node + ' ' + operator + ' ' + value + ')'
     return consequent
 
 
@@ -219,6 +257,7 @@ generate_antecedant(COND_tuple)
 """
 def test_antecdant_generator(input_string):
     print('\n Entering Test_antecdanet_generator \n')
+    print('\n Printing input_string:', input_string)
     true_path_operator=operator_extractor(input_string)
     true_path_operator = operator_type(true_path_operator)
     LHS, RHS = terminal_extractor(input_string)
@@ -237,18 +276,33 @@ def true_cond_value(input_string):
     start_string = 'Branch Cond:'       
     start_index = input_string.index(start_string)  ## searches for 'Branch Cond'
     end_string = ')) True:'
-    end_index = input_string.index(end_string, start_index) ## captures start of TRUE path
+    if end_string in input_string:
+        end_index = input_string.index(end_string, start_index) ## captures start of TRUE path
     #print(input_string[start_index : end_index+20 ])
-    true_value = input_string[end_index : ]           ## captures True Path
-    true_value, false_value = true_value.split(' False')
-    true_value = true_value[true_value.index('.') + 1: ].replace(')','').replace('(','')
+        true_value = input_string[end_index : ]           ## captures True Path
+        true_value, false_value = true_value.split(' False')
+        true_value = true_value[true_value.index('.') + 1: ].replace(')','').replace('(','')
 #    print(false_value)
-    false_value = false_value[false_value.index('.') +1 : ]
-    false_value = false_value.replace(')','').replace('(','')
+        false_value = false_value[false_value.index('.') +1 : ]
+        false_value = false_value.replace(')','').replace('(','')
     #print(false_value)
+    else:
+        start_string = 'False:'
+        start_index = input_string.index(start_string)
+        end_string = '))'
+        end_index = input_string.index(end_string, start_index) ## captures start of TRUE path
+    #print(input_string[start_index : end_index+20 ])
+        true_value = input_string[start_index : end_index ]           ## captures True Path
+        print('\n Updated Start Index : ', input_string[start_index:end_index + 2])
+        print('\n Printing True_value',true_value)
+        #true_value, false_value = true_value.split(' False')
+        true_value = true_value[true_value.index('.') + 1: ].replace(')','').replace('(','')
+#    print(false_value)
+        false_value = ''
+
     return true_value, false_value
 
-
+'''
 true_path = True_path(input_string)
 
 print('\n*******************\n')
@@ -259,10 +313,10 @@ true_path, false_path = true_cond_value(true_path)
 print(true_path)
 print('\n*******************\n')
 print(false_path)
-
+'''
 
 def property_writer(antecedant, consequent):
-    return antecedant + '|->' + consequent
+    return antecedant + ' |-> ' + consequent
 
 
 
@@ -283,10 +337,12 @@ def property_generator(branch, input_file):
 
     true_path = True_path(branch)           # Extract True path when COND from previous step is met
     antecedant_2 = test_antecdant_generator(true_path)
+    print('Antecedant')
 
     antecedant = antecedant_tuple + operator_type('Land') + antecedant_2 
 
     true_value, false_value = true_cond_value(true_path)
+
     consequent = generate_consequent(root_node, operator_type('Eq'), true_value)
 
     ## Printing Properties 
