@@ -100,8 +100,11 @@ def operator_type(operator):
             op_code = '||'
         case 'Land':
             op_code = '&&'
+        case 'And':
+            op_code = '&'
         case _:
             op_code = None
+        
     return op_code
 
 

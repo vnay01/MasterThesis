@@ -123,7 +123,7 @@ begin
     
     case(current_state)
     
-    INIT: if(START) begin
+    INIT: if(START && reset) begin
             next_state = LOAD;          // State change
             w_input_matrix_ram_address_next = {10{1'b0}}; /// Initial RAM address
             state_counter_next = {counter_size{1'b0}}; 

@@ -15,10 +15,13 @@ output reg tx_valid;
 output reg [9:0] buff;
 
 // State definitions
-parameter IDLE=3'b000,
+localparam IDLE=3'b000,
           CRC1=3'b001,
           CRC2=3'b011;
 reg [2:0] current_state, next_state;
+
+// SV_feature enum 
+//{IDLE, CRC1, CRC2} current_state, next_state;
 
 // FSM Starts here
 // Register update
@@ -32,17 +35,17 @@ always@(*)
     begin
         case(current_state)
             IDLE: begin tx_valid <= 1'b1;
-                  if(send_data || tx_valid) next_state<=CRC1;
+                  if(send_data & tx_ready) next_state<=CRC1;
                   else next_state<=IDLE;
             end
 
             CRC1: begin tx_valid <= 1'b1;
-                  if(tx_ready) next_state<=CRC2;
+                  if(tx_ready && tx_valid) next_state<=CRC2;
                   else next_state<=CRC1;
             end
 
             CRC2: begin tx_valid <= 1'b0;
-            if(tx_ready) next_state<=IDLE;
+            if(tx_ready && (!tx_valid) ) next_state<=IDLE;
             else next_state<=CRC2;
             end
             default: begin next_state <= current_state;

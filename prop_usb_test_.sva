@@ -11,7 +11,7 @@ input  buff
 // Property list
 
 property Prop_0; 
-	@(posedge clk) ((current_state==IDLE)&&(send_data||tx_ready)|->(next_state==_rn1_next_state));
+	@(posedge clk) ((current_state==IDLE)&&(send_data&tx_ready)|->(next_state==_rn1_next_state));
 endproperty 
 
 assert_Prop_0: assert property (Prop_0);

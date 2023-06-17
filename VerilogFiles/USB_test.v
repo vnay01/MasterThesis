@@ -20,6 +20,9 @@ localparam IDLE=3'b000,
           CRC2=3'b011;
 reg [2:0] current_state, next_state;
 
+// SV_feature enum 
+//{IDLE, CRC1, CRC2} current_state, next_state;
+
 // FSM Starts here
 // Register update
 always@(posedge clk)
@@ -32,7 +35,7 @@ always@(*)
     begin
         case(current_state)
             IDLE: begin tx_valid = 1'b1;
-                  if(send_data || tx_ready) next_state=CRC1;
+                  if(send_data & tx_ready) next_state=CRC1;
                   else next_state=IDLE;
             end
 
