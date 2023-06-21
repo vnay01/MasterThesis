@@ -47,7 +47,7 @@ input
     
 
 // Property list
-/// How to handle next_state assignments
+
 property Prop_0; 
 	@(posedge clk) ((current_state == INIT)&&( START) |-> (next_state == current_state));
 endproperty 

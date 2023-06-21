@@ -45,7 +45,7 @@ else:
 
 """ RTL file details & node selection"""
 rtl_file_path = working_dir + "VerilogFiles/"
-rtl_file_name = "controller.v"
+rtl_file_name = "USB_test.v"
 file_path = rtl_file_path + rtl_file_name
 root_node = "next_state"
 

@@ -1,4 +1,5 @@
 """ Read a Verilog file and extract module information"""
+import time
 
 def module_info_extractor(input_file, output_file):
     """Reading file"""
@@ -48,8 +49,12 @@ def port_direction(input_string):
 
 def property_add(input_file, count, property_list):
     '''Modifies .sva file. Adds property list and assert statements to the .sva file'''
+    timestr = time.strftime("%Y%m%d-%H%M%S")
     with open(input_file, 'a') as sva_file:
-        sva_file.write('\n// Property list\n')
+        sva_file.write('\n// Property list \n')
+        sva_file.write('\n//  Timestamp : ')
+        sva_file.write(timestr)
+#        sva_file.write('\n// TimeStamp: ', timestr)
         for i in range(count):
             prop_buff = property_list[i]
             sva_file.write('\n')

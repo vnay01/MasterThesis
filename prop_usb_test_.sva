@@ -8,8 +8,9 @@ input  tx_ready
 input  tx_valid
 input  buff
 
-// Property list
+// Property list 
 
+//  Timestamp : 20230621-134604
 property Prop_0; 
 	@(posedge clk) ((current_state == IDLE)&&( send_data) |-> (next_state == _rn2_next_state));
 endproperty 
