@@ -1,0 +1,1 @@
+(Bind dest:controller.fifo_command tree:(Terminal controller._rn23_fifo_command))

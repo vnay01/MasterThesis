@@ -1,1 +1,0 @@
-(Bind dest:controller.current_state tree:(Branch Cond:(Operator Ulnot Next:(Terminal controller.reset)) True:(Terminal controller.INIT) False:(Terminal controller.next_state)))

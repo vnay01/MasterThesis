@@ -4,6 +4,8 @@ from subprocess import call
 import sys
 import typing
 import platform
+## Module to find time elapsed in running this code
+from timeit import default_timer as timer
 
 
 ### My modules ###
@@ -13,6 +15,10 @@ from branch_extractor import *
 from graph_generator import graph_generator
 from rtl_modifier import replace_assignment_operator 
 from sva_file_maker import *
+start = timer()
+
+print(23*2.3)
+
 
 
 
@@ -45,7 +51,7 @@ else:
 
 """ RTL file details & node selection"""
 rtl_file_path = working_dir + "VerilogFiles/"
-rtl_file_name = "USB_test.v"
+rtl_file_name = "controller.v"
 file_path = rtl_file_path + rtl_file_name
 root_node = "next_state"
 
@@ -132,7 +138,6 @@ print(prop)
 #print(cons_1)
 # test_antecdant_generator(True_path(branch_list[0]))
 #######################################################################################
-
 ###### vnay01: This section is required only for generating graphs in a proper way using Pyverilog's graphgen() function
 if system == "Linux":
     print('\n*******************\n')
@@ -149,6 +154,7 @@ else:
     pass
 
 #######################################################################################
+
 
 """ SVA file maker"""
 
@@ -177,3 +183,6 @@ module_info_extractor(file_path, property_file_path)
 property_add(property_file_path, count, prop)
 
 
+## Run Time  information
+end = timer()
+print('\n The total run time for this code is : ',end - start, 'seconds')

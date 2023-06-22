@@ -13,7 +13,7 @@ def module_info_extractor(input_file, output_file):
     end_string = ');'
     start_index = rtl_code.index(start_string)
     end_index = rtl_code.index(end_string)
-    copied_block = rtl_code[start_index:end_index+1]
+    copied_block = rtl_code[start_index:end_index+2]
     
     print('copied_block: ', copied_block)
     with open(output_file, 'w') as file:
@@ -41,7 +41,7 @@ def port_direction(input_string):
     copied_block = copied_block.split(',')      ## create a list of all port names
     ## assign all port direction as input
     for i in range(len(copied_block)):
-        buff = "input " + copied_block[i]       # extract list item and add 'input ' 
+        buff = "input " + copied_block[i].replace('input','').replace('output','').replace('reg','').replace('logic','') + ';'      # extract list item and add 'input ' 
         copied_block[i] = buff                  # modify the copied list item with previous step
     return copied_block
 
@@ -49,10 +49,10 @@ def port_direction(input_string):
 
 def property_add(input_file, count, property_list):
     '''Modifies .sva file. Adds property list and assert statements to the .sva file'''
-    timestr = time.strftime("%Y%m%d-%H%M%S")
+    timestr = time.strftime("%Y/%m/%d- %H hr-%M m.-%S s")
     with open(input_file, 'a') as sva_file:
         sva_file.write('\n// Property list \n')
-        sva_file.write('\n//  Timestamp : ')
+        sva_file.write('\n//  Property Generated on Timestamp : ')
         sva_file.write(timestr)
 #        sva_file.write('\n// TimeStamp: ', timestr)
         for i in range(count):

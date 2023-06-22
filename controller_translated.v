@@ -16,24 +16,24 @@ Signal brief:
         */
 
 module controller(  
-                    clk,
-                    reset,  // ACTIVE LOW reset
-                    START,
-                    MEM_READ,         
-                    BUSY,
-                    DONE,
-                    input_matrix_ram_en,
-                    input_matrix_ram_read_en,
-                    input_matrix_ram_address,
-                    filter_matrix_rom_en,
-                    filter_matrix_rom_read_en,
-                    filter_matrix_rom_address,
-                    data_path_signal,
-                    fifo_command                             
+                     input clk,
+                     input reset,
+                     input START,      
+                     input MEM_READ,   
+                     output reg BUSY,
+                     output reg DONE,
+                     output reg input_matrix_ram_en,
+                     output reg input_matrix_ram_read_en,
+                     output reg [9:0] input_matrix_ram_address,
+                     output reg filter_matrix_rom_en,
+                     output reg filter_matrix_rom_read_en,
+                     output reg filter_matrix_rom_address,
+                     output reg [4:0] data_path_signal,          // concatnation of signals which control different sections of datapath
+                     output reg [1:0] fifo_command                          
     );
     
 /// Port directions
-
+/*
 input clk;
 input reset;
 input START;      
@@ -48,7 +48,7 @@ output reg filter_matrix_rom_read_en;
 output reg filter_matrix_rom_address;
 output reg [4:0] data_path_signal;          // concatnation of signals which control different sections of datapath
 output reg [1:0] fifo_command;
-
+*/
 // Internal counters
 parameter counter_size = 10;
 
@@ -129,6 +129,8 @@ begin
             state_counter_next <= {counter_size{1'b0}}; 
             count_next <= {counter_size{1'b0}}; 
           end  
+          else
+          next_state <= INIT;
     
     LOAD: begin
             w_filter_matrix_rom_address_next <= w_filter_matrix_rom_address + 1 ; 

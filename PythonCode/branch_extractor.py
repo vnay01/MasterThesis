@@ -13,7 +13,7 @@ def dict_creator(string):
 def branch_extractor(input_string):
     """ Takes input as a string and spits out tuple of the form ([branches], remaining_string)"""
     print('\n Entering branch_extractor \n')
-    start_string = 'Branch Cond:'
+    start_string = '(Branch Cond:'
     end_string = 'False:(Branch'
     copy_branch = []  ## holds extracted tree
 
@@ -61,12 +61,13 @@ def tree_extractor(input_file):
 def operator_extractor(branch_list):
     '''Takes sub-tree and returns operator type  used in COND block'''
     print('\n Entering operator_extractor \n')
+    ##print('\n Input branch list : \n', branch_list)
     branch = ""
     copied_line = ""
     start_string = 'Operator'
     end_string = 'Next:'  ## this does not work for inner terminals!! Needs to be fixed
     branch = str(branch_list).replace(']','').replace('[','')
-    print(branch)
+    print('\n Input branch list to function: \n', branch)
     if start_string in branch:
         start_index = branch.index(start_string)
         end_index = branch.index(end_string)
@@ -138,7 +139,11 @@ def terminal_extractor(input_list):
     end_string = ') True'
     if start_string in input_string:
         start_index = input_string.index(start_string)
-        end_index = input_string.index(end_string, start_index)
+        if end_string in input_string:
+            end_index = input_string.index(end_string, start_index)
+        else:                       
+            end_string = '))'                                           ## Takes  care of cases where the branch has no True or False path
+            end_index = input_string.index(end_string, start_index)
         input_string = input_string[start_index: end_index + 1]
         print('\n Printing copied string :\n', input_string)
         terminal_string = 'Terminal'
@@ -203,6 +208,7 @@ else:
 """ Function to generate Antecedants """
 def generate_antecedant(antecedant_tuple):
     """ This function takes LHS, RHS and Operator and returns antecedant """
+    print(antecedant_tuple)
     LHS,RHS,Operator = antecedant_tuple
     if len(RHS) == 0:
         antecedant = '(' + RHS  + Operator + LHS + ')'
@@ -238,15 +244,23 @@ def True_path(branch):
     """Takes input string and extracts terminal information.
        This terminal information gets assigned to root_node"""
     print('\n Entering True_path \n')
+    print('\n Branch to True_path ', str(branch))
     input_string = str(branch).replace('[','').replace(']','').replace("'",'')
     start_string = 'Branch Cond:'
     start_index = input_string.index(start_string)
     end_string = ')) True'
-    end_index = input_string.index(end_string, start_index) ## captures start of TRUE path
-    input_string = input_string[end_index + 2 :].strip().strip(']').strip('[')
+    if end_string in input_string:
+        end_index = input_string.index(end_string, start_index) ## captures start of TRUE path
+        input_string = input_string[end_index + 2 :].strip().strip(']').strip('[')
+        print('\n Exiting True_path \n')
+        return input_string
     ## Calls operator_extractor , followed by operator_type
-    print('\n Exiting True_path \n')
-    return input_string
+    else:
+        print('\n Exiting True_path as no True / False condition exists...\n')
+        return None
+        
+    
+    
 
 
 

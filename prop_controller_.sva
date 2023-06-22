@@ -1,55 +1,56 @@
 module controller(  
-                    clk,
-                    reset,  // ACTIVE LOW reset
-                    START,
-                    MEM_READ,         
-                    BUSY,
-                    DONE,
-                    input_matrix_ram_en,
-                    input_matrix_ram_read_en,
-                    input_matrix_ram_address,
-                    filter_matrix_rom_en,
-                    filter_matrix_rom_read_en,
-                    filter_matrix_rom_address,
-                    data_path_signal,
-                    fifo_command                             
-    )
+                     input clk,
+                     input reset,
+                     input START,      
+                     input MEM_READ,   
+                     output reg BUSY,
+                     output reg DONE,
+                     output reg input_matrix_ram_en,
+                     output reg input_matrix_ram_read_en,
+                     output reg [9:0] input_matrix_ram_address,
+                     output reg filter_matrix_rom_en,
+                     output reg filter_matrix_rom_read_en,
+                     output reg filter_matrix_rom_address,
+                     output reg [4:0] data_path_signal,          // concatnation of signals which control different sections of datapath
+                     output reg [1:0] fifo_command                          
+    );
 
 // Setting Port direction //
 input   
-                    clk
+                      clk;
 input 
-                    reset
-input   // ACTIVE LOW reset
-                    START
+                      reset;
 input 
-                    MEM_READ
-input          
-                    BUSY
+                      START;
+input       
+                      MEM_READ;
+input    
+                       BUSY;
 input 
-                    DONE
+                       DONE;
 input 
-                    input_matrix_ram_en
+                       _matrix_ram_en;
 input 
-                    input_matrix_ram_read_en
+                       _matrix_ram_read_en;
 input 
-                    input_matrix_ram_address
+                       [9:0] _matrix_ram_address;
 input 
-                    filter_matrix_rom_en
+                       filter_matrix_rom_en;
 input 
-                    filter_matrix_rom_read_en
+                       filter_matrix_rom_read_en;
 input 
-                    filter_matrix_rom_address
+                       filter_matrix_rom_address;
 input 
-                    data_path_signal
-input 
-                    fifo_command                             
-    
+                       [4:0] data_path_signal;
+input           // concatnation of signals which control different sections of datapath
+                       [1:0] fifo_command                          
+    ;
 
-// Property list
+// Property list 
 
+//  Property Generated on Timestamp : 2023/06/22- 08 hr-24 m.-31 s
 property Prop_0; 
-	@(posedge clk) ((current_state == INIT)&&( START) |-> (next_state == current_state));
+	@(posedge clk) ((current_state == INIT)&&( START) |-> (next_state == INIT));
 endproperty 
 
 assert_Prop_0: assert property (Prop_0);
