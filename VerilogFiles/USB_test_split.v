@@ -15,8 +15,8 @@ output reg [9:0] buff;
 localparam IDLE=3'b000,
           CRC1=3'b001,
           CRC2=3'b011;
-reg [2:0] current_state;
-reg [2:0] next_state;
+logic [2:0] current_state;
+logic [2:0] next_state;
 
 
 always@(posedge clk)
@@ -40,6 +40,7 @@ always@(*)
             if(tx_ready ) next_state=IDLE;
             else next_state=CRC2;
             end
+            default: begin next_state = current_state;
                            tx_valid = 1'b0;
                            end 
         endcase
