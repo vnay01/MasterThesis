@@ -53,7 +53,7 @@ else:
 rtl_file_path = working_dir + "VerilogFiles/"
 rtl_file_name = "USB_test.v"
 file_path = rtl_file_path + rtl_file_name
-root_node = "next_state"
+root_node = "tx_valid"
 
 
 

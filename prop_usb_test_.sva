@@ -10,21 +10,21 @@ input  buff;
 
 // Property list 
 
-//  Property Generated on Timestamp : 2023/07/03- 07 hr-03 m.-05 s
+//  Property Generated on Timestamp : 2023/07/03- 10 hr-35 m.-50 s
 property Prop_0; 
-	@(posedge clk) ((current_state == IDLE)&&( send_data) |-> (next_state == _rn2_next_state));
+	@(posedge clk) ((current_state == IDLE)&&( _rn0_tx_valid) |-> (tx_valid == why));
 endproperty 
 
 assert_Prop_0: assert property (Prop_0);
 
 property Prop_1; 
-	@(posedge clk) ((current_state == CRC1)&&(!tx_ready) |-> (next_state == _rn4_next_state));
+	@(posedge clk) ((current_state == CRC1)&&( _rn3_tx_valid) |-> (tx_valid == why));
 endproperty 
 
 assert_Prop_1: assert property (Prop_1);
 
 property Prop_2; 
-	@(posedge clk) ((current_state == CRC2)&&( tx_ready) |-> (next_state == _rn8_next_state));
+	@(posedge clk) ((current_state == CRC2)&&( _rn6_tx_valid) |-> (tx_valid == why));
 endproperty 
 
 assert_Prop_2: assert property (Prop_2);
