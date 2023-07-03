@@ -21,7 +21,7 @@ timestr = time.strftime("%Y/%m/%d- %H hr-%M m.-%S s")
 
 print('Starting Flow at...', timestr)
 ### Globals -- These need to be changed as arguments later
-rtl_file_name = "USB_test.v"
+rtl_file_name = "controller.v"
 root_node = "next_state"
 
 

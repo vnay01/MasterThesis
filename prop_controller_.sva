@@ -49,7 +49,7 @@ input           // concatnation of signals which control different sections of d
 //default clocking (@posedge clk); clocking
 // Property list 
 
-//  Property Generated on Timestamp : 2023/07/03- 16 hr-03 m.-07 s
+//  Property Generated on Timestamp : 2023/07/03- 16 hr-07 m.-47 s
 property Prop_0; 
 	@(posedge clk) ((current_state == INIT)&&( START) |-> (next_state == INIT));
 endproperty 
@@ -58,7 +58,7 @@ assert_Prop_0: assert property (Prop_0);
 cover_prop_0: cover property (Prop_0);
 
 property Prop_1; 
-	@(posedge clk) ((current_state == LOAD)&&(count ==  1) |-> (next_state == MULT));
+	@(posedge clk) ((current_state == LOAD)&&(count ==  10) |-> (next_state == MULT));
 endproperty 
 
 assert_Prop_1: assert property (Prop_1);

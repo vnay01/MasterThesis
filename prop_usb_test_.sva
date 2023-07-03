@@ -11,7 +11,7 @@ input  buff;
 //default clocking (@posedge clk); clocking
 // Property list 
 
-//  Property Generated on Timestamp : 2023/07/03- 16 hr-03 m.-14 s
+//  Property Generated on Timestamp : 2023/07/03- 16 hr-06 m.-49 s
 property Prop_0; 
 	@(posedge clk) ((current_state == IDLE)&&( send_data) |-> (next_state == IDLE));
 endproperty 

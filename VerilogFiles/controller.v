@@ -108,6 +108,7 @@ always@(posedge clk)
 
 always@(*)
 begin
+/*
     // default values
     next_state = current_state;      // preserve current state
     
@@ -120,6 +121,7 @@ begin
     
     
     DONE = 1'b0;
+    */
     
     case(current_state)
     
@@ -140,7 +142,7 @@ begin
             // Optimization candidate
             // count signal is used here to change states.
             
-            if(count == 1) begin
+            if(count == 10) begin
             
             next_state <= MULT;                          // change state to MULT
             count_next = {counter_size{1'b0}};          // reset counter to 0s
@@ -199,7 +201,21 @@ begin
                         end
                         end
                     
-   default: next_state <= INIT;
+   default: begin
+       // default values
+    next_state = current_state;      // preserve current state
+    
+    count_next = count + 1;          // increment counter by 1
+    state_counter_next = state_counter;    // For testing, I am updating this counter only when MEM_STORE state is reached. Will have to be reused 
+   
+    w_input_matrix_ram_address_next = w_input_matrix_ram_address;  // 
+    w_filter_matrix_rom_address_next = w_filter_matrix_rom_address;    
+    w_fifo_command_next <= w_fifo_command;
+    
+    
+    DONE = 1'b0;
+   end
+
     endcase
 end
 
