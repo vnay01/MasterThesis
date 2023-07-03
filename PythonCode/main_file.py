@@ -83,7 +83,7 @@ call_dataflow_analyzer(script_path, module_name, arguments)
 
 pattern = "(Bind dest:"+ module_name + '.' + root_node
 
-data_flow_file_path = os.getcwd()+'/data_flow_'+ module_name + '.txt'
+data_flow_file_path = os.path.abspath('data_flow')+'/data_flow_'+ module_name + '.txt'
 
 ## This function extracts target node tree and returns the path to file where the tree is stored
 tree_path = data_flow(data_flow_file_path, pattern, module_name, root_node)
@@ -165,9 +165,10 @@ else:
 
 """ SVA file maker"""
 
-
+if not os.path.exists('Properties'):
+    os.mkdir('Properties')
 property_file_name = 'prop_' + module_name + '_.sva'
-property_file_path = working_dir + property_file_name
+property_file_path = os.path.abspath('Properties') +'/'+ property_file_name
 
 ''' property_genrator() calls
     1) root_node_extractor()
