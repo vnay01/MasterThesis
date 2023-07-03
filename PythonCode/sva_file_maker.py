@@ -50,7 +50,10 @@ def port_direction(input_string):
 def property_add(input_file, count, property_list):
     '''Modifies .sva file. Adds property list and assert statements to the .sva file'''
     timestr = time.strftime("%Y/%m/%d- %H hr-%M m.-%S s")
+    print('//////////////////////////////////////////////////\n')
     with open(input_file, 'a') as sva_file:
+        sva_file.write('// Default Clocking and Reset\n')
+        sva_file.write('//default clocking (@posedge clk); clocking')
         sva_file.write('\n// Property list \n')
         sva_file.write('\n//  Property Generated on Timestamp : ')
         sva_file.write(timestr)
@@ -64,7 +67,9 @@ def property_add(input_file, count, property_list):
             sva_file.write('endproperty \n')
             sva_file.write('\n')
             sva_file.write('assert_Prop_' + str(i) + ': assert property (Prop_' + str(i) +');')
-            sva_file.write('\n')  
+            sva_file.write('\n') 
+            sva_file.write('cover_prop_' + str(i) + ': cover property (Prop_'+str(i)+');')
+            sva_file.write('\n') 
         sva_file.write('\n')  
         sva_file.write('\n')     
         sva_file.write('endmodule')  

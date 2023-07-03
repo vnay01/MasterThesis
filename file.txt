@@ -1,0 +1,196 @@
+Printing.. ['/Users/vinaysingh/Desktop/MasterThesis/controller_translated.v']
+Directive:
+(1, '`timescale 1ns / 1ps\n')
+Instance:
+(controller, 'controller')
+Term:
+(Term name:controller.BUSY type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.DONE type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.INIT type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.L1_ADD type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.L2_ADD type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.L3_ADD type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.L4_ADD type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.LOAD type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.MEM_READ type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.MEM_STORE type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.MULT type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.START type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.STATE_SIZE type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.clk type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.count type:['Reg'] msb:(Operator Minus Next:(Terminal controller.counter_size),(IntConst 1)) lsb:(IntConst 0))
+(Term name:controller.count_next type:['Reg'] msb:(Operator Minus Next:(Terminal controller.counter_size),(IntConst 1)) lsb:(IntConst 0))
+(Term name:controller.counter_size type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.current_state type:['Reg'] msb:(Operator Minus Next:(Terminal controller.STATE_SIZE),(IntConst 1)) lsb:(IntConst 0))
+(Term name:controller.data_path_signal type:['Output', 'Reg'] msb:(IntConst 4) lsb:(IntConst 0))
+(Term name:controller.fifo_command type:['Output', 'Reg'] msb:(IntConst 1) lsb:(IntConst 0))
+(Term name:controller.filter_matrix_rom_address type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.filter_matrix_rom_en type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.filter_matrix_rom_read_en type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.input_matrix_ram_address type:['Output', 'Reg'] msb:(IntConst 9) lsb:(IntConst 0))
+(Term name:controller.input_matrix_ram_en type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.input_matrix_ram_read_en type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.next_state type:['Reg'] msb:(Operator Minus Next:(Terminal controller.STATE_SIZE),(IntConst 1)) lsb:(IntConst 0))
+(Term name:controller.reset type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.state_counter type:['Reg'] msb:(Operator Minus Next:(Terminal controller.counter_size),(IntConst 1)) lsb:(IntConst 0))
+(Term name:controller.state_counter_next type:['Reg'] msb:(Operator Minus Next:(Terminal controller.counter_size),(IntConst 1)) lsb:(IntConst 0))
+(Term name:controller.w_fifo_command type:['Reg'] msb:(IntConst 1) lsb:(IntConst 0))
+(Term name:controller.w_fifo_command_next type:['Reg'] msb:(IntConst 1) lsb:(IntConst 0))
+(Term name:controller.w_filter_matrix_rom_address type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.w_filter_matrix_rom_address_next type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.w_input_matrix_ram_address type:['Reg'] msb:(IntConst 9) lsb:(IntConst 0))
+(Term name:controller.w_input_matrix_ram_address_next type:['Reg'] msb:(IntConst 9) lsb:(IntConst 0))
+Blocked...
+
+Bind:
+
+ Entering Single Terminal Extractor
+True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._rn0_tx_valid)) True:(Terminal usb_test._rn1_next_state) False:(Terminal usb_test._rn2_next_state))
+
+ Terminal information:  send_data
+
+*******************
+
+Starting Flow at... 2023/07/03- 16 hr-01 m.-18 s
+controller
+['/Users/vinaysingh/Desktop/MasterThesis/PythonCode/main_file.py']
+BUSY
+8
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+
+Generating sub_branches for target node : 
+
+
+*******************
+
+
+ Number of branches : 8
+
+*******************
+
+["(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(IntConst 1'b0) "]
+["(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.LOAD)) True:(IntConst 1'b1) "]
+["(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT)) True:(IntConst 1'b1) "]
+["(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(IntConst 1'b1) "]
+["(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(IntConst 1'b1) "]
+["(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(IntConst 1'b1) "]
+["(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(IntConst 1'b1) "]
+["(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(IntConst 1'b1) "]
+
+printing branches ::: 
+ 
+"(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(IntConst 1'b0) "
+"(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.LOAD)) True:(IntConst 1'b1) "
+"(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT)) True:(IntConst 1'b1) "
+"(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(IntConst 1'b1) "
+"(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(IntConst 1'b1) "
+"(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(IntConst 1'b1) "
+"(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(IntConst 1'b1) "
+"(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(IntConst 1'b1) "
+
+ *****************************
+
+
+ 	 	 *** Calling property_generator( ) *** 	 0
+BUSY
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ "(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(IntConst 1'b0) "
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : "(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(IntConst 1'b0) "
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT))
+
+ *** Updated Input_string :  (Terminal controller.current_state),(Terminal controller.INIT))
+
+ Printing LHS (Terminal controller.current_state)
+
+ remaining string to terminal_extractor with IntCosnt : (Terminal controller.current_state),(Terminal controller.INIT))
+
+ Exiting terminal_extractor 
+
+('current_state', 'INIT', '==')
+["(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(IntConst 1'b0) "]
+
+ Entering True_path 
+
+
+ Branch to True_path  ["(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(IntConst 1'b0) "]
+
+ Exiting True_path 
+
+
+ Entering Test_antecdanet_generator 
+
+
+ Printing input_string: True:(IntConst 1b0) "
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ True:(IntConst 1b0) "
+Start_string not in branch
+
+ sending into single terminal extractor
+
+ Entering Single Terminal Extractor
+True:(IntConst 1b0) "

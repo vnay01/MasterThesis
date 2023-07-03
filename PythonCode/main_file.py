@@ -5,6 +5,7 @@ import sys
 import typing
 import platform
 ## Module to find time elapsed in running this code
+import time
 from timeit import default_timer as timer
 
 
@@ -12,13 +13,16 @@ from timeit import default_timer as timer
 from module_extractor import *
 from tree_generator import *
 from branch_extractor import *
-from graph_generator import graph_generator
-from rtl_modifier import replace_assignment_operator 
+from graph_generator import *
+from rtl_modifier import * 
 from sva_file_maker import *
 start = timer()
+timestr = time.strftime("%Y/%m/%d- %H hr-%M m.-%S s")
 
-print(23*2.3)
-
+print('Starting Flow at...', timestr)
+### Globals -- These need to be changed as arguments later
+rtl_file_name = "USB_test.v"
+root_node = "next_state"
 
 
 
@@ -51,16 +55,15 @@ else:
 
 """ RTL file details & node selection"""
 rtl_file_path = working_dir + "VerilogFiles/"
-rtl_file_name = "USB_test.v"
 file_path = rtl_file_path + rtl_file_name
-root_node = "tx_valid"
-
-
 
 
 ### Setting main script path ###
-script_path=parent_dir + "Desktop/Pyverilog/examples/working_dataflow_analyzer.py"
-arguments = [ file_path]
+script_path=parent_dir + "Desktop/Pyverilog/examples/example_dataflow_analyzer.py"
+# arguments = [ file_path]
+
+
+
 
 
 #### Main work starts here #### 
@@ -69,8 +72,12 @@ module_name = extract_module_name(file_path)
 module_name = module_name_clean(module_name)
 
 print(module_name)
+### Changing all blocking statements to non-blocking
+output_file = working_dir + module_name +'_translated.v'
+replace_assignment_operator( file_path , output_file)
 
-
+file_path=os.path.abspath(output_file)
+arguments = [ file_path]
 ##### Calling Data Flow Analyzer module #####
 call_dataflow_analyzer(script_path, module_name, arguments) 
 
