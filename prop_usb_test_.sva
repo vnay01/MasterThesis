@@ -1,16 +1,16 @@
-module usb_test (clk, reset, send_data, tx_ready, tx_valid, buff)
+module usb_test (clk, reset, send_data, tx_ready, tx_valid, buff);
 
 // Setting Port direction //
-input clk
-input  reset
-input  send_data
-input  tx_ready
-input  tx_valid
-input  buff
+input clk;
+input  reset;
+input  send_data;
+input  tx_ready;
+input  tx_valid;
+input  buff;
 
 // Property list 
 
-//  Timestamp : 20230621-134604
+//  Property Generated on Timestamp : 2023/07/03- 07 hr-03 m.-05 s
 property Prop_0; 
 	@(posedge clk) ((current_state == IDLE)&&( send_data) |-> (next_state == _rn2_next_state));
 endproperty 

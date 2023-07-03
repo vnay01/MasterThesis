@@ -1,3 +1,4 @@
+   /*
     Test code to verify the operation of ADD generation
     The code is self-explanatory
     */
@@ -40,8 +41,10 @@ always@(*)
             if(tx_ready ) next_state=IDLE;
             else next_state=CRC2;
             end
-                           tx_valid = 1'b0;
-                           end 
+            default: begin
+                tx_valid = 1'b0;
+                next_state=IDLE;
+                end 
         endcase
     end
 
@@ -51,8 +54,9 @@ always@(posedge clk)
         if (!reset) buff = 0;
         else
             begin
-            buff[0] <= tx_valid;                 buff[9:1] <= buff[8:0];             end
-            
+            buff[0] <= tx_valid;                 
+            buff[9:1] <= buff[8:0];
+            end
     end
 
 

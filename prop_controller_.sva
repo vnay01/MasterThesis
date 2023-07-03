@@ -48,7 +48,7 @@ input           // concatnation of signals which control different sections of d
 
 // Property list 
 
-//  Property Generated on Timestamp : 2023/06/22- 08 hr-24 m.-31 s
+//  Property Generated on Timestamp : 2023/07/03- 04 hr-59 m.-53 s
 property Prop_0; 
 	@(posedge clk) ((current_state == INIT)&&( START) |-> (next_state == INIT));
 endproperty 

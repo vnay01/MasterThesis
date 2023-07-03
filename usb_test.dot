@@ -63,8 +63,6 @@ strict digraph "" {
 		label=FALSE];
 	usb_test_tx_ready	[color=black];
 	Ulnot_graphrename_11 -> usb_test_tx_ready	[color=black];
-	Branch_graphrename_14 -> usb_test_current_state	[color=black,
-		label=FALSE];
 	Eq_graphrename_15	[color=black,
 		label=Eq];
 	Branch_graphrename_14 -> Eq_graphrename_15	[color=black,
@@ -73,6 +71,10 @@ strict digraph "" {
 		label=Branch];
 	Branch_graphrename_14 -> Branch_graphrename_17	[color=black,
 		label=TRUE];
+	"'d0_graphrename_20"	[color=black,
+		label="'d0"];
+	Branch_graphrename_14 -> "'d0_graphrename_20"	[color=black,
+		label=FALSE];
 	Eq_graphrename_15 -> usb_test_current_state	[color=black];
 	"'d3_graphrename_16"	[color=black,
 		label="'d3"];

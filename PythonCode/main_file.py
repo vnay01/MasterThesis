@@ -51,7 +51,7 @@ else:
 
 """ RTL file details & node selection"""
 rtl_file_path = working_dir + "VerilogFiles/"
-rtl_file_name = "controller.v"
+rtl_file_name = "USB_test.v"
 file_path = rtl_file_path + rtl_file_name
 root_node = "next_state"
 
@@ -59,7 +59,7 @@ root_node = "next_state"
 
 
 ### Setting main script path ###
-script_path=parent_dir + "Desktop/Pyverilog/examples/example_dataflow_analyzer.py"
+script_path=parent_dir + "Desktop/Pyverilog/examples/working_dataflow_analyzer.py"
 arguments = [ file_path]
 
 
