@@ -1,0 +1,944 @@
+Printing.. ['/Users/vinaysingh/Desktop/MasterThesis/controller_translated.v']
+Directive:
+(1, '`timescale 1ns / 1ps\n')
+Instance:
+(controller, 'controller')
+Term:
+(Term name:controller.BUSY type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.DONE type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.INIT type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.L1_ADD type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.L2_ADD type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.L3_ADD type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.L4_ADD type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.LOAD type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.MEM_READ type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.MEM_STORE type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.MULT type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.START type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.STATE_SIZE type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.clk type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.count type:['Reg'] msb:(Operator Minus Next:(Terminal controller.counter_size),(IntConst 1)) lsb:(IntConst 0))
+(Term name:controller.count_next type:['Reg'] msb:(Operator Minus Next:(Terminal controller.counter_size),(IntConst 1)) lsb:(IntConst 0))
+(Term name:controller.counter_size type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:controller.current_state type:['Reg'] msb:(Operator Minus Next:(Terminal controller.STATE_SIZE),(IntConst 1)) lsb:(IntConst 0))
+(Term name:controller.data_path_signal type:['Output', 'Reg'] msb:(IntConst 4) lsb:(IntConst 0))
+(Term name:controller.fifo_command type:['Output', 'Reg'] msb:(IntConst 1) lsb:(IntConst 0))
+(Term name:controller.filter_matrix_rom_address type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.filter_matrix_rom_en type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.filter_matrix_rom_read_en type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.input_matrix_ram_address type:['Output', 'Reg'] msb:(IntConst 9) lsb:(IntConst 0))
+(Term name:controller.input_matrix_ram_en type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.input_matrix_ram_read_en type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.next_state type:['Reg'] msb:(Operator Minus Next:(Terminal controller.STATE_SIZE),(IntConst 1)) lsb:(IntConst 0))
+(Term name:controller.reset type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.state_counter type:['Reg'] msb:(Operator Minus Next:(Terminal controller.counter_size),(IntConst 1)) lsb:(IntConst 0))
+(Term name:controller.state_counter_next type:['Reg'] msb:(Operator Minus Next:(Terminal controller.counter_size),(IntConst 1)) lsb:(IntConst 0))
+(Term name:controller.w_fifo_command type:['Reg'] msb:(IntConst 1) lsb:(IntConst 0))
+(Term name:controller.w_fifo_command_next type:['Reg'] msb:(IntConst 1) lsb:(IntConst 0))
+(Term name:controller.w_filter_matrix_rom_address type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.w_filter_matrix_rom_address_next type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:controller.w_input_matrix_ram_address type:['Reg'] msb:(IntConst 9) lsb:(IntConst 0))
+(Term name:controller.w_input_matrix_ram_address_next type:['Reg'] msb:(IntConst 9) lsb:(IntConst 0))
+Blocked...
+
+Printing Binddict :  {controller.counter_size: controller.counter_size, controller.STATE_SIZE: controller.STATE_SIZE, controller.INIT: controller.INIT, controller.LOAD: controller.LOAD, controller.MULT: controller.MULT, controller.L1_ADD: controller.L1_ADD, controller.L2_ADD: controller.L2_ADD, controller.L3_ADD: controller.L3_ADD, controller.L4_ADD: controller.L4_ADD, controller.MEM_STORE: controller.MEM_STORE, controller.clk: controller.clk, controller.reset: controller.reset, controller.START: controller.START, controller.MEM_READ: controller.MEM_READ, controller.BUSY: controller.BUSY, controller.DONE: controller.DONE, controller.input_matrix_ram_en: controller.input_matrix_ram_en, controller.input_matrix_ram_read_en: controller.input_matrix_ram_read_en, controller.input_matrix_ram_address: controller.input_matrix_ram_address, controller.filter_matrix_rom_en: controller.filter_matrix_rom_en, controller.filter_matrix_rom_read_en: controller.filter_matrix_rom_read_en, controller.filter_matrix_rom_address: controller.filter_matrix_rom_address, controller.data_path_signal: controller.data_path_signal, controller.fifo_command: controller.fifo_command, controller.count: controller.count, controller.count_next: controller.count_next, controller.state_counter: controller.state_counter, controller.state_counter_next: controller.state_counter_next, controller.w_input_matrix_ram_address: controller.w_input_matrix_ram_address, controller.w_input_matrix_ram_address_next: controller.w_input_matrix_ram_address_next, controller.w_filter_matrix_rom_address: controller.w_filter_matrix_rom_address, controller.w_filter_matrix_rom_address_next: controller.w_filter_matrix_rom_address_next, controller.w_fifo_command: controller.w_fifo_command, controller.w_fifo_command_next: controller.w_fifo_command_next, controller.current_state: controller.current_state, controller.next_state: controller.next_state}
+Bind:
+
+Path to output_file:  /Users/vinaysingh/Desktop/MasterThesis/data_flow/data_flow_controller.txt
+
+ Entering Single Terminal Extractor
+True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._rn0_tx_valid)) True:(Terminal usb_test._rn1_next_state) False:(Terminal usb_test._rn2_next_state))
+
+ Terminal information:  send_data
+
+*******************
+
+Starting Flow at... 2023/07/04- 20 hr-45 m.-25 s
+controller
+['/Users/vinaysingh/Desktop/MasterThesis/PythonCode/main_file.py']
+
+sPath to data_flow_file : /Users/vinaysingh/Desktop/MasterThesis/data_flow/data_flow_controller.txt
+next_state
+9
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+ Entering branch_extractor 
+
+
+ Exiting branch_extractor 
+
+
+
+Generating sub_branches for target node : 
+
+
+*******************
+
+
+ Number of branches : 9
+
+*******************
+
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT)) ']
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.LOAD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT)) ']
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD)) ']
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD)) ']
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD)) ']
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD)) ']
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE)) ']
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) ']
+['(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))) ']
+
+printing branches ::: 
+ 
+(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT)) 
+(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.LOAD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT)) 
+(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD)) 
+(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD)) 
+(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD)) 
+(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD)) 
+(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE)) 
+(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) 
+(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))) 
+
+ *****************************
+
+
+ 	 	 *** Calling property_generator( ) *** 	 0
+next_state
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT)) '
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT)) '
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT))
+
+ *** Updated Input_string :  (Terminal controller.current_state),(Terminal controller.INIT))
+
+ Printing LHS (Terminal controller.current_state)
+
+ remaining string to terminal_extractor with IntCosnt : (Terminal controller.current_state),(Terminal controller.INIT))
+
+ Exiting terminal_extractor 
+
+('current_state', 'INIT', '==')
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT)) ']
+
+ Entering True_path 
+
+
+ Branch to True_path  ['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT)) ']
+
+ Exiting True_path 
+
+
+ Entering Test_antecdanet_generator 
+
+
+ Printing input_string: True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT))
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT))
+Start_string not in branch
+
+ sending into single terminal extractor
+
+ Entering Single Terminal Extractor
+True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT))
+
+ Terminal information:  START
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT))
+Remaining branch does not have Terminals 
+
+
+ remaining string to terminal_extractor : True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT))
+
+ Entering Single Terminal Extractor
+True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT))
+
+ Terminal information:  START
+('START', '', ' ')
+
+ Exiting Test_antecdanet_generator 
+
+Antecedant
+
+ Entering true_cond_value() : 
+
+
+ Input string to true_cond_vale() :  True:(Branch Cond:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT))
+
+ Updated Start Index :  False:(Terminal controller.INIT))
+
+ Printing True_value False:(Terminal controller.INIT
+
+ Exiting true_cond_value() : 
+
+INIT
+
+ Property 
+<class 'str'>
+
+ 	 	 *** Calling property_generator( ) *** 	 1
+next_state
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.LOAD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT)) '
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.LOAD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT)) '
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.current_state),(Terminal controller.LOAD))
+
+ *** Updated Input_string :  (Terminal controller.current_state),(Terminal controller.LOAD))
+
+ Printing LHS (Terminal controller.current_state)
+
+ remaining string to terminal_extractor with IntCosnt : (Terminal controller.current_state),(Terminal controller.LOAD))
+
+ Exiting terminal_extractor 
+
+('current_state', 'LOAD', '==')
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.LOAD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT)) ']
+
+ Entering True_path 
+
+
+ Branch to True_path  ['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.LOAD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT)) ']
+
+ Exiting True_path 
+
+
+ Entering Test_antecdanet_generator 
+
+
+ Printing input_string: True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT))
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT))
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT))
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.count),(IntConst 10))
+
+ *** Updated Input_string :  (Terminal controller.count),(IntConst 10))
+
+ Printing LHS (Terminal controller.count)
+
+ remaining string to terminal_extractor : (Terminal controller.count),(IntConst 10))
+
+ Exiting terminal_extractor 
+
+('count', ' 10', '==')
+
+ Exiting Test_antecdanet_generator 
+
+Antecedant
+
+ Entering true_cond_value() : 
+
+
+ Input string to true_cond_vale() :  True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT))
+MULT
+
+ Property 
+<class 'str'>
+
+ 	 	 *** Calling property_generator( ) *** 	 2
+next_state
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD)) '
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD)) '
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT))
+
+ *** Updated Input_string :  (Terminal controller.current_state),(Terminal controller.MULT))
+
+ Printing LHS (Terminal controller.current_state)
+
+ remaining string to terminal_extractor with IntCosnt : (Terminal controller.current_state),(Terminal controller.MULT))
+
+ Exiting terminal_extractor 
+
+('current_state', 'MULT', '==')
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD)) ']
+
+ Entering True_path 
+
+
+ Branch to True_path  ['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD)) ']
+
+ Exiting True_path 
+
+
+ Entering Test_antecdanet_generator 
+
+
+ Printing input_string: True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD))
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD))
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD))
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.count),(IntConst 15))
+
+ *** Updated Input_string :  (Terminal controller.count),(IntConst 15))
+
+ Printing LHS (Terminal controller.count)
+
+ remaining string to terminal_extractor : (Terminal controller.count),(IntConst 15))
+
+ Exiting terminal_extractor 
+
+('count', ' 15', '==')
+
+ Exiting Test_antecdanet_generator 
+
+Antecedant
+
+ Entering true_cond_value() : 
+
+
+ Input string to true_cond_vale() :  True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD))
+L1_ADD
+
+ Property 
+<class 'str'>
+
+ 	 	 *** Calling property_generator( ) *** 	 3
+next_state
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD)) '
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD)) '
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD))
+
+ *** Updated Input_string :  (Terminal controller.current_state),(Terminal controller.L1_ADD))
+
+ Printing LHS (Terminal controller.current_state)
+
+ remaining string to terminal_extractor with IntCosnt : (Terminal controller.current_state),(Terminal controller.L1_ADD))
+
+ Exiting terminal_extractor 
+
+('current_state', 'L1_ADD', '==')
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD)) ']
+
+ Entering True_path 
+
+
+ Branch to True_path  ['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD)) ']
+
+ Exiting True_path 
+
+
+ Entering Test_antecdanet_generator 
+
+
+ Printing input_string: True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD))
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD))
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD))
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.count),(IntConst 7))
+
+ *** Updated Input_string :  (Terminal controller.count),(IntConst 7))
+
+ Printing LHS (Terminal controller.count)
+
+ remaining string to terminal_extractor : (Terminal controller.count),(IntConst 7))
+
+ Exiting terminal_extractor 
+
+('count', ' 7', '==')
+
+ Exiting Test_antecdanet_generator 
+
+Antecedant
+
+ Entering true_cond_value() : 
+
+
+ Input string to true_cond_vale() :  True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD))
+L2_ADD
+
+ Property 
+<class 'str'>
+
+ 	 	 *** Calling property_generator( ) *** 	 4
+next_state
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD)) '
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD)) '
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD))
+
+ *** Updated Input_string :  (Terminal controller.current_state),(Terminal controller.L2_ADD))
+
+ Printing LHS (Terminal controller.current_state)
+
+ remaining string to terminal_extractor with IntCosnt : (Terminal controller.current_state),(Terminal controller.L2_ADD))
+
+ Exiting terminal_extractor 
+
+('current_state', 'L2_ADD', '==')
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD)) ']
+
+ Entering True_path 
+
+
+ Branch to True_path  ['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD)) ']
+
+ Exiting True_path 
+
+
+ Entering Test_antecdanet_generator 
+
+
+ Printing input_string: True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD))
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD))
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD))
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.count),(IntConst 7))
+
+ *** Updated Input_string :  (Terminal controller.count),(IntConst 7))
+
+ Printing LHS (Terminal controller.count)
+
+ remaining string to terminal_extractor : (Terminal controller.count),(IntConst 7))
+
+ Exiting terminal_extractor 
+
+('count', ' 7', '==')
+
+ Exiting Test_antecdanet_generator 
+
+Antecedant
+
+ Entering true_cond_value() : 
+
+
+ Input string to true_cond_vale() :  True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD))
+L3_ADD
+
+ Property 
+<class 'str'>
+
+ 	 	 *** Calling property_generator( ) *** 	 5
+next_state
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD)) '
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD)) '
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD))
+
+ *** Updated Input_string :  (Terminal controller.current_state),(Terminal controller.L3_ADD))
+
+ Printing LHS (Terminal controller.current_state)
+
+ remaining string to terminal_extractor with IntCosnt : (Terminal controller.current_state),(Terminal controller.L3_ADD))
+
+ Exiting terminal_extractor 
+
+('current_state', 'L3_ADD', '==')
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD)) ']
+
+ Entering True_path 
+
+
+ Branch to True_path  ['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD)) ']
+
+ Exiting True_path 
+
+
+ Entering Test_antecdanet_generator 
+
+
+ Printing input_string: True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD))
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD))
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD))
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.count),(IntConst 7))
+
+ *** Updated Input_string :  (Terminal controller.count),(IntConst 7))
+
+ Printing LHS (Terminal controller.count)
+
+ remaining string to terminal_extractor : (Terminal controller.count),(IntConst 7))
+
+ Exiting terminal_extractor 
+
+('count', ' 7', '==')
+
+ Exiting Test_antecdanet_generator 
+
+Antecedant
+
+ Entering true_cond_value() : 
+
+
+ Input string to true_cond_vale() :  True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD))
+L4_ADD
+
+ Property 
+<class 'str'>
+
+ 	 	 *** Calling property_generator( ) *** 	 6
+next_state
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE)) '
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE)) '
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD))
+
+ *** Updated Input_string :  (Terminal controller.current_state),(Terminal controller.L4_ADD))
+
+ Printing LHS (Terminal controller.current_state)
+
+ remaining string to terminal_extractor with IntCosnt : (Terminal controller.current_state),(Terminal controller.L4_ADD))
+
+ Exiting terminal_extractor 
+
+('current_state', 'L4_ADD', '==')
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE)) ']
+
+ Entering True_path 
+
+
+ Branch to True_path  ['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE)) ']
+
+ Exiting True_path 
+
+
+ Entering Test_antecdanet_generator 
+
+
+ Printing input_string: True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE))
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE))
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE))
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.count),(IntConst 7))
+
+ *** Updated Input_string :  (Terminal controller.count),(IntConst 7))
+
+ Printing LHS (Terminal controller.count)
+
+ remaining string to terminal_extractor : (Terminal controller.count),(IntConst 7))
+
+ Exiting terminal_extractor 
+
+('count', ' 7', '==')
+
+ Exiting Test_antecdanet_generator 
+
+Antecedant
+
+ Entering true_cond_value() : 
+
+
+ Input string to true_cond_vale() :  True:(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE))
+MEM_STORE
+
+ Property 
+<class 'str'>
+
+ 	 	 *** Calling property_generator( ) *** 	 7
+next_state
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) '
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : '(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) '
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE))
+
+ *** Updated Input_string :  (Terminal controller.current_state),(Terminal controller.MEM_STORE))
+
+ Printing LHS (Terminal controller.current_state)
+
+ remaining string to terminal_extractor with IntCosnt : (Terminal controller.current_state),(Terminal controller.MEM_STORE))
+
+ Exiting terminal_extractor 
+
+('current_state', 'MEM_STORE', '==')
+['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) ']
+
+ Entering True_path 
+
+
+ Branch to True_path  ['(Branch Cond:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Branch Cond:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) ']
+
+ Exiting True_path 
+
+
+ Entering Test_antecdanet_generator 
+
+
+ Printing input_string: True:(Branch Cond:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT)
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ True:(Branch Cond:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT)
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : True:(Branch Cond:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT)
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.state_counter),(IntConst 256))
+
+ *** Updated Input_string :  (Terminal controller.state_counter),(IntConst 256))
+
+ Printing LHS (Terminal controller.state_counter)
+
+ remaining string to terminal_extractor : (Terminal controller.state_counter),(IntConst 256))
+
+ Exiting terminal_extractor 
+
+('state_counter', ' 256', '==')
+
+ Exiting Test_antecdanet_generator 
+
+Antecedant
+
+ Entering true_cond_value() : 
+
+
+ Input string to true_cond_vale() :  True:(Branch Cond:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT)
+INIT
+
+ Property 
+<class 'str'>
+
+ 	 	 *** Calling property_generator( ) *** 	 8
+next_state
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ '(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))) '
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : '(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))) '
+
+ Printing copied string :
+ Operator Eq Next:(Terminal controller.count),(IntConst 10))
+
+ *** Updated Input_string :  (Terminal controller.count),(IntConst 10))
+
+ Printing LHS (Terminal controller.count)
+
+ remaining string to terminal_extractor : (Terminal controller.count),(IntConst 10))
+
+ Exiting terminal_extractor 
+
+('count', ' 10', '==')
+['(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))) ']
+
+ Entering True_path 
+
+
+ Branch to True_path  ['(Branch Cond:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))) ']
+
+ Exiting True_path 
+
+
+ Entering Test_antecdanet_generator 
+
+
+ Printing input_string: True:(Terminal controller.LOAD)))
+
+ Entering operator_extractor 
+
+
+ Input branch list to function: 
+ True:(Terminal controller.LOAD)))
+Start_string not in branch
+
+ sending into single terminal extractor
+
+ Entering Single Terminal Extractor
+True:(Terminal controller.LOAD)))
+
+ Terminal information:  LOAD
+
+ Exiting operator_extractor 
+
+
+ Entering terminal_extractor 
+
+
+ Input string to terminal_extractor : True:(Terminal controller.LOAD)))
+Remaining branch does not have Terminals 
+
+
+ remaining string to terminal_extractor : True:(Terminal controller.LOAD)))
+
+ Entering Single Terminal Extractor
+True:(Terminal controller.LOAD)))
+
+ Terminal information:  LOAD
+('LOAD', '', ' ')
+
+ Exiting Test_antecdanet_generator 
+
+Antecedant
+
+ Entering true_cond_value() : 
+
+why
+
+ Property 
+<class 'str'>
+copied_block:  module controller(  
+                     input clk,
+                     input reset,
+                     input START,      
+                     input MEM_READ,   
+                     output reg BUSY,
+                     output reg DONE,
+                     output reg input_matrix_ram_en,
+                     output reg input_matrix_ram_read_en,
+                     output reg [9:0] input_matrix_ram_address,
+                     output reg filter_matrix_rom_en,
+                     output reg filter_matrix_rom_read_en,
+                     output reg filter_matrix_rom_address,
+                     output reg [4:0] data_path_signal,          // concatnation of signals which control different sections of datapath
+                     output reg [1:0] fifo_command                          
+    );
+//////////////////////////////////////////////////
+
+
+ The total run time for this code is :  1.4670043340011034 seconds
