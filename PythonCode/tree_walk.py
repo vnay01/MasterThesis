@@ -29,6 +29,38 @@ def components(G):                          # The connected components
 
 
 
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.children = []
+
+def generate_graph(root):
+    graph = {}
+    visited = set()
+
+    def dfs(node):
+        if node in visited:
+            return
+
+        visited.add(node)
+        graph[node.value] = []
+
+        for child in node.children:
+            graph[node.value].append(child.value)
+            dfs(child)
+
+    dfs(root)
+    return graph
+
+# Example usage
+root_node = Node("(Bind dest:usb_test.tx_valid tree:(Branch Cond:(Operator Eq Next:(Terminal usb_test.current_state),(Terminal usb_test.IDLE)) True:(Branch Cond:(Terminal usb_test.send_data) True:(IntConst 1'b1) False:(IntConst 1'b1)) False:(Branch Cond:(Operator Eq Next:(Terminal usb_test.current_state),(Terminal usb_test.CRC1)) True:(Branch Cond:(Operator Ulnot Next:(Terminal usb_test.tx_ready)) True:(IntConst 1'b1) False:(IntConst 1'b1)) False:(Branch Cond:(Operator Eq Next:(Terminal usb_test.current_state),(Terminal usb_test.CRC2)) True:(Branch Cond:(Terminal usb_test.tx_ready) True:(IntConst 1'b0) False:(IntConst 1'b0)) False:(Branch Cond:(IntConst 1) True:(IntConst 1'b0))))))")
+# Build the tree structure based on the provided input
+# Add child nodes to root_node.children based on the input
+
+graph = generate_graph(root_node)
+print(graph)
+
+
 
 
 

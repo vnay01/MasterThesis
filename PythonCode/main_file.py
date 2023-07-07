@@ -23,8 +23,8 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "controller.v"
-    root_node = "next_state"
+    rtl_file_name = "USB_test.v"
+    root_node = "tx_valid"
 
 
 
@@ -86,10 +86,10 @@ def main():
     pattern = "(Bind dest:"+ module_name + '.' + root_node
 
     data_flow_file_path = os.path.abspath('data_flow')+'/data_flow_'+ module_name + '.txt'
-    print('\nsPath to data_flow_file :', data_flow_file_path)
+    print('\nPath to data_flow_file :', data_flow_file_path)
     ## This function extracts target node tree and returns the path to file where the tree is stored
     tree_path = data_flow(data_flow_file_path, pattern, module_name, root_node)
-    # print(tree_path)
+    print(tree_path)
 
     ## This extracts tree for selected node
     root_node = root_node_extractor(tree_path)
@@ -155,6 +155,7 @@ def main():
         output_file = working_dir + module_name +'_translated.v'
         script_path = parent_dir + "Desktop/Pyverilog/examples/example_graphgen.py"
         replace_assignment_operator( file_path , output_file)
+        print('\nPrinting output path of translated file: ',output_file)
         arguments = [output_file]
     #### Generate graph only if the detected system is Linux
         graph_generator(script_path, module_name, root_node, arguments)

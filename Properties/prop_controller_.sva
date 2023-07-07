@@ -49,7 +49,7 @@ input           // concatnation of signals which control different sections of d
 //default clocking (@posedge clk); clocking
 // Property list 
 
-//  Property Generated on Timestamp : 2023/07/05- 13 hr-35 m.-27 s
+//  Property Generated on Timestamp : 2023/07/05- 14 hr-03 m.-00 s
 property Prop_0; 
 	@(posedge clk) ((current_state == INIT)&&( START) |-> (next_state == INIT));
 endproperty 
