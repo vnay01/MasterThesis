@@ -1,0 +1,374 @@
+
+ Entering Single Terminal Extractor
+True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._rn0_tx_valid)) True:(Terminal usb_test._rn1_next_state) False:(Terminal usb_test._rn2_next_state))
+
+ Terminal information:  send_data
+
+*******************
+
+Starting Flow at... 2023/07/07- 23 hr-22 m.-31 s
+<pyverilog.dataflow.dataflow_analyzer.VerilogDataflowAnalyzer object at 0x7feaf4773f70>
+
+ [0] List of keys:  controller.counter_size
+
+ [1] List of keys:  controller.STATE_SIZE
+
+ [2] List of keys:  controller.INIT
+
+ [3] List of keys:  controller.LOAD
+
+ [4] List of keys:  controller.MULT
+
+ [5] List of keys:  controller.L1_ADD
+
+ [6] List of keys:  controller.L2_ADD
+
+ [7] List of keys:  controller.L3_ADD
+
+ [8] List of keys:  controller.L4_ADD
+
+ [9] List of keys:  controller.MEM_STORE
+
+ [10] List of keys:  controller.clk
+
+ [11] List of keys:  controller.reset
+
+ [12] List of keys:  controller.START
+
+ [13] List of keys:  controller.MEM_READ
+
+ [14] List of keys:  controller.BUSY
+
+ [15] List of keys:  controller.DONE
+
+ [16] List of keys:  controller.input_matrix_ram_en
+
+ [17] List of keys:  controller.input_matrix_ram_read_en
+
+ [18] List of keys:  controller.input_matrix_ram_address
+
+ [19] List of keys:  controller.filter_matrix_rom_en
+
+ [20] List of keys:  controller.filter_matrix_rom_read_en
+
+ [21] List of keys:  controller.filter_matrix_rom_address
+
+ [22] List of keys:  controller.data_path_signal
+
+ [23] List of keys:  controller.fifo_command
+
+ [24] List of keys:  controller.count
+
+ [25] List of keys:  controller.count_next
+
+ [26] List of keys:  controller.state_counter
+
+ [27] List of keys:  controller.state_counter_next
+
+ [28] List of keys:  controller.w_input_matrix_ram_address
+
+ [29] List of keys:  controller.w_input_matrix_ram_address_next
+
+ [30] List of keys:  controller.w_filter_matrix_rom_address
+
+ [31] List of keys:  controller.w_filter_matrix_rom_address_next
+
+ [32] List of keys:  controller.w_fifo_command
+
+ [33] List of keys:  controller.w_fifo_command_next
+
+ [34] List of keys:  controller.current_state
+
+ [35] List of keys:  controller.next_state
+
+
+
+ These are the nodes for which dataflow trees can be generated : 
+
+ [0] List of Binding keys:  controller.counter_size
+
+ [1] List of Binding keys:  controller.STATE_SIZE
+
+ [2] List of Binding keys:  controller.INIT
+
+ [3] List of Binding keys:  controller.LOAD
+
+ [4] List of Binding keys:  controller.MULT
+
+ [5] List of Binding keys:  controller.L1_ADD
+
+ [6] List of Binding keys:  controller.L2_ADD
+
+ [7] List of Binding keys:  controller.L3_ADD
+
+ [8] List of Binding keys:  controller.L4_ADD
+
+ [9] List of Binding keys:  controller.MEM_STORE
+
+ [10] List of Binding keys:  controller.current_state
+
+ [11] List of Binding keys:  controller.count
+
+ [12] List of Binding keys:  controller.state_counter
+
+ [13] List of Binding keys:  controller.w_input_matrix_ram_address
+
+ [14] List of Binding keys:  controller.w_filter_matrix_rom_address
+
+ [15] List of Binding keys:  controller.input_matrix_ram_address
+
+ [16] List of Binding keys:  controller.filter_matrix_rom_address
+
+ [17] List of Binding keys:  controller.w_fifo_command
+
+ [18] List of Binding keys:  controller.next_state
+
+ [19] List of Binding keys:  controller.w_input_matrix_ram_address_next
+
+ [20] List of Binding keys:  controller.state_counter_next
+
+ [21] List of Binding keys:  controller.count_next
+
+ [22] List of Binding keys:  controller.w_filter_matrix_rom_address_next
+
+ [23] List of Binding keys:  controller.w_fifo_command_next
+
+ [24] List of Binding keys:  controller.DONE
+
+ [25] List of Binding keys:  controller.BUSY
+
+ [26] List of Binding keys:  controller.input_matrix_ram_en
+
+ [27] List of Binding keys:  controller.input_matrix_ram_read_en
+
+ [28] List of Binding keys:  controller.filter_matrix_rom_en
+
+ [29] List of Binding keys:  controller.filter_matrix_rom_read_en
+
+ [30] List of Binding keys:  controller.data_path_signal
+
+ [31] List of Binding keys:  controller.fifo_command
+
+
+ Generating tree structure for selected node : 
+assign controller_next_state = (((controller_current_state==controller_INIT))? ((controller_START)? controller_LOAD : controller_INIT) : (((controller_current_state==controller_LOAD))? (((controller_count==10))? controller_MULT : controller_next_state) : (((controller_current_state==controller_MULT))? (((controller_count==15))? controller_L1_ADD : controller_next_state) : (((controller_current_state==controller_L1_ADD))? (((controller_count==7))? controller_L2_ADD : controller_next_state) : (((controller_current_state==controller_L2_ADD))? (((controller_count==7))? controller_L3_ADD : controller_next_state) : (((controller_current_state==controller_L3_ADD))? (((controller_count==7))? controller_L4_ADD : controller_next_state) : (((controller_current_state==controller_L4_ADD))? (((controller_count==7))? controller_MEM_STORE : controller_next_state) : (((controller_current_state==controller_MEM_STORE))? (((controller_state_counter==256))? controller_INIT : (((controller_count==10))? controller_LOAD : controller_next_state)) : ((1)? controller_current_state : controller_next_state)))))))));
+
+if((controller_current_state==controller_INIT)) begin
+if(controller_START) begin
+controller_next_state = controller_LOAD;
+end
+else begin
+controller_next_state = controller_INIT;
+end
+end
+else begin
+if((controller_current_state==controller_LOAD)) begin
+if((controller_count==10)) begin
+controller_next_state = controller_MULT;
+end
+end
+else begin
+if((controller_current_state==controller_MULT)) begin
+if((controller_count==15)) begin
+controller_next_state = controller_L1_ADD;
+end
+end
+else begin
+if((controller_current_state==controller_L1_ADD)) begin
+if((controller_count==7)) begin
+controller_next_state = controller_L2_ADD;
+end
+end
+else begin
+if((controller_current_state==controller_L2_ADD)) begin
+if((controller_count==7)) begin
+controller_next_state = controller_L3_ADD;
+end
+end
+else begin
+if((controller_current_state==controller_L3_ADD)) begin
+if((controller_count==7)) begin
+controller_next_state = controller_L4_ADD;
+end
+end
+else begin
+if((controller_current_state==controller_L4_ADD)) begin
+if((controller_count==7)) begin
+controller_next_state = controller_MEM_STORE;
+end
+end
+else begin
+if((controller_current_state==controller_MEM_STORE)) begin
+if((controller_state_counter==256)) begin
+controller_next_state = controller_INIT;
+end
+else begin
+if((controller_count==10)) begin
+controller_next_state = controller_LOAD;
+end
+end
+end
+else begin
+if(1) begin
+controller_next_state = controller_current_state;
+end
+end
+end
+end
+end
+end
+end
+end
+end
+
+
+controller.current_state
+controller.current_state
+controller.INIT
+controller.INIT
+controller.START
+controller.START
+controller.LOAD
+controller.LOAD
+Printing after truenode:  (Terminal controller.START) True:(Terminal controller.LOAD)
+controller.INIT
+controller.INIT
+Printing after falsenode:  (Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT)))
+
+
+Printing after truenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT)))
+controller.current_state
+controller.current_state
+controller.LOAD
+controller.LOAD
+controller.count
+controller.count
+controller.MULT
+controller.MULT
+Printing after truenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT)
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT)))
+
+
+Printing after truenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.LOAD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT)))
+controller.current_state
+controller.current_state
+controller.MULT
+controller.MULT
+controller.count
+controller.count
+controller.L1_ADD
+controller.L1_ADD
+Printing after truenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD)
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD)))
+
+
+Printing after truenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD)))
+controller.current_state
+controller.current_state
+controller.L1_ADD
+controller.L1_ADD
+controller.count
+controller.count
+controller.L2_ADD
+controller.L2_ADD
+Printing after truenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD)
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD)))
+
+
+Printing after truenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD)))
+controller.current_state
+controller.current_state
+controller.L2_ADD
+controller.L2_ADD
+controller.count
+controller.count
+controller.L3_ADD
+controller.L3_ADD
+Printing after truenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD)
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD)))
+
+
+Printing after truenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD)))
+controller.current_state
+controller.current_state
+controller.L3_ADD
+controller.L3_ADD
+controller.count
+controller.count
+controller.L4_ADD
+controller.L4_ADD
+Printing after truenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD)
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD)))
+
+
+Printing after truenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD)))
+controller.current_state
+controller.current_state
+controller.L4_ADD
+controller.L4_ADD
+controller.count
+controller.count
+controller.MEM_STORE
+controller.MEM_STORE
+Printing after truenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE)
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE)))
+
+
+Printing after truenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE)))
+controller.current_state
+controller.current_state
+controller.MEM_STORE
+controller.MEM_STORE
+controller.state_counter
+controller.state_counter
+controller.INIT
+controller.INIT
+Printing after truenode:  (Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT)
+controller.count
+controller.count
+controller.LOAD
+controller.LOAD
+Printing after truenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD)
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD)))
+
+
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) False:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD)))))
+
+
+Printing after truenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) False:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD)))))
+controller.current_state
+controller.current_state
+Printing after truenode:  (IntConst 1) True:(Terminal controller.current_state)
+Printing after falsenode:  (IntConst 1) True:(Terminal controller.current_state)))
+
+
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) False:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))))) False:(IntConst 1) True:(Terminal controller.current_state)))))
+
+
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) False:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))))) False:(IntConst 1) True:(Terminal controller.current_state)))))))
+
+
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) False:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))))) False:(IntConst 1) True:(Terminal controller.current_state)))))))))
+
+
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) False:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))))) False:(IntConst 1) True:(Terminal controller.current_state)))))))))))
+
+
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) False:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))))) False:(IntConst 1) True:(Terminal controller.current_state)))))))))))))
+
+
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) False:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))))) False:(IntConst 1) True:(Terminal controller.current_state)))))))))))))))
+
+
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.LOAD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) False:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))))) False:(IntConst 1) True:(Terminal controller.current_state)))))))))))))))))
+
+
+Printing after falsenode:  (Operator Eq Next:(Terminal controller.current_state),(Terminal controller.INIT)) True:(Terminal controller.START) True:(Terminal controller.LOAD) False:(Terminal controller.INIT))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.LOAD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.MULT))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MULT)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 15)) True:(Terminal controller.L1_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L1_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L2_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L2_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L3_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L3_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.L4_ADD))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.L4_ADD)) True:(Operator Eq Next:(Terminal controller.count),(IntConst 7)) True:(Terminal controller.MEM_STORE))) False:(Operator Eq Next:(Terminal controller.current_state),(Terminal controller.MEM_STORE)) True:(Operator Eq Next:(Terminal controller.state_counter),(IntConst 256)) True:(Terminal controller.INIT) False:(Operator Eq Next:(Terminal controller.count),(IntConst 10)) True:(Terminal controller.LOAD))))) False:(IntConst 1) True:(Terminal controller.current_state)))))))))))))))))))
+
+
+ Type of object :  <class 'pyverilog.dataflow.dataflow.Bind'>
+
+ 140647075066928
+{'tree': Branch, 'dest': controller.next_state, 'msb': None, 'lsb': None, 'ptr': None, 'alwaysinfo': <pyverilog.dataflow.visit.AlwaysInfo object at 0x7feaf2f01b40>, 'parameterinfo': 'nonblocking'}
+
+Tree : <class 'str'>

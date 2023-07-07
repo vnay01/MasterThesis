@@ -11,7 +11,7 @@ ports = vast.Portlist((clk, rst, led))
 items = (vast.Assign(vast.Identifier('led'), vast.IntConst('8')),)
 
 ast= vast.ModuleDef("top", params, ports, items)
-print(ast.tostr())
+print(ast)
 codegen = ASTCodeGenerator()
 rslt = codegen.visit(ast)
 print(rslt)

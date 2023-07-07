@@ -45,9 +45,9 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "usb_test_translated.v"
-    top_module = 'usb_test'
-    root_node = "tx_valid"
+    rtl_file_name = "controller.v"
+    top_module = 'controller'
+    root_node = "next_state"
     """ Work starts here"""
 
     ####### Working Test code ########
@@ -76,13 +76,17 @@ def main():
 
 
     """ RTL file details & node selection"""
-    rtl_file_path = working_dir
+    rtl_file_path = working_dir + 'VerilogFiles/'
     file_path = rtl_file_path + rtl_file_name
-    
+    translated_file_path = rtl_file_path + rtl_file_name +'_translated.v'
+    input_file = file_path
+    output_file = translated_file_path
+
+    replace_assignment_operator(input_file, output_file)
 #    preprocess_include= '-I'
 
 
-    data_flow = VerilogDataflowAnalyzer(file_path,top_module)
+    data_flow = VerilogDataflowAnalyzer(output_file,top_module)
     print(data_flow)                      ## Expecting an object of class VerilogDataflowAnalyzer()
     
     ## Using generate() to get an object of type  'VerilogDataflowAnalyzer'
@@ -108,8 +112,9 @@ def main():
     
     print('\n\n Generating tree structure for selected node : ')
     input_string=''
-    for i in binddict.get(binddict_keys[4]):
+    for i in binddict.get(binddict_keys[18]):
         print(i._assign())                        ## tostr() is a recursive function
+        print(i._always_combination_mod())
         input_string=i.tostr_mod()
         print(' Type of object : ', type(i))
         print('\n', id(i))
