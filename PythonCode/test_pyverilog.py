@@ -45,8 +45,8 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "controller.v"
-    top_module = 'controller'
+    rtl_file_name = "USB_test.v"
+    top_module = 'usb_test'
     root_node = "next_state"
     """ Work starts here"""
 
@@ -57,18 +57,23 @@ def main():
         parent_dir = "/home/" + os.getlogin() +'/'
         working_dir = parent_dir + "Desktop/MasterThesis/"
         output_dir = working_dir + "TestOutputs/"
+        if not os.path.exists('temp'):
+            os.mkdir('temp')
+        temp = working_dir + "temp/"
         data_flow_dir = output_dir + "data_flow/"
         translated_verilog_dir = output_dir + "translated_verilog/"
     elif system == "Darwin":
         parent_dir = "/Users/vinaysingh/"
         working_dir = parent_dir + "Desktop/MasterThesis/"
         output_dir = working_dir + "TestOutputs/"
+        temp = working_dir + "temp/"
         data_flow_dir = output_dir + "data_flow/"
         translated_verilog_dir = output_dir + "translated_verilog/"
     elif system=="Windows":
         parent_dir = "/home/vnay01/"
         working_dir = parent_dir + "Desktop/MasterThesis/"
         output_dir = working_dir + "TestOutputs/"
+        temp = working_dir + "temp/"
         data_flow_dir = output_dir + "data_flow/"
         translated_verilog_dir = output_dir + "translated_verilog/"
     else:
@@ -111,17 +116,40 @@ def main():
         print('\n', [i] ,'List of Binding keys: ' ,binddict_keys[i])
     
     print('\n\n Generating tree structure for selected node : ')
-    input_string=''
-    for i in binddict.get(binddict_keys[18]):
-        print(i._assign())                        ## tostr() is a recursive function
-        print(i._always_combination_mod())
-        input_string=i.tostr_mod()
-        print(' Type of object : ', type(i))
-        print('\n', id(i))
-        print(i.__dict__)
-    print('\nTree :',type(input_string))
-            
+    a=''
+    for i in binddict.get(binddict_keys[5]):
+        print(' Pyverilog function call')
+        print('\n',i._assign())                        # actual 
+        print(' modified function call')
+        #print('\n',i._assign_mod())                        ## tostr() is a recursive function
+        a = i._always_combination_mod()                # calling method() on object of Bind class
+        
+        #print('\n',i._always_combination_mod())
+        print('\n PRINITNG data sotred in a :', (a))
+    
+    print('\n \n Does a still have value outside the loop ?? \n', (a))
+    print('\n Data Type of a :', type(a))
+    
+    ## Lets write it to a file for manipulation!!
+    prop_intermediate_file = temp + 'temp_prop_file.txt'
+    file_object = open(prop_intermediate_file,'w')
+    file_object.write(a[:-1])
+#    file_object.close()
 
+    ## proper formatting of property file  
+    ## split into lines whenever ';' is encountered
+    line_buff = ''
+#    with open(file_object,'r'):
+    line_buff = a[:-1].strip()
+    line_buff = line_buff.splitlines()
+    print('\n Printing line_buff :', line_buff)
+
+#    for i in range(len(line_buff)):
+#        print('\n List item of line_buff : ', type(line_buff[i]) , line_buff[i])
+
+
+    xy = property_(line_buff[0])
+    print('\n XY ',xy)
     '''
     for key, value in sorted(binddict.items(), key=lambda x: str(x[0]), reverse=False):
         for bvi in value:
@@ -132,6 +160,13 @@ def main():
     # Working with codegen:: Work in Progress ----- Issues after this line
 
 
+def property_(input_string):
+    line = ''
+    line = input_string
+    antecedant_list = line.split('|->')
+    consequent_list = antecedant_list[1]
+    property_list = str(antecedant_list[0]) + ' |-> ' + str(consequent_list)
+    return property_list
 
 if __name__ == '__main__':
     main()

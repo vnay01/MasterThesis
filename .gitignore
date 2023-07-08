@@ -1,4 +1,19 @@
 # Default ignored files
+/Local Storage/
+/Crashpad/
+/Session Storage/
+/CachedData/
+/GPUCache/
+/blob_storage/
+/Dictionaries/
+/Code Cache/
+/Cache/
+/Backups/
+/CachedProfilesData/
+/logs/
+/User/
+/Preferences
+
 /shelf/
 /workspace.xml
 PythonCode/__pycache__/
@@ -10,3 +25,9 @@ build/
 /.out
 /.dot
 /.txt
+/Cookies
+/Cookies-journal
+/languagepacks.json
+/machineid
+/Network Persistent State
+/TransportSecurity

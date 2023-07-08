@@ -1,0 +1,16 @@
+ ((usb_test_current_state==usb_test_IDLE) ) (usb_test_send_data ) |->  (usb_test_next_state == usb_test_CRC1 )
+usb_test_next_state == usb_test_IDLE;
+
+
+ ((usb_test_current_state==usb_test_CRC1) ) ((!usb_test_tx_ready) ) |->  (usb_test_next_state == usb_test_CRC2 )
+usb_test_next_state == usb_test_CRC1;
+
+
+ ((usb_test_current_state==usb_test_CRC2) ) (usb_test_tx_ready ) |->  (usb_test_next_state == usb_test_IDLE )
+usb_test_next_state == usb_test_CRC2;
+
+
+ (1 ) |->  (usb_test_next_state == usb_test_IDLE )
+
+
+
