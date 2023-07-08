@@ -149,7 +149,7 @@ def main():
 
 
     xy = property_(line_buff[0])
-    print('\n XY ',xy)
+    print('\n XY :: ',xy)
     '''
     for key, value in sorted(binddict.items(), key=lambda x: str(x[0]), reverse=False):
         for bvi in value:
@@ -161,12 +161,15 @@ def main():
 
 
 def property_(input_string):
-    line = ''
-    line = input_string
-    antecedant_list = line.split('|->')
-    consequent_list = antecedant_list[1]
-    property_list = str(antecedant_list[0]) + ' |-> ' + str(consequent_list)
-    return property_list
+    if input_string is not None:
+        line = ''
+        line = input_string
+        antecedant_list = line.split('|->')
+        consequent_list = antecedant_list[1]
+        property_list = str(antecedant_list[0]).strip('&&  ') + ' |-> ' + str(consequent_list)
+        return property_list
+    else:
+        return None
 
 if __name__ == '__main__':
     main()
