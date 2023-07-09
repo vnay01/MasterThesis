@@ -45,8 +45,8 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "USB_test.v"
-    top_module = 'usb_test'
+    rtl_file_name = "controller.v"
+    top_module = 'controller'
     root_node = "next_state"
     """ Work starts here"""
 
@@ -117,7 +117,7 @@ def main():
     
     print('\n\n Generating tree structure for selected node : ')
     a=''
-    for i in binddict.get(binddict_keys[5]):
+    for i in binddict.get(binddict_keys[18]):
         print(' Pyverilog function call')
         print('\n',i._assign())                        # actual 
         print(' modified function call')
@@ -141,23 +141,13 @@ def main():
     line_buff = ''
 #    with open(file_object,'r'):
     line_buff = a[:-1].strip()
-    line_buff = line_buff.splitlines()
-    print('\n Printing line_buff :', line_buff)
+    line_buff = line_buff.splitlines()                  # This creates a list of all properties
+    print('\n Printing line_buff :', line_buff)         
+# We need to remove all empty items from the list    
 
-#    for i in range(len(line_buff)):
-#        print('\n List item of line_buff : ', type(line_buff[i]) , line_buff[i])
-
-
-    xy = property_(line_buff[0])
+    xy = property_(line_buff[4])
     print('\n XY :: ',xy)
-    '''
-    for key, value in sorted(binddict.items(), key=lambda x: str(x[0]), reverse=False):
-        for bvi in value:
-            #print(bvi.tostr())             ## Recursive calls tostr() method of Bind object
-            print(bvi.tostr())         ## My modified functions       
-            print('\n')   
-    '''
-    # Working with codegen:: Work in Progress ----- Issues after this line
+# Working with codegen:: Work in Progress ----- Issues after this line
 
 
 def property_(input_string):

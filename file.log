@@ -6,70 +6,183 @@ True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._r
 
 *******************
 
-Starting Flow at... 2023/07/08- 22 hr-57 m.-27 s
-<pyverilog.dataflow.dataflow_analyzer.VerilogDataflowAnalyzer object at 0x7fe507ae7fd0>
+Starting Flow at... 2023/07/09- 09 hr-20 m.-18 s
+<pyverilog.dataflow.dataflow_analyzer.VerilogDataflowAnalyzer object at 0x7f9216867fd0>
 
- [0] List of keys:  usb_test.IDLE
+ [0] List of keys:  controller.counter_size
 
- [1] List of keys:  usb_test.CRC1
+ [1] List of keys:  controller.STATE_SIZE
 
- [2] List of keys:  usb_test.CRC2
+ [2] List of keys:  controller.INIT
 
- [3] List of keys:  usb_test.clk
+ [3] List of keys:  controller.LOAD
 
- [4] List of keys:  usb_test.reset
+ [4] List of keys:  controller.MULT
 
- [5] List of keys:  usb_test.send_data
+ [5] List of keys:  controller.L1_ADD
 
- [6] List of keys:  usb_test.tx_ready
+ [6] List of keys:  controller.L2_ADD
 
- [7] List of keys:  usb_test.tx_valid
+ [7] List of keys:  controller.L3_ADD
 
- [8] List of keys:  usb_test.buff
+ [8] List of keys:  controller.L4_ADD
 
- [9] List of keys:  usb_test.current_state
+ [9] List of keys:  controller.MEM_STORE
 
- [10] List of keys:  usb_test.next_state
+ [10] List of keys:  controller.clk
+
+ [11] List of keys:  controller.reset
+
+ [12] List of keys:  controller.START
+
+ [13] List of keys:  controller.MEM_READ
+
+ [14] List of keys:  controller.BUSY
+
+ [15] List of keys:  controller.DONE
+
+ [16] List of keys:  controller.input_matrix_ram_en
+
+ [17] List of keys:  controller.input_matrix_ram_read_en
+
+ [18] List of keys:  controller.input_matrix_ram_address
+
+ [19] List of keys:  controller.filter_matrix_rom_en
+
+ [20] List of keys:  controller.filter_matrix_rom_read_en
+
+ [21] List of keys:  controller.filter_matrix_rom_address
+
+ [22] List of keys:  controller.data_path_signal
+
+ [23] List of keys:  controller.fifo_command
+
+ [24] List of keys:  controller.count
+
+ [25] List of keys:  controller.count_next
+
+ [26] List of keys:  controller.state_counter
+
+ [27] List of keys:  controller.state_counter_next
+
+ [28] List of keys:  controller.w_input_matrix_ram_address
+
+ [29] List of keys:  controller.w_input_matrix_ram_address_next
+
+ [30] List of keys:  controller.w_filter_matrix_rom_address
+
+ [31] List of keys:  controller.w_filter_matrix_rom_address_next
+
+ [32] List of keys:  controller.w_fifo_command
+
+ [33] List of keys:  controller.w_fifo_command_next
+
+ [34] List of keys:  controller.current_state
+
+ [35] List of keys:  controller.next_state
 
 
 
  These are the nodes for which dataflow trees can be generated : 
 
- [0] List of Binding keys:  usb_test.IDLE
+ [0] List of Binding keys:  controller.counter_size
 
- [1] List of Binding keys:  usb_test.CRC1
+ [1] List of Binding keys:  controller.STATE_SIZE
 
- [2] List of Binding keys:  usb_test.CRC2
+ [2] List of Binding keys:  controller.INIT
 
- [3] List of Binding keys:  usb_test.current_state
+ [3] List of Binding keys:  controller.LOAD
 
- [4] List of Binding keys:  usb_test.tx_valid
+ [4] List of Binding keys:  controller.MULT
 
- [5] List of Binding keys:  usb_test.next_state
+ [5] List of Binding keys:  controller.L1_ADD
 
- [6] List of Binding keys:  usb_test.buff
+ [6] List of Binding keys:  controller.L2_ADD
+
+ [7] List of Binding keys:  controller.L3_ADD
+
+ [8] List of Binding keys:  controller.L4_ADD
+
+ [9] List of Binding keys:  controller.MEM_STORE
+
+ [10] List of Binding keys:  controller.current_state
+
+ [11] List of Binding keys:  controller.count
+
+ [12] List of Binding keys:  controller.state_counter
+
+ [13] List of Binding keys:  controller.w_input_matrix_ram_address
+
+ [14] List of Binding keys:  controller.w_filter_matrix_rom_address
+
+ [15] List of Binding keys:  controller.input_matrix_ram_address
+
+ [16] List of Binding keys:  controller.filter_matrix_rom_address
+
+ [17] List of Binding keys:  controller.w_fifo_command
+
+ [18] List of Binding keys:  controller.next_state
+
+ [19] List of Binding keys:  controller.w_input_matrix_ram_address_next
+
+ [20] List of Binding keys:  controller.state_counter_next
+
+ [21] List of Binding keys:  controller.count_next
+
+ [22] List of Binding keys:  controller.w_filter_matrix_rom_address_next
+
+ [23] List of Binding keys:  controller.w_fifo_command_next
+
+ [24] List of Binding keys:  controller.DONE
+
+ [25] List of Binding keys:  controller.BUSY
+
+ [26] List of Binding keys:  controller.input_matrix_ram_en
+
+ [27] List of Binding keys:  controller.input_matrix_ram_read_en
+
+ [28] List of Binding keys:  controller.filter_matrix_rom_en
+
+ [29] List of Binding keys:  controller.filter_matrix_rom_read_en
+
+ [30] List of Binding keys:  controller.data_path_signal
+
+ [31] List of Binding keys:  controller.fifo_command
 
 
  Generating tree structure for selected node : 
  Pyverilog function call
 
- assign usb_test.next_state = (((usb_test_current_state==usb_test_IDLE)) ? ((usb_test_send_data) ? usb_test_CRC1 : usb_test_IDLE) : (((usb_test_current_state==usb_test_CRC1)) ? (((!usb_test_tx_ready)) ? usb_test_CRC2 : usb_test_CRC1) : (((usb_test_current_state==usb_test_CRC2)) ? ((usb_test_tx_ready) ? usb_test_IDLE : usb_test_CRC2) : ((1) ? usb_test_IDLE : usb_test.next_state))));
+ assign controller.next_state = (((controller.current_state==controller.INIT)) ? ((controller.START) ? controller.LOAD : controller.INIT) : (((controller.current_state==controller.LOAD)) ? (((controller.count==10)) ? controller.MULT : controller.next_state) : (((controller.current_state==controller.MULT)) ? (((controller.count==15)) ? controller.L1_ADD : controller.next_state) : (((controller.current_state==controller.L1_ADD)) ? (((controller.count==7)) ? controller.L2_ADD : controller.next_state) : (((controller.current_state==controller.L2_ADD)) ? (((controller.count==7)) ? controller.L3_ADD : controller.next_state) : (((controller.current_state==controller.L3_ADD)) ? (((controller.count==7)) ? controller.L4_ADD : controller.next_state) : (((controller.current_state==controller.L4_ADD)) ? (((controller.count==7)) ? controller.MEM_STORE : controller.next_state) : (((controller.current_state==controller.MEM_STORE)) ? (((controller.state_counter==256)) ? controller.INIT : (((controller.count==10)) ? controller.LOAD : controller.next_state)) : ((1) ? controller.current_state : controller.next_state)))))))));
 
  modified function call
 
- PRINITNG data sotred in a :  ((usb_test_current_state==usb_test_IDLE) ) && (usb_test_send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )
-usb_test.next_state == usb_test.IDLE;
+ PRINITNG data sotred in a :  ((controller.current_state==controller.INIT) ) && (controller.START ) && |->  (controller.next_state == controller.LOAD )
+controller.next_state == controller.INIT;
 
 
- ((usb_test_current_state==usb_test_CRC1) ) && ((!usb_test_tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )
-usb_test.next_state == usb_test.CRC1;
+ ((controller.current_state==controller.LOAD) ) && ((controller.count==10) ) && |->  (controller.next_state == controller.MULT )
+
+ ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD )
+
+ ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L2_ADD )
+
+ ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD )
+
+ ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L4_ADD )
+
+ ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE )
+
+ ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) ) && |->  (controller.next_state == controller.INIT )
+ ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD )
 
 
- ((usb_test_current_state==usb_test_CRC2) ) && (usb_test_tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )
-usb_test.next_state == usb_test.CRC2;
+ (1 ) && |->  (controller.next_state == controller.current_state )
 
 
- (1 ) && |->  (usb_test.next_state == usb_test.IDLE )
+
+
+
 
 
 
@@ -78,19 +191,32 @@ usb_test.next_state == usb_test.CRC2;
 
  
  Does a still have value outside the loop ?? 
-  ((usb_test_current_state==usb_test_IDLE) ) && (usb_test_send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )
-usb_test.next_state == usb_test.IDLE;
+  ((controller.current_state==controller.INIT) ) && (controller.START ) && |->  (controller.next_state == controller.LOAD )
+controller.next_state == controller.INIT;
 
 
- ((usb_test_current_state==usb_test_CRC1) ) && ((!usb_test_tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )
-usb_test.next_state == usb_test.CRC1;
+ ((controller.current_state==controller.LOAD) ) && ((controller.count==10) ) && |->  (controller.next_state == controller.MULT )
+
+ ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD )
+
+ ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L2_ADD )
+
+ ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD )
+
+ ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L4_ADD )
+
+ ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE )
+
+ ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) ) && |->  (controller.next_state == controller.INIT )
+ ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD )
 
 
- ((usb_test_current_state==usb_test_CRC2) ) && (usb_test_tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )
-usb_test.next_state == usb_test.CRC2;
+ (1 ) && |->  (controller.next_state == controller.current_state )
 
 
- (1 ) && |->  (usb_test.next_state == usb_test.IDLE )
+
+
+
 
 
 
@@ -99,6 +225,8 @@ usb_test.next_state == usb_test.CRC2;
 
  Data Type of a : <class 'str'>
 
- Printing line_buff : ['((usb_test_current_state==usb_test_IDLE) ) && (usb_test_send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.IDLE;', '', '', ' ((usb_test_current_state==usb_test_CRC1) ) && ((!usb_test_tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.CRC1;', '', '', ' ((usb_test_current_state==usb_test_CRC2) ) && (usb_test_tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.CRC2;', '', '', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', '', '', '', ' &&']
+ Printing line_buff : ['((controller.current_state==controller.INIT) ) && (controller.START ) && |->  (controller.next_state == controller.LOAD )', 'controller.next_state == controller.INIT;', '', '', ' ((controller.current_state==controller.LOAD) ) && ((controller.count==10) ) && |->  (controller.next_state == controller.MULT )', '', ' ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD )', '', ' ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L2_ADD )', '', ' ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD )', '', ' ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L4_ADD )', '', ' ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE )', '', ' ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) ) && |->  (controller.next_state == controller.INIT )',
+  ' ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD )', '', '',
+  ' (1 ) && |->  (controller.next_state == controller.current_state )', '', '', '', '', '', '', '', '', ' &&']
 
- XY ::  ((usb_test_current_state==usb_test_IDLE) ) && (usb_test_send_data ) |->   (usb_test.next_state == usb_test.CRC1 )
+ XY ::  ((controller.current_state==controller.LOAD) ) && ((controller.count==10) ) |->   (controller.next_state == controller.MULT )
