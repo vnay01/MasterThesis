@@ -11,7 +11,7 @@ input  buff;
 //default clocking (@posedge clk); clocking
 // Property list 
 
-//  Property Generated on Timestamp : 2023/07/10- 11 hr-42 m.-22 s
+//  Property Generated on Timestamp : 2023/07/10- 11 hr-44 m.-06 s
 property t_Prop_0; 
 	@(posedge clk) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 ));
 endproperty 
@@ -33,13 +33,6 @@ endproperty
 assert_Prop_2: assert property (t_Prop_2);
 cover_prop_2: cover property (t_Prop_2);
 
-property t_Prop_3; 
-	@(posedge clk) ((1 )|->  (usb_test.next_state == usb_test.IDLE ));
-endproperty 
-
-assert_Prop_3: assert property (t_Prop_3);
-cover_prop_3: cover property (t_Prop_3);
-
 property f_Prop_0; 
 	@(posedge clk) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.IDLE ););
 endproperty 
@@ -60,13 +53,6 @@ endproperty
 
 assert_Prop_2: assert property (f_Prop_2);
 cover_prop_2: cover property (f_Prop_2);
-
-property f_Prop_3; 
-	@(posedge clk) ((1 )|-> ( && ););
-endproperty 
-
-assert_Prop_3: assert property (f_Prop_3);
-cover_prop_3: cover property (f_Prop_3);
 
 
 endmodule

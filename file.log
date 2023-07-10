@@ -6,66 +6,132 @@ True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._r
 
 *******************
 
-Starting Flow at... 2023/07/10- 11 hr-42 m.-21 s
+Starting Flow at... 2023/07/10- 12 hr-32 m.-29 s
 
  These are the nodes for which dataflow trees can be generated : 
 
- [0] List of Binding keys:  usb_test.IDLE
+ [0] List of Binding keys:  controller.counter_size
 
- [1] List of Binding keys:  usb_test.CRC1
+ [1] List of Binding keys:  controller.STATE_SIZE
 
- [2] List of Binding keys:  usb_test.CRC2
+ [2] List of Binding keys:  controller.INIT
 
- [3] List of Binding keys:  usb_test.current_state
+ [3] List of Binding keys:  controller.LOAD
 
- [4] List of Binding keys:  usb_test.tx_valid
+ [4] List of Binding keys:  controller.MULT
 
- [5] List of Binding keys:  usb_test.next_state
+ [5] List of Binding keys:  controller.L1_ADD
 
- [6] List of Binding keys:  usb_test.buff
+ [6] List of Binding keys:  controller.L2_ADD
+
+ [7] List of Binding keys:  controller.L3_ADD
+
+ [8] List of Binding keys:  controller.L4_ADD
+
+ [9] List of Binding keys:  controller.MEM_STORE
+
+ [10] List of Binding keys:  controller.current_state
+
+ [11] List of Binding keys:  controller.count
+
+ [12] List of Binding keys:  controller.state_counter
+
+ [13] List of Binding keys:  controller.w_input_matrix_ram_address
+
+ [14] List of Binding keys:  controller.w_filter_matrix_rom_address
+
+ [15] List of Binding keys:  controller.input_matrix_ram_address
+
+ [16] List of Binding keys:  controller.filter_matrix_rom_address
+
+ [17] List of Binding keys:  controller.w_fifo_command
+
+ [18] List of Binding keys:  controller.next_state
+
+ [19] List of Binding keys:  controller.w_input_matrix_ram_address_next
+
+ [20] List of Binding keys:  controller.state_counter_next
+
+ [21] List of Binding keys:  controller.count_next
+
+ [22] List of Binding keys:  controller.w_filter_matrix_rom_address_next
+
+ [23] List of Binding keys:  controller.w_fifo_command_next
+
+ [24] List of Binding keys:  controller.DONE
+
+ [25] List of Binding keys:  controller.BUSY
+
+ [26] List of Binding keys:  controller.input_matrix_ram_en
+
+ [27] List of Binding keys:  controller.input_matrix_ram_read_en
+
+ [28] List of Binding keys:  controller.filter_matrix_rom_en
+
+ [29] List of Binding keys:  controller.filter_matrix_rom_read_en
+
+ [30] List of Binding keys:  controller.data_path_signal
+
+ [31] List of Binding keys:  controller.fifo_command
 
 
  Generating tree structure for selected node : 
  Pyverilog function call
 
- assign usb_test.next_state = (((usb_test.current_state==usb_test.IDLE)) ? ((usb_test.send_data) ? usb_test.CRC1 : usb_test.IDLE) : (((usb_test.current_state==usb_test.CRC1)) ? (((!usb_test.tx_ready)) ? usb_test.CRC2 : usb_test.CRC1) : (((usb_test.current_state==usb_test.CRC2)) ? ((usb_test.tx_ready) ? usb_test.IDLE : usb_test.CRC2) : ((1) ? usb_test.IDLE : usb_test.next_state))));
+ assign controller.next_state = (((controller.current_state==controller.INIT)) ? ((controller.START) ? controller.LOAD : controller.INIT) : (((controller.current_state==controller.LOAD)) ? (((controller.count==10)) ? controller.MULT : controller.next_state) : (((controller.current_state==controller.MULT)) ? (((controller.count==15)) ? controller.L1_ADD : controller.next_state) : (((controller.current_state==controller.L1_ADD)) ? (((controller.count==7)) ? controller.L2_ADD : controller.next_state) : (((controller.current_state==controller.L2_ADD)) ? (((controller.count==7)) ? controller.L3_ADD : controller.next_state) : (((controller.current_state==controller.L3_ADD)) ? (((controller.count==7)) ? controller.L4_ADD : controller.next_state) : (((controller.current_state==controller.L4_ADD)) ? (((controller.count==7)) ? controller.MEM_STORE : controller.next_state) : (((controller.current_state==controller.MEM_STORE)) ? (((controller.state_counter==256)) ? controller.INIT : (((controller.count==10)) ? controller.LOAD : controller.next_state)) : ((1) ? controller.current_state : controller.next_state)))))))));
 
  modified function call
 
- Prinitng length of a:  534
+ Prinitng length of a:  1268
 
  Printing line_buff 
-: ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.IDLE;', '', '', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.CRC1;', '', '', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.CRC2;', '', '', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', '', '', '', ' &&']
+: ['((controller.current_state==controller.INIT) ) && (controller.START ) && |->  (controller.next_state == controller.LOAD )', 'controller.next_state == controller.INIT;', '', '', ' ((controller.current_state==controller.LOAD) ) && ((controller.count==10) ) && |->  (controller.next_state == controller.MULT )', '', ' ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD )', '', ' ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L2_ADD )', '', ' ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD )', '', ' ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L4_ADD )', '', ' ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE )', '', ' ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) ) && |->  (controller.next_state == controller.INIT )', ' ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD )', '', '', ' (1 ) && |->  (controller.next_state == controller.current_state )', '', '', '', '', '', '', '', '', ' &&']
 
  Modified Line_buff 
- ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.IDLE;', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.CRC1;', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.CRC2;', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', ' &&']
+ ['((controller.current_state==controller.INIT) ) && (controller.START ) && |->  (controller.next_state == controller.LOAD )', 'controller.next_state == controller.INIT;', ' ((controller.current_state==controller.LOAD) ) && ((controller.count==10) ) && |->  (controller.next_state == controller.MULT )', ' ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD )', ' ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L2_ADD )', ' ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD )', ' ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L4_ADD )', ' ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE )', ' ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) ) && |->  (controller.next_state == controller.INIT )', ' ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD )', ' (1 ) && |->  (controller.next_state == controller.current_state )', ' &&']
 
 
  Number of items in line_buff 
-:  8
+:  12
 
  type :  <class 'list'>
 
 
- True_condition_property:  ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )']
+ True_condition_property:  ['((controller.current_state==controller.INIT) ) && (controller.START ) && |->  (controller.next_state == controller.LOAD )', ' ((controller.current_state==controller.LOAD) ) && ((controller.count==10) ) && |->  (controller.next_state == controller.MULT )', ' ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L2_ADD )', ' ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L4_ADD )', ' ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) ) && |->  (controller.next_state == controller.INIT )', ' (1 ) && |->  (controller.next_state == controller.current_state )']
 
 
- False_condition_property:  ['usb_test.next_state == usb_test.IDLE;', 'usb_test.next_state == usb_test.CRC1;', 'usb_test.next_state == usb_test.CRC2;', ' &&']
-\ length of prop_list :  4
-[0]   ((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 )
-[0]   ((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.IDLE );
-[1]   ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.next_state == usb_test.CRC2 )
-[1]   ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.CRC1 );
-[2]   ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|->  (usb_test.next_state == usb_test.IDLE )
-[2]   ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|-> (usb_test.next_state == usb_test.CRC2 );
-[3]   (1 )|->  (usb_test.next_state == usb_test.IDLE )
-[3]   (1 )|-> ( && );
+ False_condition_property:  ['controller.next_state == controller.INIT;', ' ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD )', ' ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD )', ' ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE )', ' ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD )', ' &&']
+\ length of prop_list :  6
+[0]   ((controller.current_state==controller.INIT) ) && (controller.START )|->  (controller.next_state == controller.LOAD )
+[0]   ((controller.current_state==controller.INIT) ) && (controller.START )|-> (controller.next_state == controller.INIT );
+[1]   ((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|->  (controller.next_state == controller.MULT )
+[1]   ((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|-> ( ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD ) );
+[2]   ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L2_ADD )
+[2]   ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD ) );
+[3]   ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L4_ADD )
+[3]   ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE ) );
+[4]   ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|->  (controller.next_state == controller.INIT )
+[4]   ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|-> ( ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD ) );
 
 
- true_part :  ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 )', '((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.next_state == usb_test.CRC2 )', '((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|->  (usb_test.next_state == usb_test.IDLE )', '(1 )|->  (usb_test.next_state == usb_test.IDLE )']
+ true_part :  ['((controller.current_state==controller.INIT) ) && (controller.START )|->  (controller.next_state == controller.LOAD )', '((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|->  (controller.next_state == controller.MULT )', '((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L2_ADD )', '((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L4_ADD )', '((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|->  (controller.next_state == controller.INIT )']
 
 
- false_part :  ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.IDLE );', '((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.CRC1 );', '((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|-> (usb_test.next_state == usb_test.CRC2 );', '(1 )|-> ( && );']
-copied_block:  module usb_test (clk, reset, send_data, tx_ready, tx_valid, buff);
-//////////////////////////////////////////////////
-
+ false_part :  ['((controller.current_state==controller.INIT) ) && (controller.START )|-> (controller.next_state == controller.INIT );', '((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|-> ( ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD ) );', '((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD ) );', '((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE ) );', '((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|-> ( ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD ) );']
+module_name :  controller
+copied_block:  module controller(  
+                     input clk,
+                     input reset,
+                     input START,      
+                     input MEM_READ,   
+                     output reg BUSY,
+                     output reg DONE,
+                     output reg input_matrix_ram_en,
+                     output reg input_matrix_ram_read_en,
+                     output reg [9:0] input_matrix_ram_address,
+                     output reg filter_matrix_rom_en,
+                     output reg filter_matrix_rom_read_en,
+                     output reg filter_matrix_rom_address,
+                     output reg [4:0] data_path_signal,          // concatnation of signals which control different sections of datapath
+                     output reg [1:0] fifo_command                          
+    );

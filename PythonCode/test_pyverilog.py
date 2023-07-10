@@ -45,8 +45,8 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "USB_test.v"
-    top_module = 'usb_test'
+    rtl_file_name = "controller.v"
+    top_module = 'controller'
     """ Work starts here"""
 
     ####### Working Test code ########
@@ -125,7 +125,7 @@ def main():
         print('\n', [i] ,'List of Binding keys: ' ,binddict_keys[i])
     
     #### Pass the index of desired root node:
-    root_node = int(5)                                         #### Use with caution. Works for state transition only.
+    root_node = int(18)                                         #### Use with caution. Works for state transition only.
     print('\n\n Generating tree structure for selected node : ')
     a=''
     for i in binddict.get(binddict_keys[root_node]):                   ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
@@ -177,7 +177,7 @@ def main():
     true_path_list = []
     false_path_list = []
 
-    for i in range(len(prop_list[0])):
+    for i in range(len(prop_list[0]) -1 ):
         true_part = str(prop_list[0][i])
         false_part = str(prop_list[1][i])
         ## search for |-> string 
@@ -193,7 +193,7 @@ def main():
 
     print('\n\n true_part : ',true_path_list)
     print('\n\n false_part : ', false_path_list)
-
+    bind_adder(file_path, property_file_path)
     module_info_extractor(file_path, property_file_path )
 #    print('\n Copied Antecedant :',antecedant_part)
     count = len(true_path_list)
