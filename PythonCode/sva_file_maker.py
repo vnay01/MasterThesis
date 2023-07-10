@@ -76,6 +76,7 @@ def port_direction(input_string):
     ## assign all port direction as input
     for i in range(len(copied_block)):
         buff = copied_block[i].replace('output','input')+ ';'      # extract list item and add 'input ' 
+        buff = 'input ' + buff
         copied_block[i] = buff                  # modify the copied list item with previous step
     return copied_block
 
@@ -100,7 +101,7 @@ def property_add(input_file, count, property_list):
             sva_file.write('\n') 
             sva_file.write('cover_t_prop_' + str(i) + ': cover property (t_Prop_'+str(i)+');')
             sva_file.write('\n')
-        
+        sva_file.write('\n \n // Writing properties to check if state transition conditions do not occur.')
         for i in range(count):
             prop_buff = property_list[1][i]
             sva_file.write('\n')
