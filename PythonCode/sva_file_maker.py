@@ -10,7 +10,7 @@ def bind_adder(input_file, output_file):
     print('module_name : ',module_name)
     sva_module_name = 'v_'+ module_name
     bind_instance = 'i_' + module_name
-    bind_construct = 'bind ' + module_name + ' ' + sva_module_name + ' ' + bind_instance + ' ( *. )'
+    bind_construct = 'bind ' + module_name + ' ' + sva_module_name + ' ' + bind_instance + ' ( .* );'
 ### Time information ###
     timestr = time.strftime("%Y/%m/%d- %H hr-%M m.-%S s")
     with open(output_file,'w') as file:
