@@ -6,8 +6,8 @@ True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._r
 
 *******************
 
-Starting Flow at... 2023/07/09- 09 hr-20 m.-18 s
-<pyverilog.dataflow.dataflow_analyzer.VerilogDataflowAnalyzer object at 0x7f9216867fd0>
+Starting Flow at... 2023/07/10- 06 hr-02 m.-00 s
+<pyverilog.dataflow.dataflow_analyzer.VerilogDataflowAnalyzer object at 0x7ff2bd1c7fd0>
 
  [0] List of keys:  controller.counter_size
 
@@ -153,80 +153,6 @@ Starting Flow at... 2023/07/09- 09 hr-20 m.-18 s
  Generating tree structure for selected node : 
  Pyverilog function call
 
- assign controller.next_state = (((controller.current_state==controller.INIT)) ? ((controller.START) ? controller.LOAD : controller.INIT) : (((controller.current_state==controller.LOAD)) ? (((controller.count==10)) ? controller.MULT : controller.next_state) : (((controller.current_state==controller.MULT)) ? (((controller.count==15)) ? controller.L1_ADD : controller.next_state) : (((controller.current_state==controller.L1_ADD)) ? (((controller.count==7)) ? controller.L2_ADD : controller.next_state) : (((controller.current_state==controller.L2_ADD)) ? (((controller.count==7)) ? controller.L3_ADD : controller.next_state) : (((controller.current_state==controller.L3_ADD)) ? (((controller.count==7)) ? controller.L4_ADD : controller.next_state) : (((controller.current_state==controller.L4_ADD)) ? (((controller.count==7)) ? controller.MEM_STORE : controller.next_state) : (((controller.current_state==controller.MEM_STORE)) ? (((controller.state_counter==256)) ? controller.INIT : (((controller.count==10)) ? controller.LOAD : controller.next_state)) : ((1) ? controller.current_state : controller.next_state)))))))));
+ assign controller.w_fifo_command = (((!controller.reset)) ? {{1'b0},{1'b0}} : controller.w_fifo_command_next);
 
  modified function call
-
- PRINITNG data sotred in a :  ((controller.current_state==controller.INIT) ) && (controller.START ) && |->  (controller.next_state == controller.LOAD )
-controller.next_state == controller.INIT;
-
-
- ((controller.current_state==controller.LOAD) ) && ((controller.count==10) ) && |->  (controller.next_state == controller.MULT )
-
- ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD )
-
- ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L2_ADD )
-
- ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD )
-
- ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L4_ADD )
-
- ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE )
-
- ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) ) && |->  (controller.next_state == controller.INIT )
- ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD )
-
-
- (1 ) && |->  (controller.next_state == controller.current_state )
-
-
-
-
-
-
-
-
- && 
-
-
- 
- Does a still have value outside the loop ?? 
-  ((controller.current_state==controller.INIT) ) && (controller.START ) && |->  (controller.next_state == controller.LOAD )
-controller.next_state == controller.INIT;
-
-
- ((controller.current_state==controller.LOAD) ) && ((controller.count==10) ) && |->  (controller.next_state == controller.MULT )
-
- ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD )
-
- ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L2_ADD )
-
- ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD )
-
- ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L4_ADD )
-
- ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE )
-
- ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) ) && |->  (controller.next_state == controller.INIT )
- ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD )
-
-
- (1 ) && |->  (controller.next_state == controller.current_state )
-
-
-
-
-
-
-
-
- && 
-
-
- Data Type of a : <class 'str'>
-
- Printing line_buff : ['((controller.current_state==controller.INIT) ) && (controller.START ) && |->  (controller.next_state == controller.LOAD )', 'controller.next_state == controller.INIT;', '', '', ' ((controller.current_state==controller.LOAD) ) && ((controller.count==10) ) && |->  (controller.next_state == controller.MULT )', '', ' ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD )', '', ' ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L2_ADD )', '', ' ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD )', '', ' ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L4_ADD )', '', ' ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE )', '', ' ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) ) && |->  (controller.next_state == controller.INIT )',
-  ' ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD )', '', '',
-  ' (1 ) && |->  (controller.next_state == controller.current_state )', '', '', '', '', '', '', '', '', ' &&']
-
- XY ::  ((controller.current_state==controller.LOAD) ) && ((controller.count==10) ) |->   (controller.next_state == controller.MULT )

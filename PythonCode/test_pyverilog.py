@@ -47,7 +47,7 @@ def main():
     ### Globals -- These need to be changed as arguments later
     rtl_file_name = "controller.v"
     top_module = 'controller'
-    root_node = "next_state"
+    root_node = "INIT"
     """ Work starts here"""
 
     ####### Working Test code ########
@@ -117,7 +117,7 @@ def main():
     
     print('\n\n Generating tree structure for selected node : ')
     a=''
-    for i in binddict.get(binddict_keys[18]):
+    for i in binddict.get(binddict_keys[17]):
         print(' Pyverilog function call')
         print('\n',i._assign())                        # actual 
         print(' modified function call')
@@ -147,7 +147,8 @@ def main():
 
     xy = property_(line_buff[4])
     print('\n XY :: ',xy)
-# Working with codegen:: Work in Progress ----- Issues after this line
+# Working with codegen:: Work in Progress ----- Issues after this line # Fixed
+
 
 
 def property_(input_string):
