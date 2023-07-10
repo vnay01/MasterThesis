@@ -6,153 +6,82 @@ True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._r
 
 *******************
 
-Starting Flow at... 2023/07/10- 06 hr-02 m.-00 s
-<pyverilog.dataflow.dataflow_analyzer.VerilogDataflowAnalyzer object at 0x7ff2bd1c7fd0>
+Starting Flow at... 2023/07/10- 06 hr-56 m.-34 s
+<pyverilog.dataflow.dataflow_analyzer.VerilogDataflowAnalyzer object at 0x7f197e4abfd0>
 
- [0] List of keys:  controller.counter_size
+ [0] List of keys:  usb_test.IDLE
 
- [1] List of keys:  controller.STATE_SIZE
+ [1] List of keys:  usb_test.CRC1
 
- [2] List of keys:  controller.INIT
+ [2] List of keys:  usb_test.CRC2
 
- [3] List of keys:  controller.LOAD
+ [3] List of keys:  usb_test.clk
 
- [4] List of keys:  controller.MULT
+ [4] List of keys:  usb_test.reset
 
- [5] List of keys:  controller.L1_ADD
+ [5] List of keys:  usb_test.send_data
 
- [6] List of keys:  controller.L2_ADD
+ [6] List of keys:  usb_test.tx_ready
 
- [7] List of keys:  controller.L3_ADD
+ [7] List of keys:  usb_test.tx_valid
 
- [8] List of keys:  controller.L4_ADD
+ [8] List of keys:  usb_test.buff
 
- [9] List of keys:  controller.MEM_STORE
+ [9] List of keys:  usb_test.current_state
 
- [10] List of keys:  controller.clk
-
- [11] List of keys:  controller.reset
-
- [12] List of keys:  controller.START
-
- [13] List of keys:  controller.MEM_READ
-
- [14] List of keys:  controller.BUSY
-
- [15] List of keys:  controller.DONE
-
- [16] List of keys:  controller.input_matrix_ram_en
-
- [17] List of keys:  controller.input_matrix_ram_read_en
-
- [18] List of keys:  controller.input_matrix_ram_address
-
- [19] List of keys:  controller.filter_matrix_rom_en
-
- [20] List of keys:  controller.filter_matrix_rom_read_en
-
- [21] List of keys:  controller.filter_matrix_rom_address
-
- [22] List of keys:  controller.data_path_signal
-
- [23] List of keys:  controller.fifo_command
-
- [24] List of keys:  controller.count
-
- [25] List of keys:  controller.count_next
-
- [26] List of keys:  controller.state_counter
-
- [27] List of keys:  controller.state_counter_next
-
- [28] List of keys:  controller.w_input_matrix_ram_address
-
- [29] List of keys:  controller.w_input_matrix_ram_address_next
-
- [30] List of keys:  controller.w_filter_matrix_rom_address
-
- [31] List of keys:  controller.w_filter_matrix_rom_address_next
-
- [32] List of keys:  controller.w_fifo_command
-
- [33] List of keys:  controller.w_fifo_command_next
-
- [34] List of keys:  controller.current_state
-
- [35] List of keys:  controller.next_state
+ [10] List of keys:  usb_test.next_state
 
 
 
  These are the nodes for which dataflow trees can be generated : 
 
- [0] List of Binding keys:  controller.counter_size
+ [0] List of Binding keys:  usb_test.IDLE
 
- [1] List of Binding keys:  controller.STATE_SIZE
+ [1] List of Binding keys:  usb_test.CRC1
 
- [2] List of Binding keys:  controller.INIT
+ [2] List of Binding keys:  usb_test.CRC2
 
- [3] List of Binding keys:  controller.LOAD
+ [3] List of Binding keys:  usb_test.current_state
 
- [4] List of Binding keys:  controller.MULT
+ [4] List of Binding keys:  usb_test.tx_valid
 
- [5] List of Binding keys:  controller.L1_ADD
+ [5] List of Binding keys:  usb_test.next_state
 
- [6] List of Binding keys:  controller.L2_ADD
-
- [7] List of Binding keys:  controller.L3_ADD
-
- [8] List of Binding keys:  controller.L4_ADD
-
- [9] List of Binding keys:  controller.MEM_STORE
-
- [10] List of Binding keys:  controller.current_state
-
- [11] List of Binding keys:  controller.count
-
- [12] List of Binding keys:  controller.state_counter
-
- [13] List of Binding keys:  controller.w_input_matrix_ram_address
-
- [14] List of Binding keys:  controller.w_filter_matrix_rom_address
-
- [15] List of Binding keys:  controller.input_matrix_ram_address
-
- [16] List of Binding keys:  controller.filter_matrix_rom_address
-
- [17] List of Binding keys:  controller.w_fifo_command
-
- [18] List of Binding keys:  controller.next_state
-
- [19] List of Binding keys:  controller.w_input_matrix_ram_address_next
-
- [20] List of Binding keys:  controller.state_counter_next
-
- [21] List of Binding keys:  controller.count_next
-
- [22] List of Binding keys:  controller.w_filter_matrix_rom_address_next
-
- [23] List of Binding keys:  controller.w_fifo_command_next
-
- [24] List of Binding keys:  controller.DONE
-
- [25] List of Binding keys:  controller.BUSY
-
- [26] List of Binding keys:  controller.input_matrix_ram_en
-
- [27] List of Binding keys:  controller.input_matrix_ram_read_en
-
- [28] List of Binding keys:  controller.filter_matrix_rom_en
-
- [29] List of Binding keys:  controller.filter_matrix_rom_read_en
-
- [30] List of Binding keys:  controller.data_path_signal
-
- [31] List of Binding keys:  controller.fifo_command
+ [6] List of Binding keys:  usb_test.buff
 
 
  Generating tree structure for selected node : 
  Pyverilog function call
 
- assign controller.w_fifo_command = (((!controller.reset)) ? {{1'b0},{1'b0}} : controller.w_fifo_command_next);
+ assign usb_test.next_state = (((usb_test.current_state==usb_test.IDLE)) ? ((usb_test.send_data) ? usb_test.CRC1 : usb_test.IDLE) : (((usb_test.current_state==usb_test.CRC1)) ? (((!usb_test.tx_ready)) ? usb_test.CRC2 : usb_test.CRC1) : (((usb_test.current_state==usb_test.CRC2)) ? ((usb_test.tx_ready) ? usb_test.IDLE : usb_test.CRC2) : ((1) ? usb_test.IDLE : usb_test.next_state))));
 
  modified function call
+
+ PRINITNG data sotred in a :  ((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )
+usb_test.next_state == usb_test.IDLE;
+
+
+ ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )
+usb_test.next_state == usb_test.CRC1;
+
+
+ ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )
+usb_test.next_state == usb_test.CRC2;
+
+
+ (1 ) && |->  (usb_test.next_state == usb_test.IDLE )
+
+
+
+ && 
+
+
+ Prinitng length of a:  534
+
+ Printing line_buff : ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.IDLE;', '', '', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.CRC1;', '', '', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.CRC2;', '', '', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', '', '', '', ' &&']
+
+ Modified Line_buff ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 
+ 'usb_test.next_state == usb_test.IDLE;', 
+ ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.CRC1;', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.CRC2;', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', ' &&']
+
+ XY ::  ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) |->   (usb_test.next_state == usb_test.IDLE )

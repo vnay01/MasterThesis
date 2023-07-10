@@ -1,19 +1,16 @@
- ((controller.current_state==controller.INIT) ) && |->  (controller.fifo_command == controller.w_fifo_command )
- ((controller.current_state==controller.LOAD) ) && |->  (controller.fifo_command == controller.w_fifo_command )
- ((controller.current_state==controller.MULT) ) && |->  (controller.fifo_command == controller.w_fifo_command )
- ((controller.current_state==controller.L1_ADD) ) && |->  (controller.fifo_command == controller.w_fifo_command )
- ((controller.current_state==controller.L2_ADD) ) && |->  (controller.fifo_command == controller.w_fifo_command )
- ((controller.current_state==controller.L3_ADD) ) && |->  (controller.fifo_command == controller.w_fifo_command )
- ((controller.current_state==controller.L4_ADD) ) && |->  (controller.fifo_command == controller.w_fifo_command )
- ((controller.current_state==controller.MEM_STORE) ) && |->  (controller.fifo_command == controller.w_fifo_command )
- (1 ) && |->  (controller.fifo_command == controller.w_fifo_command )
-controller.fifo_command == controller.w_fifo_command;
+ ((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )
+usb_test.next_state == usb_test.IDLE;
 
 
+ ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )
+usb_test.next_state == usb_test.CRC1;
 
 
+ ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )
+usb_test.next_state == usb_test.CRC2;
 
 
+ (1 ) && |->  (usb_test.next_state == usb_test.IDLE )
 
 
 

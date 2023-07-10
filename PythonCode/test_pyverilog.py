@@ -45,9 +45,9 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "controller.v"
-    top_module = 'controller'
-    root_node = "INIT"
+    rtl_file_name = "USB_test.v"
+    top_module = 'usb_test'
+    root_node = "tx_valid"
     """ Work starts here"""
 
     ####### Working Test code ########
@@ -117,7 +117,7 @@ def main():
     
     print('\n\n Generating tree structure for selected node : ')
     a=''
-    for i in binddict.get(binddict_keys[17]):
+    for i in binddict.get(binddict_keys[5]):
         print(' Pyverilog function call')
         print('\n',i._assign())                        # actual 
         print(' modified function call')
@@ -126,9 +126,9 @@ def main():
         
         #print('\n',i._always_combination_mod())
         print('\n PRINITNG data sotred in a :', (a))
-    
-    print('\n \n Does a still have value outside the loop ?? \n', (a))
-    print('\n Data Type of a :', type(a))
+    print('\n Prinitng length of a: ',len(a))
+#    print('\n \n Does a still have value outside the loop ?? \n', (a))
+#    print('\n Data Type of a :', type(a))
     
     ## Lets write it to a file for manipulation!!
     prop_intermediate_file = temp + 'temp_prop_file.txt'
@@ -141,9 +141,11 @@ def main():
     line_buff = ''
 #    with open(file_object,'r'):
     line_buff = a[:-1].strip()
-    line_buff = line_buff.splitlines()                  # This creates a list of all properties
+    line_buff = line_buff.splitlines()                  # This creates a list of all properties but also includes empty items within the list
     print('\n Printing line_buff :', line_buff)         
 # We need to remove all empty items from the list    
+    line_buff = [value for value in line_buff if value != '']
+    print('\n Modified Line_buff',line_buff)
 
     xy = property_(line_buff[4])
     print('\n XY :: ',xy)
