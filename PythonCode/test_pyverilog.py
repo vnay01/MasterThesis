@@ -1,4 +1,10 @@
 ## New file to test if import Pyverilog works
+## Uncomment while using within CITRIX
+'''
+#! /proj/cot/conda/envs/cot_py0/bin/python
+# #! /proj/cot/conda/envs/iverilog0/bin/iverilog
+'''
+
 from __future__ import absolute_import
 from __future__ import print_function
 
@@ -125,7 +131,7 @@ def main():
         print('\n', [i] ,'List of Binding keys: ' ,binddict_keys[i])
     
     #### Pass the index of desired root node:
-    root_node = int(18)                                         #### Use with caution. Works for state transition only.
+    root_node = int(17)                                         #### Use with caution. Works for state transition only.
     print('\n\n Generating tree structure for selected node : ')
     a=''
     for i in binddict.get(binddict_keys[root_node]):                   ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
@@ -143,9 +149,9 @@ def main():
 #    print('\n Data Type of a :', type(a))
     
     ## Lets write it to a file for manipulation!!
-    prop_intermediate_file = temp + 'temp_prop_file.txt'
-    file_object = open(prop_intermediate_file,'w')
-    file_object.write(a[:-1])
+    #prop_intermediate_file = temp + 'temp_prop_file.txt'
+    #file_object = open(prop_intermediate_file,'w')
+    #file_object.write(a[:-1])
 #    file_object.close()
 
     ## proper formatting of property file  
@@ -177,7 +183,7 @@ def main():
     true_path_list = []
     false_path_list = []
 
-    for i in range(len(prop_list[0]) -1 ):
+    for i in range(len(prop_list[0]) - 1 ):
         true_part = str(prop_list[0][i])
         false_part = str(prop_list[1][i])
         ## search for |-> string 
@@ -185,7 +191,7 @@ def main():
         antecedant_part = true_part[: start_index].strip(' &&').strip().strip('&&')
         #true_part = true_part.strip(' &&').strip().strip('&&').strip('&& ') + ' ;'
         true_part = antecedant_part  + true_part[start_index: ].strip(' &&').strip().strip('&&')
-        false_part = antecedant_part + '|->' + ' ('+ false_part.strip(';') + ' );'
+        false_part = antecedant_part + '|->' + ' ('+ false_part.strip(';') + ' )'
         true_path_list.append(true_part)
         false_path_list.append(false_part)
         print([i],' ',true_part)
@@ -215,7 +221,7 @@ def list_pair(line_buff):
         true_item = line_buff[(2*item)]
         false_item = line_buff[(2*item + 1)]
         list_true.append(true_item)             ## 0, 2, 4, 6 ....      
-        list_false.append(false_item)         # 1, 3, 5, ...
+        list_false.append(false_item.strip(';'))         # 1, 3, 5, ...
 #    print('\n True_list :', list_true)
 #    print('\n False_list :', list_false)        
     return list_true, list_false
