@@ -6,32 +6,7 @@ True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._r
 
 *******************
 
-Starting Flow at... 2023/07/10- 06 hr-56 m.-34 s
-<pyverilog.dataflow.dataflow_analyzer.VerilogDataflowAnalyzer object at 0x7f197e4abfd0>
-
- [0] List of keys:  usb_test.IDLE
-
- [1] List of keys:  usb_test.CRC1
-
- [2] List of keys:  usb_test.CRC2
-
- [3] List of keys:  usb_test.clk
-
- [4] List of keys:  usb_test.reset
-
- [5] List of keys:  usb_test.send_data
-
- [6] List of keys:  usb_test.tx_ready
-
- [7] List of keys:  usb_test.tx_valid
-
- [8] List of keys:  usb_test.buff
-
- [9] List of keys:  usb_test.current_state
-
- [10] List of keys:  usb_test.next_state
-
-
+Starting Flow at... 2023/07/10- 11 hr-42 m.-21 s
 
  These are the nodes for which dataflow trees can be generated : 
 
@@ -57,31 +32,40 @@ Starting Flow at... 2023/07/10- 06 hr-56 m.-34 s
 
  modified function call
 
- PRINITNG data sotred in a :  ((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )
-usb_test.next_state == usb_test.IDLE;
-
-
- ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )
-usb_test.next_state == usb_test.CRC1;
-
-
- ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )
-usb_test.next_state == usb_test.CRC2;
-
-
- (1 ) && |->  (usb_test.next_state == usb_test.IDLE )
-
-
-
- && 
-
-
  Prinitng length of a:  534
 
- Printing line_buff : ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.IDLE;', '', '', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.CRC1;', '', '', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.CRC2;', '', '', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', '', '', '', ' &&']
+ Printing line_buff 
+: ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.IDLE;', '', '', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.CRC1;', '', '', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.CRC2;', '', '', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', '', '', '', ' &&']
 
- Modified Line_buff ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 
- 'usb_test.next_state == usb_test.IDLE;', 
- ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.CRC1;', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.CRC2;', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', ' &&']
+ Modified Line_buff 
+ ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.IDLE;', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.CRC1;', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.CRC2;', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', ' &&']
 
- XY ::  ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) |->   (usb_test.next_state == usb_test.IDLE )
+
+ Number of items in line_buff 
+:  8
+
+ type :  <class 'list'>
+
+
+ True_condition_property:  ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && |->  (usb_test.next_state == usb_test.IDLE )', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )']
+
+
+ False_condition_property:  ['usb_test.next_state == usb_test.IDLE;', 'usb_test.next_state == usb_test.CRC1;', 'usb_test.next_state == usb_test.CRC2;', ' &&']
+\ length of prop_list :  4
+[0]   ((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 )
+[0]   ((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.IDLE );
+[1]   ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.next_state == usb_test.CRC2 )
+[1]   ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.CRC1 );
+[2]   ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|->  (usb_test.next_state == usb_test.IDLE )
+[2]   ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|-> (usb_test.next_state == usb_test.CRC2 );
+[3]   (1 )|->  (usb_test.next_state == usb_test.IDLE )
+[3]   (1 )|-> ( && );
+
+
+ true_part :  ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 )', '((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.next_state == usb_test.CRC2 )', '((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|->  (usb_test.next_state == usb_test.IDLE )', '(1 )|->  (usb_test.next_state == usb_test.IDLE )']
+
+
+ false_part :  ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.IDLE );', '((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.CRC1 );', '((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|-> (usb_test.next_state == usb_test.CRC2 );', '(1 )|-> ( && );']
+copied_block:  module usb_test (clk, reset, send_data, tx_ready, tx_valid, buff);
+//////////////////////////////////////////////////
+

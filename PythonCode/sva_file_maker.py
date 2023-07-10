@@ -59,17 +59,31 @@ def property_add(input_file, count, property_list):
         sva_file.write(timestr)
 #        sva_file.write('\n// TimeStamp: ', timestr)
         for i in range(count):
-            prop_buff = property_list[i]
+            prop_buff = property_list[0][i]
             sva_file.write('\n')
-            sva_file.write('property Prop_'+ str(i) + '; \n')
+            sva_file.write('property t_Prop_'+ str(i) + '; \n')
             sva_file.write('\t@(posedge clk) ('+ prop_buff + ');')
             sva_file.write('\n')
             sva_file.write('endproperty \n')
             sva_file.write('\n')
-            sva_file.write('assert_Prop_' + str(i) + ': assert property (Prop_' + str(i) +');')
+            sva_file.write('assert_Prop_' + str(i) + ': assert property (t_Prop_' + str(i) +');')
             sva_file.write('\n') 
-            sva_file.write('cover_prop_' + str(i) + ': cover property (Prop_'+str(i)+');')
+            sva_file.write('cover_prop_' + str(i) + ': cover property (t_Prop_'+str(i)+');')
+            sva_file.write('\n')
+        
+        for i in range(count):
+            prop_buff = property_list[1][i]
+            sva_file.write('\n')
+            sva_file.write('property f_Prop_'+ str(i) + '; \n')
+            sva_file.write('\t@(posedge clk) ('+ prop_buff + ');')
+            sva_file.write('\n')
+            sva_file.write('endproperty \n')
+            sva_file.write('\n')
+            sva_file.write('assert_Prop_' + str(i) + ': assert property (f_Prop_' + str(i) +');')
             sva_file.write('\n') 
+            sva_file.write('cover_prop_' + str(i) + ': cover property (f_Prop_'+str(i)+');')
+            sva_file.write('\n')
+
         sva_file.write('\n')  
         sva_file.write('\n')     
         sva_file.write('endmodule')  

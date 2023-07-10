@@ -1,0 +1,138 @@
+module controller(  
+                     input clk,
+                     input reset,
+                     input START,      
+                     input MEM_READ,   
+                     output reg BUSY,
+                     output reg DONE,
+                     output reg input_matrix_ram_en,
+                     output reg input_matrix_ram_read_en,
+                     output reg [9:0] input_matrix_ram_address,
+                     output reg filter_matrix_rom_en,
+                     output reg filter_matrix_rom_read_en,
+                     output reg filter_matrix_rom_address,
+                     output reg [4:0] data_path_signal,          // concatnation of signals which control different sections of datapath
+                     output reg [1:0] fifo_command                          
+    );
+
+// Setting Port direction //
+input   
+                      clk;
+input 
+                      reset;
+input 
+                      START;
+input       
+                      MEM_READ;
+input    
+                       BUSY;
+input 
+                       DONE;
+input 
+                       _matrix_ram_en;
+input 
+                       _matrix_ram_read_en;
+input 
+                       [9:0] _matrix_ram_address;
+input 
+                       filter_matrix_rom_en;
+input 
+                       filter_matrix_rom_read_en;
+input 
+                       filter_matrix_rom_address;
+input 
+                       [4:0] data_path_signal;
+input           // concatnation of signals which control different sections of datapath
+                       [1:0] fifo_command                          
+    ;
+// Default Clocking and Reset
+//default clocking (@posedge clk); clocking
+// Property list 
+
+//  Property Generated on Timestamp : 2023/07/10- 11 hr-41 m.-04 s
+property t_Prop_0; 
+	@(posedge clk) (((controller.current_state==controller.INIT) ) && (controller.START )|->  (controller.next_state == controller.LOAD ));
+endproperty 
+
+assert_Prop_0: assert property (t_Prop_0);
+cover_prop_0: cover property (t_Prop_0);
+
+property t_Prop_1; 
+	@(posedge clk) (((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|->  (controller.next_state == controller.MULT ));
+endproperty 
+
+assert_Prop_1: assert property (t_Prop_1);
+cover_prop_1: cover property (t_Prop_1);
+
+property t_Prop_2; 
+	@(posedge clk) (((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L2_ADD ));
+endproperty 
+
+assert_Prop_2: assert property (t_Prop_2);
+cover_prop_2: cover property (t_Prop_2);
+
+property t_Prop_3; 
+	@(posedge clk) (((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L4_ADD ));
+endproperty 
+
+assert_Prop_3: assert property (t_Prop_3);
+cover_prop_3: cover property (t_Prop_3);
+
+property t_Prop_4; 
+	@(posedge clk) (((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|->  (controller.next_state == controller.INIT ));
+endproperty 
+
+assert_Prop_4: assert property (t_Prop_4);
+cover_prop_4: cover property (t_Prop_4);
+
+property t_Prop_5; 
+	@(posedge clk) ((1 )|->  (controller.next_state == controller.current_state ));
+endproperty 
+
+assert_Prop_5: assert property (t_Prop_5);
+cover_prop_5: cover property (t_Prop_5);
+
+property f_Prop_0; 
+	@(posedge clk) (((controller.current_state==controller.INIT) ) && (controller.START )|-> (controller.next_state == controller.INIT ););
+endproperty 
+
+assert_Prop_0: assert property (f_Prop_0);
+cover_prop_0: cover property (f_Prop_0);
+
+property f_Prop_1; 
+	@(posedge clk) (((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|-> ( ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD ) ););
+endproperty 
+
+assert_Prop_1: assert property (f_Prop_1);
+cover_prop_1: cover property (f_Prop_1);
+
+property f_Prop_2; 
+	@(posedge clk) (((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD ) ););
+endproperty 
+
+assert_Prop_2: assert property (f_Prop_2);
+cover_prop_2: cover property (f_Prop_2);
+
+property f_Prop_3; 
+	@(posedge clk) (((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE ) ););
+endproperty 
+
+assert_Prop_3: assert property (f_Prop_3);
+cover_prop_3: cover property (f_Prop_3);
+
+property f_Prop_4; 
+	@(posedge clk) (((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|-> ( ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD ) ););
+endproperty 
+
+assert_Prop_4: assert property (f_Prop_4);
+cover_prop_4: cover property (f_Prop_4);
+
+property f_Prop_5; 
+	@(posedge clk) ((1 )|-> ( && ););
+endproperty 
+
+assert_Prop_5: assert property (f_Prop_5);
+cover_prop_5: cover property (f_Prop_5);
+
+
+endmodule
