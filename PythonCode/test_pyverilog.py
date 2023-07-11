@@ -131,7 +131,7 @@ def main():
         print('\n', [i] ,'List of Binding keys: ' ,binddict_keys[i])
     
     #### Pass the index of desired root node:
-    root_node = int(17)                                         #### Use with caution. Works for state transition only.
+    root_node = int(18)                                         #### Use with caution. Works for state transition only.
     print('\n\n Generating tree structure for selected node : ')
     a=''
     for i in binddict.get(binddict_keys[root_node]):                   ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
@@ -183,7 +183,7 @@ def main():
     true_path_list = []
     false_path_list = []
 
-    for i in range(len(prop_list[0]) - 1 ):
+    for i in range(len(prop_list[0]) - 2 ):
         true_part = str(prop_list[0][i])
         false_part = str(prop_list[1][i])
         ## search for |-> string 

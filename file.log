@@ -6,7 +6,7 @@ True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._r
 
 *******************
 
-Starting Flow at... 2023/07/10- 12 hr-32 m.-29 s
+Starting Flow at... 2023/07/10- 20 hr-50 m.-05 s
 
  These are the nodes for which dataflow trees can be generated : 
 
@@ -100,24 +100,22 @@ Starting Flow at... 2023/07/10- 12 hr-32 m.-29 s
  True_condition_property:  ['((controller.current_state==controller.INIT) ) && (controller.START ) && |->  (controller.next_state == controller.LOAD )', ' ((controller.current_state==controller.LOAD) ) && ((controller.count==10) ) && |->  (controller.next_state == controller.MULT )', ' ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L2_ADD )', ' ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L4_ADD )', ' ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) ) && |->  (controller.next_state == controller.INIT )', ' (1 ) && |->  (controller.next_state == controller.current_state )']
 
 
- False_condition_property:  ['controller.next_state == controller.INIT;', ' ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD )', ' ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD )', ' ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE )', ' ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD )', ' &&']
+ False_condition_property:  ['controller.next_state == controller.INIT', ' ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD )', ' ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD )', ' ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE )', ' ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD )', ' &&']
 \ length of prop_list :  6
 [0]   ((controller.current_state==controller.INIT) ) && (controller.START )|->  (controller.next_state == controller.LOAD )
-[0]   ((controller.current_state==controller.INIT) ) && (controller.START )|-> (controller.next_state == controller.INIT );
+[0]   ((controller.current_state==controller.INIT) ) && (controller.START )|-> (controller.next_state == controller.INIT )
 [1]   ((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|->  (controller.next_state == controller.MULT )
-[1]   ((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|-> ( ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD ) );
+[1]   ((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|-> ( ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD ) )
 [2]   ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L2_ADD )
-[2]   ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD ) );
+[2]   ((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD ) )
 [3]   ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L4_ADD )
-[3]   ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE ) );
-[4]   ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|->  (controller.next_state == controller.INIT )
-[4]   ((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|-> ( ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD ) );
+[3]   ((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE ) )
 
 
- true_part :  ['((controller.current_state==controller.INIT) ) && (controller.START )|->  (controller.next_state == controller.LOAD )', '((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|->  (controller.next_state == controller.MULT )', '((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L2_ADD )', '((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L4_ADD )', '((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|->  (controller.next_state == controller.INIT )']
+ true_part :  ['((controller.current_state==controller.INIT) ) && (controller.START )|->  (controller.next_state == controller.LOAD )', '((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|->  (controller.next_state == controller.MULT )', '((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L2_ADD )', '((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L4_ADD )']
 
 
- false_part :  ['((controller.current_state==controller.INIT) ) && (controller.START )|-> (controller.next_state == controller.INIT );', '((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|-> ( ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD ) );', '((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD ) );', '((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE ) );', '((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|-> ( ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD ) );']
+ false_part :  ['((controller.current_state==controller.INIT) ) && (controller.START )|-> (controller.next_state == controller.INIT )', '((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|-> ( ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD ) )', '((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD ) )', '((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE ) )']
 module_name :  controller
 copied_block:  module controller(  
                      input clk,
