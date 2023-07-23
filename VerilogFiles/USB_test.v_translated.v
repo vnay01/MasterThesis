@@ -19,30 +19,57 @@ localparam IDLE=3'b000,
 reg [2:0] current_state;
 reg [2:0] next_state;
 
+// Internal counters
+
+reg [9:0] counter, counter_next;
+
 
 always@(posedge clk)
-    if(!reset) current_state<= IDLE;
-    else current_state <= next_state;
+    if(!reset) 
+        begin
+        current_state<= IDLE;
+        counter <= {10{1'b0}};          // reset value of counter
+        end
+    else 
+        begin
+        current_state <= next_state;
+        counter <= counter_next;
+        end
 
 always@(*)
     begin
+        counter_next <= counter;
+        next_state <= current_state;
+
         case(current_state)
             IDLE: begin tx_valid <= 1'b1;
+                  counter_next <= counter + 1;
                   if(send_data) next_state<=CRC1;
-                  else next_state<=IDLE;
             end
 
             CRC1: begin tx_valid <= 1'b1;
+                  counter_next <= counter + 1;
                   if(!tx_ready) next_state<=CRC2;
-                  else next_state<=CRC1;
+                  
             end
 
             CRC2: begin tx_valid <= 1'b0;
-            if(tx_ready ) next_state<=IDLE;
-            else next_state<=CRC2;
+            counter_next <= counter + 1;
+
+            if(tx_ready) 
+                begin
+                    if (counter < 9) 
+                    next_state<=CRC1;
+                end
+            else begin
+            if (counter == 10) begin
+            next_state<=IDLE;
+            end
+            end
             end
             default: begin
                 tx_valid <= 1'b0;
+                counter_next <= counter;
                 next_state<=IDLE;
                 end 
         endcase

@@ -15,7 +15,7 @@ import sys
 import typing
 import platform
 from optparse import OptionParser
-
+from memory_profiler import profile
 
 # import pyverilog
 from pyverilog import *
@@ -43,6 +43,7 @@ from graph_generator import *
 from rtl_modifier import * 
 from sva_file_maker import *
 
+@profile
 
 
 def main():
@@ -51,8 +52,8 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "controller.v"
-    top_module = 'controller'
+    rtl_file_name = "USB_test.v"
+    top_module = 'usb_test'
     """ Work starts here"""
 
     ####### Working Test code ########
@@ -131,7 +132,7 @@ def main():
         print('\n', [i] ,'List of Binding keys: ' ,binddict_keys[i])
     
     #### Pass the index of desired root node:
-    root_node = int(18)                                         #### Use with caution. Works for state transition only.
+    root_node = int(6)                                         #### Use with caution. Works for state transition only.
     print('\n\n Generating tree structure for selected node : ')
     a=''
     for i in binddict.get(binddict_keys[root_node]):                   ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage

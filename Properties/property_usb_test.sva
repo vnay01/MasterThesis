@@ -1,3 +1,16 @@
+// DO NOT REMOVE //
+// This file is a product of Master Thesis done by Vinay Singh (ESNIVIN) at Ericcson 
+
+/////////////////////////////////////////////////
+/*Author : ESNIVIN 
+Property File : 
+File Created at : 2023/07/23- 17 hr-48 m.-15 s
+*/
+
+//////////////////////////////////////////////////
+bind usb_test v_usb_test i_usb_test ( .* );
+
+
 module usb_test (clk, reset, send_data, tx_ready, tx_valid, buff);
 
 // Setting Port direction //
@@ -7,52 +20,68 @@ input  send_data;
 input  tx_ready;
 input  tx_valid;
 input  buff;
-// Default Clocking and Reset
-//default clocking (@posedge clk); clocking
+
+
+ /* // Add your ports here, for eg internal state registers and typedefs 
+
+
+
+
+
+
+
+
+
+
+*/
+
 // Property list 
 
-//  Property Generated on Timestamp : 2023/07/10- 11 hr-44 m.-06 s
 property t_Prop_0; 
 	@(posedge clk) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 ));
 endproperty 
 
-assert_Prop_0: assert property (t_Prop_0);
-cover_prop_0: cover property (t_Prop_0);
+assert_t_Prop_0: assert property (t_Prop_0);
+cover_t_prop_0: cover property (t_Prop_0);
 
 property t_Prop_1; 
 	@(posedge clk) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.next_state == usb_test.CRC2 ));
 endproperty 
 
-assert_Prop_1: assert property (t_Prop_1);
-cover_prop_1: cover property (t_Prop_1);
+assert_t_Prop_1: assert property (t_Prop_1);
+cover_t_prop_1: cover property (t_Prop_1);
 
 property t_Prop_2; 
-	@(posedge clk) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|->  (usb_test.next_state == usb_test.IDLE ));
+	@(posedge clk) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|->  (usb_test.next_state == usb_test.CRC1 ));
 endproperty 
 
-assert_Prop_2: assert property (t_Prop_2);
-cover_prop_2: cover property (t_Prop_2);
+assert_t_Prop_2: assert property (t_Prop_2);
+cover_t_prop_2: cover property (t_Prop_2);
 
+ 
+ // Writing properties to check if state transition conditions do not occur.
 property f_Prop_0; 
-	@(posedge clk) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.IDLE ););
+	@(posedge clk) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.current_state ));
 endproperty 
 
-assert_Prop_0: assert property (f_Prop_0);
-cover_prop_0: cover property (f_Prop_0);
+assert_f_Prop_0: assert property (f_Prop_0);
+cover_f_prop_0: cover property (f_Prop_0);
 
 property f_Prop_1; 
-	@(posedge clk) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.CRC1 ););
+	@(posedge clk) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.current_state ));
 endproperty 
 
-assert_Prop_1: assert property (f_Prop_1);
-cover_prop_1: cover property (f_Prop_1);
+assert_f_Prop_1: assert property (f_Prop_1);
+cover_f_prop_1: cover property (f_Prop_1);
 
 property f_Prop_2; 
-	@(posedge clk) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|-> (usb_test.next_state == usb_test.CRC2 ););
+	@(posedge clk) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|-> (usb_test.next_state == usb_test.current_state ));
 endproperty 
 
-assert_Prop_2: assert property (f_Prop_2);
-cover_prop_2: cover property (f_Prop_2);
+assert_f_Prop_2: assert property (f_Prop_2);
+cover_f_prop_2: cover property (f_Prop_2);
 
 
+
+ // Add additional Properties here : 
 endmodule
