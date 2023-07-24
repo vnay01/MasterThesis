@@ -1,0 +1,142 @@
+// DO NOT REMOVE //
+// This file is a product of Master Thesis done by Vinay Singh (ESNIVIN) at Ericcson 
+
+/////////////////////////////////////////////////
+/*Author : ESNIVIN 
+Property File : 
+File Created at : 2023/07/24- 13 hr-37 m.-06 s
+*/
+
+//////////////////////////////////////////////////
+bind urd_rx_fdec_controller_fsm v_urd_rx_fdec_controller_fsm i_urd_rx_fdec_controller_fsm ( .* );
+
+
+module v_// Created by : ESNIVIN
+
+//`include "macros.v"
+
+module urd_rx_fdec_controller_fsm(
+									input clk,
+									input rst_n,
+									input rxf_lower_dav,
+									input zero_payload,// Deal with this    assign zero_payload = current_job.len + 'd32 == current_job.offset;
+									input processing_queue_slot_available,
+									input processing_queue_slot_available_early,
+									input current_job_data_available,
+									input rxf_upper_dav,						// mapped
+									input rxl_result_data_con_concatenate,
+									input current_job_e,
+									input current_job_e_pre_urd_error,
+								    input current_job_e_size_error,
+								    input current_job_e_hdr_error,
+//								    input rxl_result_dav,			// mapped
+								    input [7:0]rx_ev_inc_err,
+								    input [7:0]rx_ev_oversize_ip,
+								    input [7:0]rx_ev_eth_head_err,
+								    output reg rxl_load_lower_and_trigger, 			// MAPPED
+								    output reg rxl_load_upper,
+								    output reg rxf_stop,
+									output reg update_job_info_from_info_fifo,
+									output reg trigger_write_fd_job_queue,
+									output reg trigger_write_fd_job_queue_error_job
+									);
+
+// Setting Port direction //
+input 
+									input clk;
+input 
+									input rst_n;
+input 
+									input rxf_lower_dav;
+input 
+									input zero_payload;
+input // Deal with this    assign zero_payload = current_job.len + 'd32 == current_job.offset;
+									input processing_queue_slot_available;
+input 
+									input processing_queue_slot_available_early;
+input 
+									input current_job_data_available;
+input 
+									input rxf_upper_dav;
+input 						// mapped
+									input rxl_result_data_con_concatenate;
+input 
+									input current_job_e;
+input 
+									input current_job_e_pre_urd_error;
+input 
+								    input current_job_e_size_error;
+input 
+								    input current_job_e_hdr_error;
+input 
+//								    input rxl_result_dav;
+input 			// mapped
+								    input [7:0]rx_ev_inc_err;
+input 
+								    input [7:0]rx_ev_oversize_ip;
+input 
+								    input [7:0]rx_ev_eth_head_err;
+input 
+								    input reg rxl_load_lower_and_trigger;
+input  			// MAPPED
+								    input reg rxl_load_upper;
+input 
+								    input reg rxf_stop;
+input 
+									input reg update_job_info_from_info_fifo;
+input 
+									input reg trigger_write_fd_job_queue;
+input 
+									input reg trigger_write_fd_job_queue_error_job
+									;
+
+
+ /* // Add your ports here, for eg internal state registers and typedefs 
+
+
+
+
+
+
+
+
+
+
+*/
+
+// Property list 
+
+property t_Prop_0; 
+	@(posedge clk) (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait ));
+endproperty 
+
+assert_t_Prop_0: assert property (t_Prop_0);
+cover_t_prop_0: cover property (t_Prop_0);
+
+property t_Prop_1; 
+	@(posedge clk) (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait ));
+endproperty 
+
+assert_t_Prop_1: assert property (t_Prop_1);
+cover_t_prop_1: cover property (t_Prop_1);
+
+ 
+ // Writing properties to check if state transition conditions do not occur.
+property f_Prop_0; 
+	@(posedge clk) (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state ));
+endproperty 
+
+assert_f_Prop_0: assert property (f_Prop_0);
+cover_f_prop_0: cover property (f_Prop_0);
+
+property f_Prop_1; 
+	@(posedge clk) (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) )|-> ( ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait ) ));
+endproperty 
+
+assert_f_Prop_1: assert property (f_Prop_1);
+cover_f_prop_1: cover property (f_Prop_1);
+
+
+
+ // Add additional Properties here : 
+endmodule

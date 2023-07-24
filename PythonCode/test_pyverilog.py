@@ -25,6 +25,11 @@ from pyverilog.dataflow.optimizer import *
 from pyverilog.dataflow.graphgen import *
 from pyverilog.dataflow.dataflow_codegen import *
 
+### For generating dataflow graph
+from pyverilog.dataflow.optimizer import VerilogDataflowOptimizer
+from pyverilog.dataflow.graphgen import VerilogGraphGenerator
+
+
 import pyverilog.vparser.ast as vast
 from pyverilog.vparser.parser import *
 from pyverilog.ast_code_generator.codegen import *
@@ -43,7 +48,7 @@ from graph_generator import *
 from rtl_modifier import * 
 from sva_file_maker import *
 
-@profile
+#@profile
 
 
 def main():
@@ -52,8 +57,10 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "USB_test.v"
-    top_module = 'usb_test'
+    rtl_file_name = "block.v"
+    top_module = 'urd_rx_fdec_controller_fsm'
+    #### Pass the index of desired root node:
+    root_node = int(20)                                         #### Use with caution. Works for state transition only.    
     """ Work starts here"""
 
     ####### Working Test code ########
@@ -89,7 +96,7 @@ def main():
     """ RTL file details & node selection"""
     rtl_file_path = working_dir + 'VerilogFiles/'
     file_path = rtl_file_path + rtl_file_name
-    translated_file_path = rtl_file_path + rtl_file_name +'_translated.v'
+    translated_file_path = rtl_file_path + top_module +'_translated.v'
     input_file = file_path
     output_file = translated_file_path
 
@@ -131,8 +138,7 @@ def main():
     for i in range(len(binddict_keys)):
         print('\n', [i] ,'List of Binding keys: ' ,binddict_keys[i])
     
-    #### Pass the index of desired root node:
-    root_node = int(6)                                         #### Use with caution. Works for state transition only.
+
     print('\n\n Generating tree structure for selected node : ')
     a=''
     for i in binddict.get(binddict_keys[root_node]):                   ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
@@ -184,7 +190,7 @@ def main():
     true_path_list = []
     false_path_list = []
 
-    for i in range(len(prop_list[0]) - 2 ):
+    for i in range(len(prop_list[0]) - 8 ):
         true_part = str(prop_list[0][i])
         false_part = str(prop_list[1][i])
         ## search for |-> string 
@@ -207,6 +213,38 @@ def main():
     lalala = true_path_list,false_path_list
     property_add(property_file_path,count , lalala)
     #property_add(property_file_path,count , false_path_list)
+
+    outputfile = os.getcwd() + 'file.dot'
+    searchtarget = top_module +'.'+'state_nxt'
+##### Generate Graph
+    for key,value in sorted(binddict.items(),key=lambda x: len(x[0])):
+            print('\nBinddict :', (binddict[key]))
+        
+    optimizer = VerilogDataflowOptimizer(terms, binddict)
+
+    optimizer.resolveConstant()
+        
+    resolved_terms = optimizer.getResolvedTerms()
+        
+    #    for key,value in resolved_terms:
+    #    print((resolved_terms.pop(resolved_terms[1])))
+
+    resolved_binddict = optimizer.getResolvedBinddict()
+    constlist = optimizer.getConstlist()
+    print(constlist)
+
+    graphgen = VerilogGraphGenerator(top_module, terms, binddict, resolved_terms, resolved_binddict, constlist, outputfile)
+
+    #for target in searchtarget:
+    graphgen.generate(searchtarget)
+        #                  step=options.step, reorder=options.reorder, delay=options.delay)
+
+#    dot_filename = options.filename    
+
+
+    graphgen.draw(filename=top_module)
+
+
 
 
 

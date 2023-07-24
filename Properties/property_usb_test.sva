@@ -4,14 +4,14 @@
 /////////////////////////////////////////////////
 /*Author : ESNIVIN 
 Property File : 
-File Created at : 2023/07/23- 17 hr-48 m.-15 s
+File Created at : 2023/07/24- 13 hr-30 m.-33 s
 */
 
 //////////////////////////////////////////////////
 bind usb_test v_usb_test i_usb_test ( .* );
 
 
-module usb_test (clk, reset, send_data, tx_ready, tx_valid, buff);
+module v_usb_test (clk, reset, send_data, tx_ready, tx_valid, buff);
 
 // Setting Port direction //
 input clk;
