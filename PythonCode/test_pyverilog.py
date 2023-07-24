@@ -1,9 +1,6 @@
 ## New file to test if import Pyverilog works
-## Uncomment while using within CITRIX
-'''
 #! /proj/cot/conda/envs/cot_py0/bin/python
 # #! /proj/cot/conda/envs/iverilog0/bin/iverilog
-'''
 
 from __future__ import absolute_import
 from __future__ import print_function
@@ -15,7 +12,9 @@ import sys
 import typing
 import platform
 from optparse import OptionParser
+
 from memory_profiler import profile
+
 
 # import pyverilog
 from pyverilog import *
@@ -25,10 +24,8 @@ from pyverilog.dataflow.optimizer import *
 from pyverilog.dataflow.graphgen import *
 from pyverilog.dataflow.dataflow_codegen import *
 
-### For generating dataflow graph
-from pyverilog.dataflow.optimizer import VerilogDataflowOptimizer
-from pyverilog.dataflow.graphgen import VerilogGraphGenerator
-
+from pyverilog.dataflow.optimizer import *
+from pyverilog.dataflow.graphgen import *
 
 import pyverilog.vparser.ast as vast
 from pyverilog.vparser.parser import *
@@ -48,8 +45,7 @@ from graph_generator import *
 from rtl_modifier import * 
 from sva_file_maker import *
 
-#@profile
-
+# @profile
 
 def main():
     start = timer()
@@ -57,18 +53,22 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "block.v"
-    top_module = 'urd_rx_fdec_controller_fsm'
-    #### Pass the index of desired root node:
-    root_node = int(20)                                         #### Use with caution. Works for state transition only.    
+    rtl_file_name = "USB_test.v"
+    top_module = 'usb_test'
     """ Work starts here"""
+    
+    
+    #### Pass the index of desired root node:
+    root_node = int(7)                                         #### Use with caution. Works for state transition only.
 
     ####### Working Test code ########
-    ########## Book Keeping and setting up directory ######
+    ########## Book Keeping and setting up directory #####
     system = platform.system()
     if system == "Linux":
         parent_dir = "/home/" + os.getlogin() +'/'
         working_dir = parent_dir + "Desktop/MasterThesis/"
+        if not os.path.exists('TestOutputs'):
+            os.mkdir('TestOutputs')        
         output_dir = working_dir + "TestOutputs/"
         if not os.path.exists('temp'):
             os.mkdir('temp')
@@ -94,7 +94,9 @@ def main():
 
 
     """ RTL file details & node selection"""
+
     rtl_file_path = working_dir + 'VerilogFiles/'
+
     file_path = rtl_file_path + rtl_file_name
     translated_file_path = rtl_file_path + top_module +'_translated.v'
     input_file = file_path
@@ -109,11 +111,10 @@ def main():
 
     ### Call this function to modify assignment oeprators
     replace_assignment_operator(input_file, output_file)
-#    preprocess_include= '-I'
-
-
+    
+    
     data_flow = VerilogDataflowAnalyzer(output_file,top_module)         ## Create a dataflow object.
-#    print(data_flow)                      ## Expecting an object of class VerilogDataflowAnalyzer()
+#    print(data_flow)                                                   ## Expecting an object of class VerilogDataflowAnalyzer()
     
     ## Using generate() to get an object of type  'VerilogDataflowAnalyzer'
     data_flow.generate()
@@ -137,20 +138,20 @@ def main():
     print('\n These are the nodes for which dataflow trees can be generated : ')
     for i in range(len(binddict_keys)):
         print('\n', [i] ,'List of Binding keys: ' ,binddict_keys[i])
-    
+
+
 
     print('\n\n Generating tree structure for selected node : ')
     a=''
     for i in binddict.get(binddict_keys[root_node]):                   ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
         print(' Pyverilog function call')
-        print('\n',i._assign())                        # actual. To be removed 
-        print(' modified function call')
-        #print('\n',i._assign_mod())                        ## tostr() is a recursive function
+        print('\n This is how Pyverilog creates a tree internally \n    ',i._assign())                        # actual. To be removed 
+        print(' *****modified function call *****')
         a = i._always_combination_mod()                # calling method() on object of Bind class
-        '''
+        
         # checker code
-        print('\n PRINITNG data stored in a :', (a))
-        '''
+        # print('\n PRINITNG data stored in a :', (a))
+        
     print('\n Prinitng length of a: ',len(a))
 #    print('\n \n Does a still have value outside the loop ?? \n', (a))
 #    print('\n Data Type of a :', type(a))
@@ -177,7 +178,10 @@ def main():
 #    prop = create_property(line_buff[0])
 #    print('\n XY :: ',prop)
     prop_list = list_pair(line_buff)                        # Split property list
-    print('\n\n True_condition_property: ',prop_list[0])    # Check correctness
+    print('\n\n True_condition_property: ')    # Check correctness
+    for i in range(len(prop_list[0])):
+        print([i] ,' ', prop_list[0][i] )
+        
     print('\n\n False_condition_property: ',prop_list[1])   # Check correctness
 
     true_part = ''
@@ -190,7 +194,7 @@ def main():
     true_path_list = []
     false_path_list = []
 
-    for i in range(len(prop_list[0]) - 8 ):
+    for i in range(len(prop_list[0])  - 1):                                 # Use this to control the number of properties generated
         true_part = str(prop_list[0][i])
         false_part = str(prop_list[1][i])
         ## search for |-> string 
@@ -206,45 +210,22 @@ def main():
 
     print('\n\n true_part : ',true_path_list)
     print('\n\n false_part : ', false_path_list)
+
+    ## Add bind information
     bind_adder(file_path, property_file_path)
+
     module_info_extractor(file_path, property_file_path )
 #    print('\n Copied Antecedant :',antecedant_part)
     count = len(true_path_list)
     lalala = true_path_list,false_path_list
-    property_add(property_file_path,count , lalala)
+    true_property_add(property_file_path,count , lalala[0])
+
+
+    print('\n Adding false properties*******\n')
+#    false_property_add(property_file_path,count , lalala[1])
     #property_add(property_file_path,count , false_path_list)
-
-    outputfile = os.getcwd() + 'file.dot'
-    searchtarget = top_module +'.'+'state_nxt'
-##### Generate Graph
-    for key,value in sorted(binddict.items(),key=lambda x: len(x[0])):
-            print('\nBinddict :', (binddict[key]))
-        
-    optimizer = VerilogDataflowOptimizer(terms, binddict)
-
-    optimizer.resolveConstant()
-        
-    resolved_terms = optimizer.getResolvedTerms()
-        
-    #    for key,value in resolved_terms:
-    #    print((resolved_terms.pop(resolved_terms[1])))
-
-    resolved_binddict = optimizer.getResolvedBinddict()
-    constlist = optimizer.getConstlist()
-    print(constlist)
-
-    graphgen = VerilogGraphGenerator(top_module, terms, binddict, resolved_terms, resolved_binddict, constlist, outputfile)
-
-    #for target in searchtarget:
-    graphgen.generate(searchtarget)
-        #                  step=options.step, reorder=options.reorder, delay=options.delay)
-
-#    dot_filename = options.filename    
-
-
-    graphgen.draw(filename=top_module)
-
-
+    endmodule(property_file_path)
+    #### Drawing graph
 
 
 
