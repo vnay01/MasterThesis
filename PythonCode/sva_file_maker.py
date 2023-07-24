@@ -40,7 +40,8 @@ def module_info_extractor(input_file, output_file):
     end_string = ');'
     start_index = rtl_code.index(start_string)
     end_index = rtl_code.index(end_string)
-    copied_block = rtl_code[start_index:end_index+2]
+    ##copied_block = start_string
+    copied_block = start_string +' v_'+ rtl_code[start_index+6:end_index+2].strip()
     
     print('copied_block: ', copied_block)               ## Checker code
     with open(output_file, 'a') as file:
