@@ -6,242 +6,246 @@ True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._r
 
 *******************
 
-Starting Flow at... 2023/07/23- 17 hr-48 m.-06 s
+Starting Flow at... 2023/07/26- 07 hr-21 m.-12 s
 
 
 Iverilog command called with switches :  ['iverilog', '-E', '-o', 'preprocess.output']
 
+ Type of match <class 'NoneType'>
+
+ Type of match <class 'NoneType'>
+
+Term:
+(Term name:urd_rx_fdec_controller_fsm.check_err type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.check_err_nxt type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.clk type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.current_job_data_available type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.current_job_e type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.current_job_e_hdr_error type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.current_job_e_size_error type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.err_id type:['Reg'] msb:(IntConst 7) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.err_id_d type:['Reg'] msb:(IntConst 7) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.err_ind type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.err_ind_d type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.error_frame_hdr type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.frame_pl64 type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.frame_pl64_concat type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.newconcat_wait type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.newframe_wait type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.processing_queue_slot_available type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.processing_queue_slot_available_early type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rst_n type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rx_ev_eth_head_err type:['Input'] msb:(IntConst 7) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rx_ev_inc_err type:['Input'] msb:(IntConst 7) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rx_ev_oversize_ip type:['Input'] msb:(IntConst 7) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rxf_flags type:['Reg'] msb:(IntConst 1) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rxf_flags_d type:['Reg'] msb:(IntConst 1) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rxf_lower_dav type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rxf_stop type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rxf_upper_dav type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rxl_load_lower_and_trigger type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rxl_load_upper type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rxl_result_data_con_concatenate type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.rxl_wait type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.state type:['Reg'] msb:(IntConst 2) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.state_nxt type:['Reg'] msb:(IntConst 2) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.trigger_hdr_read type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.trigger_pl64_read type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.trigger_pl64_read_immediate type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.trigger_write_fd_job_queue type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.trigger_write_fd_job_queue_error_job type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.update_job_info_from_info_fifo type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.zero_payload type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:urd_rx_fdec_controller_fsm.zero_payload_d type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+
  These are the nodes for which dataflow trees can be generated : 
 
- [0] List of Binding keys:  usb_test.IDLE
+ [0] List of Binding keys:  urd_rx_fdec_controller_fsm.newframe_wait
 
- [1] List of Binding keys:  usb_test.CRC1
+ [1] List of Binding keys:  urd_rx_fdec_controller_fsm.frame_pl64
 
- [2] List of Binding keys:  usb_test.CRC2
+ [2] List of Binding keys:  urd_rx_fdec_controller_fsm.newconcat_wait
 
- [3] List of Binding keys:  usb_test.current_state
+ [3] List of Binding keys:  urd_rx_fdec_controller_fsm.frame_pl64_concat
 
- [4] List of Binding keys:  usb_test.counter
+ [4] List of Binding keys:  urd_rx_fdec_controller_fsm.rxl_wait
 
- [5] List of Binding keys:  usb_test.counter_next
+ [5] List of Binding keys:  urd_rx_fdec_controller_fsm.error_frame_hdr
 
- [6] List of Binding keys:  usb_test.next_state
+ [6] List of Binding keys:  urd_rx_fdec_controller_fsm.state
 
- [7] List of Binding keys:  usb_test.tx_valid
+ [7] List of Binding keys:  urd_rx_fdec_controller_fsm.rxf_flags_d
 
- [8] List of Binding keys:  usb_test.buff
+ [8] List of Binding keys:  urd_rx_fdec_controller_fsm.err_ind_d
+
+ [9] List of Binding keys:  urd_rx_fdec_controller_fsm.err_id_d
+
+ [10] List of Binding keys:  urd_rx_fdec_controller_fsm.check_err
+
+ [11] List of Binding keys:  urd_rx_fdec_controller_fsm.zero_payload_d
+
+ [12] List of Binding keys:  urd_rx_fdec_controller_fsm.trigger_pl64_read
+
+ [13] List of Binding keys:  urd_rx_fdec_controller_fsm.trigger_pl64_read_immediate
+
+ [14] List of Binding keys:  urd_rx_fdec_controller_fsm.trigger_hdr_read
+
+ [15] List of Binding keys:  urd_rx_fdec_controller_fsm.update_job_info_from_info_fifo
+
+ [16] List of Binding keys:  urd_rx_fdec_controller_fsm.trigger_write_fd_job_queue
+
+ [17] List of Binding keys:  urd_rx_fdec_controller_fsm.trigger_write_fd_job_queue_error_job
+
+ [18] List of Binding keys:  urd_rx_fdec_controller_fsm.rxf_flags
+
+ [19] List of Binding keys:  urd_rx_fdec_controller_fsm.rxf_stop
+
+ [20] List of Binding keys:  urd_rx_fdec_controller_fsm.state_nxt
+
+ [21] List of Binding keys:  urd_rx_fdec_controller_fsm.err_ind
+
+ [22] List of Binding keys:  urd_rx_fdec_controller_fsm.err_id
+
+ [23] List of Binding keys:  urd_rx_fdec_controller_fsm.check_err_nxt
+
+ [24] List of Binding keys:  urd_rx_fdec_controller_fsm.rxl_load_lower_and_trigger
+
+ [25] List of Binding keys:  urd_rx_fdec_controller_fsm.rxl_load_upper
 
 
  Generating tree structure for selected node : 
  Pyverilog function call
 
- assign usb_test.next_state = (((usb_test.current_state==usb_test.IDLE)) ? ((usb_test.send_data) ? usb_test.CRC1 : usb_test.current_state) 
-                                : (((usb_test.current_state==usb_test.CRC1)) ? (((!usb_test.tx_ready)) ? usb_test.CRC2 : usb_test.current_state) 
-                                : (((usb_test.current_state==usb_test.CRC2)) ? ((usb_test.tx_ready) ? (((usb_test.counter<9)) ? usb_test.CRC1 : usb_test.current_state) : (((usb_test.counter==10)) ? usb_test.IDLE : usb_test.next_state)) : ((1) ? usb_test.IDLE : usb_test.current_state))));
+ This is how Pyverilog creates a tree internally 
+     assign urd_rx_fdec_controller_fsm.state_nxt = (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr)) ? (((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1)) ? urd_rx_fdec_controller_fsm.newframe_wait : urd_rx_fdec_controller_fsm.state) : (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64)) ? (((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1)) ? urd_rx_fdec_controller_fsm.rxl_wait : (((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1)) ? urd_rx_fdec_controller_fsm.rxl_wait : urd_rx_fdec_controller_fsm.state)) : (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.newconcat_wait)) ? ((((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1))) ? urd_rx_fdec_controller_fsm.newframe_wait : (((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ? urd_rx_fdec_controller_fsm.frame_pl64_concat : urd_rx_fdec_controller_fsm.state)) : (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat)) ? ((((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1))) ? urd_rx_fdec_controller_fsm.newframe_wait : (((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1)) ? urd_rx_fdec_controller_fsm.rxl_wait : urd_rx_fdec_controller_fsm.state)) : (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.rxl_wait)) ? (((urd_rx_fdec_controller_fsm.rxl_result_data_con_concatenate==0)) ? urd_rx_fdec_controller_fsm.newframe_wait : (((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1)) ? urd_rx_fdec_controller_fsm.frame_pl64_concat : urd_rx_fdec_controller_fsm.newconcat_wait)) : ((1) ? ((((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1))) ? (((urd_rx_fdec_controller_fsm.current_job_e==1'b0)) ? urd_rx_fdec_controller_fsm.frame_pl64 : (((urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error==1'b1)) ? urd_rx_fdec_controller_fsm.error_frame_hdr : (((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1)) ? urd_rx_fdec_controller_fsm.error_frame_hdr : (((urd_rx_fdec_controller_fsm.current_job_e_hdr_error==1'b1)) ? urd_rx_fdec_controller_fsm.error_frame_hdr : urd_rx_fdec_controller_fsm.state)))) : urd_rx_fdec_controller_fsm.state_nxt) : urd_rx_fdec_controller_fsm.state))))));
 
- modified function call
+ *****modified function call *****
 
- Prinitng length of a:  713
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+
+ Prinitng length of a:  3180
 
  Printing line_buff 
-: ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.current_state;', '', '', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.current_state;', '', '', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.current_state;', '', '', ' ((usb_test.counter==10) ) && |->  (usb_test.next_state == usb_test.IDLE )', '', '', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.current_state;', '', '', '', '', ' &&']
+: ["((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', '', '', " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", " ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', '', '', '', " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.newconcat_wait) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", " ((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', '', '', '', " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", " ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', '', '', '', ' ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.rxl_wait) ) && ((urd_rx_fdec_controller_fsm.rxl_result_data_con_concatenate==0) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )', " ((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newconcat_wait;', '', '', '', " (1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64 )", " ((urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", " ((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", " ((urd_rx_fdec_controller_fsm.current_job_e_hdr_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', '', '', '', '', '', '', 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', '', '', '', '', '', '', ' &&']
 
  Modified Line_buff 
- ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.current_state;', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.current_state;', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.current_state;', ' ((usb_test.counter==10) ) && |->  (usb_test.next_state == usb_test.IDLE )', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.current_state;', ' &&']
+ ["((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", " ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.newconcat_wait) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", " ((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", " ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', ' ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.rxl_wait) ) && ((urd_rx_fdec_controller_fsm.rxl_result_data_con_concatenate==0) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )', " ((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newconcat_wait;', " (1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64 )", " ((urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", " ((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", " ((urd_rx_fdec_controller_fsm.current_job_e_hdr_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', ' &&']
 
 
  Number of items in line_buff 
-:  10
+:  21
 
  type :  <class 'list'>
 
 
- True_condition_property:  ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) ) && |->  (usb_test.next_state == usb_test.CRC1 )', ' ((usb_test.counter==10) ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.current_state;']
+ True_condition_property: 
+[0]   ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )
+[1]    ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )
+[2]   urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;
+[3]    ((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )
+[4]    ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )
+[5]   urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;
+[6]    ((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )
+[7]    (1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64 )
+[8]    ((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )
+[9]   urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;
 
 
- False_condition_property:  ['usb_test.next_state == usb_test.current_state', 'usb_test.next_state == usb_test.current_state', 'usb_test.next_state == usb_test.current_state', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', ' &&']
-\ length of prop_list :  5
-[0]   ((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 )
-[0]   ((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.current_state )
-[1]   ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.next_state == usb_test.CRC2 )
-[1]   ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.current_state )
-[2]   ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|->  (usb_test.next_state == usb_test.CRC1 )
-[2]   ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|-> (usb_test.next_state == usb_test.current_state )
+ False_condition_property:  ['urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state', " ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.newconcat_wait) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state', " ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", ' ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.rxl_wait) ) && ((urd_rx_fdec_controller_fsm.rxl_result_data_con_concatenate==0) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )', 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newconcat_wait', " ((urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", " ((urd_rx_fdec_controller_fsm.current_job_e_hdr_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state']
+\ length of prop_list :  10
+[0]  True part ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )
+[0]  False Part ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state )
+[1]  True part ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )
+[1]  False Part ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) )|-> ( ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait ) )
+
+ Handle logic for nested conditions here
+[3]  True part ((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )
+[3]  False Part ((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state )
+[4]  True part ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )
+[4]  False Part ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) )|-> ( ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait ) )
+
+ Handle logic for nested conditions here
+[6]  True part ((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )
+[6]  False Part ((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newconcat_wait )
+[7]  True part (1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64 )
+[7]  False Part (1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) )|-> ( ((urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr ) )
+[8]  True part ((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )
+[8]  False Part ((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) )|-> ( ((urd_rx_fdec_controller_fsm.current_job_e_hdr_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr ) )
 
 
- true_part :  ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 )', '((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.next_state == usb_test.CRC2 )', '((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|->  (usb_test.next_state == usb_test.CRC1 )']
+ true_part :  ["((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", "((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", "((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )", "((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", "((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )", "(1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64 )", "((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )"]
 
 
- false_part :  ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.current_state )', '((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.current_state )', '((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|-> (usb_test.next_state == usb_test.current_state )']
-module_name :  usb_test
-copied_block:  module usb_test (clk, reset, send_data, tx_ready, tx_valid, buff);
-Filename: /home/vnay01/Desktop/MasterThesis/./PythonCode/test_pyverilog.py
+ false_part :  ["((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state )", "((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) )|-> ( ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait ) )", "((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state )", "((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) )|-> ( ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait ) )", "((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newconcat_wait )", "(1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) )|-> ( ((urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr ) )", "((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) )|-> ( ((urd_rx_fdec_controller_fsm.current_job_e_hdr_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr ) )"]
+module_name :  urd_rx_fdec_controller_fsm
+copied_block:  module v_// Created by : ESNIVIN
 
-Line #    Mem usage    Increment  Occurrences   Line Contents
-=============================================================
-    46     28.3 MiB     28.3 MiB           1   @profile
-    47                                         
-    48                                         
-    49                                         def main():
-    50     28.3 MiB      0.0 MiB           1       start = timer()
-    51     28.3 MiB      0.0 MiB           1       timestr = time.strftime("%Y/%m/%d- %H hr-%M m.-%S s")
-    52                                         
-    53     28.3 MiB      0.0 MiB           1       print('Starting Flow at...', timestr)
-    54                                             ### Globals -- These need to be changed as arguments later
-    55     28.3 MiB      0.0 MiB           1       rtl_file_name = "USB_test.v"
-    56     28.3 MiB      0.0 MiB           1       top_module = 'usb_test'
-    57     28.3 MiB      0.0 MiB           1       """ Work starts here"""
-    58                                         
-    59                                             ####### Working Test code ########
-    60                                             ########## Book Keeping and setting up directory ######
-    61     28.3 MiB      0.0 MiB           1       system = platform.system()
-    62     28.3 MiB      0.0 MiB           1       if system == "Linux":
-    63     29.2 MiB      1.0 MiB           1           parent_dir = "/home/" + os.getlogin() +'/'
-    64     29.2 MiB      0.0 MiB           1           working_dir = parent_dir + "Desktop/MasterThesis/"
-    65     29.2 MiB      0.0 MiB           1           output_dir = working_dir + "TestOutputs/"
-    66     29.2 MiB      0.0 MiB           1           if not os.path.exists('temp'):
-    67                                                     os.mkdir('temp')
-    68     29.2 MiB      0.0 MiB           1           temp = working_dir + "temp/"
-    69     29.2 MiB      0.0 MiB           1           data_flow_dir = output_dir + "data_flow/"
-    70     29.2 MiB      0.0 MiB           1           translated_verilog_dir = output_dir + "translated_verilog/"
-    71                                             elif system == "Darwin":
-    72                                                 parent_dir = "/Users/vinaysingh/"
-    73                                                 working_dir = parent_dir + "Desktop/MasterThesis/"
-    74                                                 output_dir = working_dir + "TestOutputs/"
-    75                                                 temp = working_dir + "temp/"
-    76                                                 data_flow_dir = output_dir + "data_flow/"
-    77                                                 translated_verilog_dir = output_dir + "translated_verilog/"
-    78                                             elif system=="Windows":
-    79                                                 parent_dir = "/home/vnay01/"
-    80                                                 working_dir = parent_dir + "Desktop/MasterThesis/"
-    81                                                 output_dir = working_dir + "TestOutputs/"
-    82                                                 temp = working_dir + "temp/"
-    83                                                 data_flow_dir = output_dir + "data_flow/"
-    84                                                 translated_verilog_dir = output_dir + "translated_verilog/"
-    85                                             else:
-    86                                                 print("What the hell!? Which system are you on!!?")
-    87                                         
-    88                                         
-    89     29.2 MiB      0.0 MiB           1       """ RTL file details & node selection"""
-    90     29.2 MiB      0.0 MiB           1       rtl_file_path = working_dir + 'VerilogFiles/'
-    91     29.2 MiB      0.0 MiB           1       file_path = rtl_file_path + rtl_file_name
-    92     29.2 MiB      0.0 MiB           1       translated_file_path = rtl_file_path + rtl_file_name +'_translated.v'
-    93     29.2 MiB      0.0 MiB           1       input_file = file_path
-    94     29.2 MiB      0.0 MiB           1       output_file = translated_file_path
-    95                                         
-    96     29.2 MiB      0.0 MiB           1       module_name = top_module
-    97                                         
-    98     29.2 MiB      0.0 MiB           1       if not os.path.exists('Properties'):
-    99                                                 os.mkdir('Properties')
-   100     29.2 MiB      0.0 MiB           1       property_file_name = 'property_' + module_name + '.sva'
-   101     29.2 MiB      0.0 MiB           1       property_file_path = os.path.abspath('Properties') +'/'+ property_file_name
-   102                                         
-   103                                             ### Call this function to modify assignment oeprators
-   104     29.2 MiB      0.0 MiB           1       replace_assignment_operator(input_file, output_file)
-   105                                         #    preprocess_include= '-I'
-   106                                         
-   107                                         
-   108     37.2 MiB      7.9 MiB           1       data_flow = VerilogDataflowAnalyzer(output_file,top_module)         ## Create a dataflow object.
-   109                                         #    print(data_flow)                      ## Expecting an object of class VerilogDataflowAnalyzer()
-   110                                             
-   111                                             ## Using generate() to get an object of type  'VerilogDataflowAnalyzer'
-   112     37.2 MiB      0.0 MiB           1       data_flow.generate()
-   113                                         
-   114     37.2 MiB      0.0 MiB           1       directives = data_flow.get_directives()         ## Checks for directives ( i.e. #define , `include etc. )
-   115                                             
-   116     37.2 MiB      0.0 MiB           1       terms = data_flow.getTerms()                    ## This returns a dictionary of all terms in RTL
-   117     37.2 MiB      0.0 MiB           1       terms_keys = terms.keys()                       ## Returns a dict_key type object. This can be used to select root nodes of dataflow tree
-   118                                             # Since dict_key is non-subscriptable, we convert it into subscriptable type - either a list or tuple
-   119     37.2 MiB      0.0 MiB           1       terms_keys_list=list(terms_keys)
-   120                                         
-   121     37.2 MiB      0.0 MiB           1       '''
-   122                                             ## Checker code
-   123                                             for i in range(len(terms_keys)):
-   124                                                 print('\n', [i] ,'List of keys: ' ,terms_keys_list[i])
-   125                                             print('\n')
-   126                                             '''    
-   127                                             # Binding information
-   128     37.2 MiB      0.0 MiB           1       binddict = data_flow.getBinddict()
-   129     37.2 MiB      0.0 MiB           1       binddict_keys = list(binddict.keys())
-   130     37.2 MiB      0.0 MiB           1       print('\n These are the nodes for which dataflow trees can be generated : ')
-   131     37.2 MiB      0.0 MiB          10       for i in range(len(binddict_keys)):
-   132     37.2 MiB      0.0 MiB           9           print('\n', [i] ,'List of Binding keys: ' ,binddict_keys[i])
-   133                                             
-   134                                             #### Pass the index of desired root node:
-   135     37.2 MiB      0.0 MiB           1       root_node = int(6)                                         #### Use with caution. Works for state transition only.
-   136     37.2 MiB      0.0 MiB           1       print('\n\n Generating tree structure for selected node : ')
-   137     37.2 MiB      0.0 MiB           1       a=''
-   138     37.2 MiB      0.0 MiB           2       for i in binddict.get(binddict_keys[root_node]):                   ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
-   139     37.2 MiB      0.0 MiB           1           print(' Pyverilog function call')
-   140     37.2 MiB      0.0 MiB           1           print('\n',i._assign())                        # actual. To be removed 
-   141     37.2 MiB      0.0 MiB           1           print(' modified function call')
-   142                                                 #print('\n',i._assign_mod())                        ## tostr() is a recursive function
-   143     37.2 MiB      0.0 MiB           1           a = i._always_combination_mod()                # calling method() on object of Bind class
-   144     37.2 MiB      0.0 MiB           1           '''
-   145                                                 # checker code
-   146                                                 print('\n PRINITNG data stored in a :', (a))
-   147                                                 '''
-   148     37.2 MiB      0.0 MiB           1       print('\n Prinitng length of a: ',len(a))
-   149                                         #    print('\n \n Does a still have value outside the loop ?? \n', (a))
-   150                                         #    print('\n Data Type of a :', type(a))
-   151                                             
-   152                                             ## Lets write it to a file for manipulation!!
-   153                                             #prop_intermediate_file = temp + 'temp_prop_file.txt'
-   154                                             #file_object = open(prop_intermediate_file,'w')
-   155                                             #file_object.write(a[:-1])
-   156                                         #    file_object.close()
-   157                                         
-   158                                             ## proper formatting of property file  
-   159                                             ## split into lines whenever ';' is encountered
-   160     37.2 MiB      0.0 MiB           1       line_buff = ''
-   161                                         #    with open(file_object,'r'):
-   162     37.2 MiB      0.0 MiB           1       line_buff = a[:-1].strip()
-   163     37.2 MiB      0.0 MiB           1       line_buff = line_buff.splitlines()                  # This creates a list of all properties but also includes empty items within the list
-   164     37.2 MiB      0.0 MiB           1       print('\n Printing line_buff \n:', line_buff)         
-   165                                         # We need to remove all empty items from the list    
-   166     37.2 MiB      0.0 MiB          25       line_buff = [value for value in line_buff if value != '']
-   167     37.2 MiB      0.0 MiB           1       print('\n Modified Line_buff \n',line_buff)
-   168                                         
-   169                                         ## Check number of items in the list
-   170     37.2 MiB      0.0 MiB           1       print('\n\n Number of items in line_buff \n: ',len(line_buff))
-   171                                         #    prop = create_property(line_buff[0])
-   172                                         #    print('\n XY :: ',prop)
-   173     37.2 MiB      0.0 MiB           1       prop_list = list_pair(line_buff)                        # Split property list
-   174     37.2 MiB      0.0 MiB           1       print('\n\n True_condition_property: ',prop_list[0])    # Check correctness
-   175     37.2 MiB      0.0 MiB           1       print('\n\n False_condition_property: ',prop_list[1])   # Check correctness
-   176                                         
-   177     37.2 MiB      0.0 MiB           1       true_part = ''
-   178     37.2 MiB      0.0 MiB           1       false_part = ''
-   179                                         
-   180                                             ## ammend the antecedant part of false_condition
-   181                                         #def prop_make(prop_list):    
-   182     37.2 MiB      0.0 MiB           1       print('\ length of prop_list : ',len(prop_list[0]))
-   183                                         ## Open an sva file:
-   184     37.2 MiB      0.0 MiB           1       true_path_list = []
-   185     37.2 MiB      0.0 MiB           1       false_path_list = []
-   186                                         
-   187     37.2 MiB      0.0 MiB           4       for i in range(len(prop_list[0]) - 2 ):
-   188     37.2 MiB      0.0 MiB           3           true_part = str(prop_list[0][i])
-   189     37.2 MiB      0.0 MiB           3           false_part = str(prop_list[1][i])
-   190                                                 ## search for |-> string 
-   191     37.2 MiB      0.0 MiB           3           start_index = true_part.index('|->')
-   192     37.2 MiB      0.0 MiB           3           antecedant_part = true_part[: start_index].strip(' &&').strip().strip('&&')
-   193                                                 #true_part = true_part.strip(' &&').strip().strip('&&').strip('&& ') + ' ;'
-   194     37.2 MiB      0.0 MiB           3           true_part = antecedant_part  + true_part[start_index: ].strip(' &&').strip().strip('&&')
-   195     37.2 MiB      0.0 MiB           3           false_part = antecedant_part + '|->' + ' ('+ false_part.strip(';') + ' )'
-   196     37.2 MiB      0.0 MiB           3           true_path_list.append(true_part)
-   197     37.2 MiB      0.0 MiB           3           false_path_list.append(false_part)
-   198     37.2 MiB      0.0 MiB           3           print([i],' ',true_part)
-   199     37.2 MiB      0.0 MiB           3           print([i],' ',false_part)
-   200                                         
-   201     37.2 MiB      0.0 MiB           1       print('\n\n true_part : ',true_path_list)
-   202     37.2 MiB      0.0 MiB           1       print('\n\n false_part : ', false_path_list)
-   203     37.2 MiB      0.0 MiB           1       bind_adder(file_path, property_file_path)
-   204     37.2 MiB      0.0 MiB           1       module_info_extractor(file_path, property_file_path )
-   205                                         #    print('\n Copied Antecedant :',antecedant_part)
-   206     37.2 MiB      0.0 MiB           1       count = len(true_path_list)
-   207     37.2 MiB      0.0 MiB           1       lalala = true_path_list,false_path_list
-   208     37.2 MiB      0.0 MiB           1       property_add(property_file_path,count , lalala)
-   209                                             #property_add(property_file_path,count , false_path_list)
+//`include "macros.v"
 
+module urd_rx_fdec_controller_fsm(
+									input clk,
+									input rst_n,
+									input rxf_lower_dav,
+									input zero_payload,// Deal with this    assign zero_payload = current_job.len + 'd32 == current_job.offset;
+									input processing_queue_slot_available,
+									input processing_queue_slot_available_early,
+									input current_job_data_available,
+									input rxf_upper_dav,						// mapped
+									input rxl_result_data_con_concatenate,
+									input current_job_e,
+									input current_job_e_pre_urd_error,
+								    input current_job_e_size_error,
+								    input current_job_e_hdr_error,
+//								    input rxl_result_dav,			// mapped
+								    input [7:0]rx_ev_inc_err,
+								    input [7:0]rx_ev_oversize_ip,
+								    input [7:0]rx_ev_eth_head_err,
+								    output reg rxl_load_lower_and_trigger, 			// MAPPED
+								    output reg rxl_load_upper,
+								    output reg rxf_stop,
+									output reg update_job_info_from_info_fifo,
+									output reg trigger_write_fd_job_queue,
+									output reg trigger_write_fd_job_queue_error_job
+									);
+
+ Adding false properties*******
 

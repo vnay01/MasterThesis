@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////
 /*Author : ESNIVIN 
 Property File : 
-File Created at : 2023/07/24- 13 hr-30 m.-33 s
+File Created at : 2023/07/26- 06 hr-51 m.-35 s
 */
 
 //////////////////////////////////////////////////
@@ -38,50 +38,27 @@ input  buff;
 // Property list 
 
 property t_Prop_0; 
-	@(posedge clk) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 ));
+	@(posedge clk) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.tx_valid == None ));
 endproperty 
 
 assert_t_Prop_0: assert property (t_Prop_0);
 cover_t_prop_0: cover property (t_Prop_0);
 
 property t_Prop_1; 
-	@(posedge clk) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.next_state == usb_test.CRC2 ));
+	@(posedge clk) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.tx_valid == None ));
 endproperty 
 
 assert_t_Prop_1: assert property (t_Prop_1);
 cover_t_prop_1: cover property (t_Prop_1);
 
 property t_Prop_2; 
-	@(posedge clk) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|->  (usb_test.next_state == usb_test.CRC1 ));
+	@(posedge clk) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|->  (usb_test.tx_valid == None ));
 endproperty 
 
 assert_t_Prop_2: assert property (t_Prop_2);
 cover_t_prop_2: cover property (t_Prop_2);
 
- 
- // Writing properties to check if state transition conditions do not occur.
-property f_Prop_0; 
-	@(posedge clk) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.current_state ));
-endproperty 
-
-assert_f_Prop_0: assert property (f_Prop_0);
-cover_f_prop_0: cover property (f_Prop_0);
-
-property f_Prop_1; 
-	@(posedge clk) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.current_state ));
-endproperty 
-
-assert_f_Prop_1: assert property (f_Prop_1);
-cover_f_prop_1: cover property (f_Prop_1);
-
-property f_Prop_2; 
-	@(posedge clk) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|-> (usb_test.next_state == usb_test.current_state ));
-endproperty 
-
-assert_f_Prop_2: assert property (f_Prop_2);
-cover_f_prop_2: cover property (f_Prop_2);
 
 
 
- // Add additional Properties here : 
 endmodule

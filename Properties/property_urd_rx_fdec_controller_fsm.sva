@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////
 /*Author : ESNIVIN 
 Property File : 
-File Created at : 2023/07/24- 13 hr-37 m.-06 s
+File Created at : 2023/07/26- 07 hr-21 m.-14 s
 */
 
 //////////////////////////////////////////////////
@@ -120,23 +120,42 @@ endproperty
 assert_t_Prop_1: assert property (t_Prop_1);
 cover_t_prop_1: cover property (t_Prop_1);
 
- 
- // Writing properties to check if state transition conditions do not occur.
-property f_Prop_0; 
-	@(posedge clk) (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state ));
+property t_Prop_2; 
+	@(posedge clk) (((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat ));
 endproperty 
 
-assert_f_Prop_0: assert property (f_Prop_0);
-cover_f_prop_0: cover property (f_Prop_0);
+assert_t_Prop_2: assert property (t_Prop_2);
+cover_t_prop_2: cover property (t_Prop_2);
 
-property f_Prop_1; 
-	@(posedge clk) (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) )|-> ( ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait ) ));
+property t_Prop_3; 
+	@(posedge clk) (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait ));
 endproperty 
 
-assert_f_Prop_1: assert property (f_Prop_1);
-cover_f_prop_1: cover property (f_Prop_1);
+assert_t_Prop_3: assert property (t_Prop_3);
+cover_t_prop_3: cover property (t_Prop_3);
+
+property t_Prop_4; 
+	@(posedge clk) (((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat ));
+endproperty 
+
+assert_t_Prop_4: assert property (t_Prop_4);
+cover_t_prop_4: cover property (t_Prop_4);
+
+property t_Prop_5; 
+	@(posedge clk) ((1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64 ));
+endproperty 
+
+assert_t_Prop_5: assert property (t_Prop_5);
+cover_t_prop_5: cover property (t_Prop_5);
+
+property t_Prop_6; 
+	@(posedge clk) (((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr ));
+endproperty 
+
+assert_t_Prop_6: assert property (t_Prop_6);
+cover_t_prop_6: cover property (t_Prop_6);
 
 
 
- // Add additional Properties here : 
+
 endmodule

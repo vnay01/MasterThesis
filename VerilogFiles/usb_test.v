@@ -64,6 +64,7 @@ always@(*)
             else begin
             if (counter == 10) begin
             next_state=IDLE;
+            counter_next = {10{1'b0}}; 
             end
             end
             end

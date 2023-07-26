@@ -53,13 +53,13 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "USB_test.v"
-    top_module = 'usb_test'
+    rtl_file_name = "urd_rx_fdec_controller_fsm.v"
+    top_module = 'urd_rx_fdec_controller_fsm'
     """ Work starts here"""
     
     
     #### Pass the index of desired root node:
-    root_node = int(7)                                         #### Use with caution. Works for state transition only.
+    root_node = int(20)                                         #### Use with caution. Works for state transition only.
 
     ####### Working Test code ########
     ########## Book Keeping and setting up directory #####
@@ -122,6 +122,13 @@ def main():
     directives = data_flow.get_directives()         ## Checks for directives ( i.e. #define , `include etc. )
     
     terms = data_flow.getTerms()                    ## This returns a dictionary of all terms in RTL
+    # checker code to determine the type of nodes
+    print('\nTerm:')
+    for tk, tv in sorted(terms.items(), key=lambda x: str(x[0])):
+        print(tv.tostr())
+
+       
+
     terms_keys = terms.keys()                       ## Returns a dict_key type object. This can be used to select root nodes of dataflow tree
     # Since dict_key is non-subscriptable, we convert it into subscriptable type - either a list or tuple
     terms_keys_list=list(terms_keys)
@@ -138,8 +145,13 @@ def main():
     print('\n These are the nodes for which dataflow trees can be generated : ')
     for i in range(len(binddict_keys)):
         print('\n', [i] ,'List of Binding keys: ' ,binddict_keys[i])
-
-
+    
+    '''
+    for bk, bv in sorted(binddict.items(), key=lambda x: str(x[0]), reverse=False):
+        for bvi in bv:
+            #print(bvi.tostr())
+            print(bvi.tostr())  
+    '''
 
     print('\n\n Generating tree structure for selected node : ')
     a=''
@@ -198,16 +210,19 @@ def main():
         true_part = str(prop_list[0][i])
         false_part = str(prop_list[1][i])
         ## search for |-> string 
-        start_index = true_part.index('|->')
-        antecedant_part = true_part[: start_index].strip(' &&').strip().strip('&&')
-        #true_part = true_part.strip(' &&').strip().strip('&&').strip('&& ') + ' ;'
-        true_part = antecedant_part  + true_part[start_index: ].strip(' &&').strip().strip('&&')
-        false_part = antecedant_part + '|->' + ' ('+ false_part.strip(';') + ' )'
-        true_path_list.append(true_part)
-        false_path_list.append(false_part)
-        print([i],' ',true_part)
-        print([i],' ',false_part)
-
+        if '|->' in true_part:                                              # Normal Operation
+            start_index = true_part.index('|->')
+            antecedant_part = true_part[: start_index].strip(' &&').strip().strip('&&')
+            #true_part = true_part.strip(' &&').strip().strip('&&').strip('&& ') + ' ;'
+            true_part = antecedant_part  + true_part[start_index: ].strip(' &&').strip().strip('&&')
+            false_part = antecedant_part + '|->' + ' ('+ false_part.strip(';') + ' )'
+            true_path_list.append(true_part)
+            false_path_list.append(false_part)
+            print([i],' True part',true_part)
+            print([i],' False Part',false_part)
+        else:                                                               ## Nested condition management
+            print('\n Handle logic for nested conditions here')
+            i+=1
     print('\n\n true_part : ',true_path_list)
     print('\n\n false_part : ', false_path_list)
 
