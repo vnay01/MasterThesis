@@ -5,7 +5,7 @@ import os
 
 def to_graph(fileName, target = ""):
         if target == "" :
-            target = filename+".png"
+            target = filename.replace('.dot','')+".png"
         command = "dot -Tpng " + fileName + " -o "+ target #Tsvg can be changed to Tjpg, Tpng, Tgif etc (see dot man pages)
         os.system(command)
 if __name__=="__main__":
