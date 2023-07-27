@@ -4,14 +4,14 @@
 /////////////////////////////////////////////////
 /*Author : ESNIVIN 
 Property File : 
-File Created at : 2023/07/22- 05 hr-54 m.-25 s
+File Created at : 2023/07/26- 14 hr-10 m.-11 s
 */
 
 //////////////////////////////////////////////////
 bind controller v_controller i_controller ( .* );
 
 
-module controller(  
+module v_controller(  
                      input clk,
                      input reset,
                      input START,      
@@ -90,18 +90,57 @@ assert_t_Prop_1: assert property (t_Prop_1);
 cover_t_prop_1: cover property (t_Prop_1);
 
 property t_Prop_2; 
-	@(posedge clk) (((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L2_ADD ));
+	@(posedge clk) (((controller.current_state==controller.MULT) ) && ((controller.count==15) )|->  (controller.next_state == controller.L1_ADD ));
 endproperty 
 
 assert_t_Prop_2: assert property (t_Prop_2);
 cover_t_prop_2: cover property (t_Prop_2);
 
 property t_Prop_3; 
-	@(posedge clk) (((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L4_ADD ));
+	@(posedge clk) (((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L2_ADD ));
 endproperty 
 
 assert_t_Prop_3: assert property (t_Prop_3);
 cover_t_prop_3: cover property (t_Prop_3);
+
+property t_Prop_4; 
+	@(posedge clk) (((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L3_ADD ));
+endproperty 
+
+assert_t_Prop_4: assert property (t_Prop_4);
+cover_t_prop_4: cover property (t_Prop_4);
+
+property t_Prop_5; 
+	@(posedge clk) (((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L4_ADD ));
+endproperty 
+
+assert_t_Prop_5: assert property (t_Prop_5);
+cover_t_prop_5: cover property (t_Prop_5);
+
+property t_Prop_6; 
+	@(posedge clk) (((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.MEM_STORE ));
+endproperty 
+
+assert_t_Prop_6: assert property (t_Prop_6);
+cover_t_prop_6: cover property (t_Prop_6);
+
+property t_Prop_7; 
+	@(posedge clk) (((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|->  (controller.next_state == controller.INIT ));
+endproperty 
+
+assert_t_Prop_7: assert property (t_Prop_7);
+cover_t_prop_7: cover property (t_Prop_7);
+
+property t_Prop_8; 
+	@(posedge clk) ((1 )|->  (controller.next_state == controller.current_state ));
+endproperty 
+
+assert_t_Prop_8: assert property (t_Prop_8);
+cover_t_prop_8: cover property (t_Prop_8);
+
+
+
+// False Property list 
 
  
  // Writing properties to check if state transition conditions do not occur.
@@ -113,27 +152,64 @@ assert_f_Prop_0: assert property (f_Prop_0);
 cover_f_prop_0: cover property (f_Prop_0);
 
 property f_Prop_1; 
-	@(posedge clk) (((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|-> ( ((controller.current_state==controller.MULT) ) && ((controller.count==15) ) && |->  (controller.next_state == controller.L1_ADD ) ));
+	@(posedge clk) (((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|-> ( ));
 endproperty 
 
 assert_f_Prop_1: assert property (f_Prop_1);
 cover_f_prop_1: cover property (f_Prop_1);
 
 property f_Prop_2; 
-	@(posedge clk) (((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.L3_ADD ) ));
+	@(posedge clk) (((controller.current_state==controller.MULT) ) && ((controller.count==15) )|-> ( ));
 endproperty 
 
 assert_f_Prop_2: assert property (f_Prop_2);
 cover_f_prop_2: cover property (f_Prop_2);
 
 property f_Prop_3; 
-	@(posedge clk) (((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|-> ( ((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) ) && |->  (controller.next_state == controller.MEM_STORE ) ));
+	@(posedge clk) (((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|-> ( ));
 endproperty 
 
 assert_f_Prop_3: assert property (f_Prop_3);
 cover_f_prop_3: cover property (f_Prop_3);
 
+property f_Prop_4; 
+	@(posedge clk) (((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) )|-> ( ));
+endproperty 
+
+assert_f_Prop_4: assert property (f_Prop_4);
+cover_f_prop_4: cover property (f_Prop_4);
+
+property f_Prop_5; 
+	@(posedge clk) (((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|-> ( ));
+endproperty 
+
+assert_f_Prop_5: assert property (f_Prop_5);
+cover_f_prop_5: cover property (f_Prop_5);
+
+property f_Prop_6; 
+	@(posedge clk) (((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) )|-> ( ));
+endproperty 
+
+assert_f_Prop_6: assert property (f_Prop_6);
+cover_f_prop_6: cover property (f_Prop_6);
+
+property f_Prop_7; 
+	@(posedge clk) (((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|-> ( ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD ) ));
+endproperty 
+
+assert_f_Prop_7: assert property (f_Prop_7);
+cover_f_prop_7: cover property (f_Prop_7);
+
+property f_Prop_8; 
+	@(posedge clk) ((1 )|-> ( ));
+endproperty 
+
+assert_f_Prop_8: assert property (f_Prop_8);
+cover_f_prop_8: cover property (f_Prop_8);
+
 
 
  // Add additional Properties here : 
+
+
 endmodule

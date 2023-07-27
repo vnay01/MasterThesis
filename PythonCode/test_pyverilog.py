@@ -53,13 +53,13 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "urd_rx_fdec_controller_fsm.v"
-    top_module = 'urd_rx_fdec_controller_fsm'
+    rtl_file_name = "usb_test.v"
+    top_module = 'usb_test'
     """ Work starts here"""
     
     
     #### Pass the index of desired root node:
-    root_node = int(20)                                         #### Use with caution. Works for state transition only.
+    root_node = int(6)                                         #### Use with caution. Works for state transition only.
 
     ####### Working Test code ########
     ########## Book Keeping and setting up directory #####
@@ -158,6 +158,7 @@ def main():
     for i in binddict.get(binddict_keys[root_node]):                   ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
         print(' Pyverilog function call')
         print('\n This is how Pyverilog creates a tree internally \n    ',i._assign())                        # actual. To be removed 
+#        print('\n This is how Pyverilog creates a tree internally \n    ',i._assign_mod())                        # actual. To be removed 
         print(' *****modified function call *****')
         a = i._always_combination_mod()                # calling method() on object of Bind class
         
@@ -182,7 +183,7 @@ def main():
     line_buff = line_buff.splitlines()                  # This creates a list of all properties but also includes empty items within the list
     print('\n Printing line_buff \n:', line_buff)         
 # We need to remove all empty items from the list    
-    line_buff = [value for value in line_buff if value != '']
+#    line_buff = [value for value in line_buff if value != '']
     print('\n Modified Line_buff \n',line_buff)
 
 ## Check number of items in the list
@@ -190,6 +191,9 @@ def main():
 #    prop = create_property(line_buff[0])
 #    print('\n XY :: ',prop)
     prop_list = list_pair(line_buff)                        # Split property list
+
+#    print('\n ****  Why am I missing properties ??? ***\n')
+#    print('prop_list \n',prop_list)
     print('\n\n True_condition_property: ')    # Check correctness
     for i in range(len(prop_list[0])):
         print([i] ,' ', prop_list[0][i] )
@@ -206,7 +210,7 @@ def main():
     true_path_list = []
     false_path_list = []
 
-    for i in range(len(prop_list[0])  - 1):                                 # Use this to control the number of properties generated
+    for i in range(len(prop_list[0]) ):                                 # Use this to control the number of properties generated
         true_part = str(prop_list[0][i])
         false_part = str(prop_list[1][i])
         ## search for |-> string 
@@ -222,6 +226,9 @@ def main():
             print([i],' False Part',false_part)
         else:                                                               ## Nested condition management
             print('\n Handle logic for nested conditions here')
+            ''' Generally, the nested condition will appear without (current_state == xxxx )
+                So, just copy antecedant of the previous list item and append it with antecedant of the current list
+            '''
             i+=1
     print('\n\n true_part : ',true_path_list)
     print('\n\n false_part : ', false_path_list)
@@ -237,7 +244,7 @@ def main():
 
 
     print('\n Adding false properties*******\n')
-#    false_property_add(property_file_path,count , lalala[1])
+    false_property_add(property_file_path,count , lalala[1])
     #property_add(property_file_path,count , false_path_list)
     endmodule(property_file_path)
     #### Drawing graph
@@ -249,6 +256,8 @@ def main():
 #### Break line_buff into two lists : true_list & false_list mapped as [true_list : false_list] = [odd_item : even_item]
 def list_pair(line_buff):
     ''' Break line_buff into two lists : true_list & false_list mapped as [true_list : false_list] = [odd_item : even_item]'''
+    # This mapping is too strict and leads to missing properties whenever nested conditions are encountered!!!
+    # Short term remedy:: Do not remove emplty list items before calling this function
     list_true = []
     list_false = []
     print('\n type : ', type(list_true))

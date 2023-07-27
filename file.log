@@ -6,246 +6,143 @@ True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._r
 
 *******************
 
-Starting Flow at... 2023/07/26- 07 hr-21 m.-12 s
+Starting Flow at... 2023/07/26- 14 hr-52 m.-40 s
 
 
 Iverilog command called with switches :  ['iverilog', '-E', '-o', 'preprocess.output']
 
- Type of match <class 'NoneType'>
-
- Type of match <class 'NoneType'>
-
 Term:
-(Term name:urd_rx_fdec_controller_fsm.check_err type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.check_err_nxt type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.clk type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.current_job_data_available type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.current_job_e type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.current_job_e_hdr_error type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.current_job_e_size_error type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.err_id type:['Reg'] msb:(IntConst 7) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.err_id_d type:['Reg'] msb:(IntConst 7) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.err_ind type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.err_ind_d type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.error_frame_hdr type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.frame_pl64 type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.frame_pl64_concat type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.newconcat_wait type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.newframe_wait type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.processing_queue_slot_available type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.processing_queue_slot_available_early type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rst_n type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rx_ev_eth_head_err type:['Input'] msb:(IntConst 7) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rx_ev_inc_err type:['Input'] msb:(IntConst 7) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rx_ev_oversize_ip type:['Input'] msb:(IntConst 7) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rxf_flags type:['Reg'] msb:(IntConst 1) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rxf_flags_d type:['Reg'] msb:(IntConst 1) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rxf_lower_dav type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rxf_stop type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rxf_upper_dav type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rxl_load_lower_and_trigger type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rxl_load_upper type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rxl_result_data_con_concatenate type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.rxl_wait type:['Parameter'] msb:(IntConst 31) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.state type:['Reg'] msb:(IntConst 2) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.state_nxt type:['Reg'] msb:(IntConst 2) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.trigger_hdr_read type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.trigger_pl64_read type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.trigger_pl64_read_immediate type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.trigger_write_fd_job_queue type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.trigger_write_fd_job_queue_error_job type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.update_job_info_from_info_fifo type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.zero_payload type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
-(Term name:urd_rx_fdec_controller_fsm.zero_payload_d type:['Reg'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:usb_test.CRC1 type:['Localparam'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:usb_test.CRC2 type:['Localparam'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:usb_test.IDLE type:['Localparam'] msb:(IntConst 31) lsb:(IntConst 0))
+(Term name:usb_test.buff type:['Output', 'Reg'] msb:(IntConst 9) lsb:(IntConst 0))
+(Term name:usb_test.clk type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:usb_test.counter type:['Reg'] msb:(IntConst 9) lsb:(IntConst 0))
+(Term name:usb_test.counter_next type:['Reg'] msb:(IntConst 9) lsb:(IntConst 0))
+(Term name:usb_test.current_state type:['Reg'] msb:(IntConst 2) lsb:(IntConst 0))
+(Term name:usb_test.next_state type:['Reg'] msb:(IntConst 2) lsb:(IntConst 0))
+(Term name:usb_test.reset type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:usb_test.send_data type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:usb_test.tx_ready type:['Input'] msb:(IntConst 0) lsb:(IntConst 0))
+(Term name:usb_test.tx_valid type:['Output', 'Reg'] msb:(IntConst 0) lsb:(IntConst 0))
 
  These are the nodes for which dataflow trees can be generated : 
 
- [0] List of Binding keys:  urd_rx_fdec_controller_fsm.newframe_wait
+ [0] List of Binding keys:  usb_test.IDLE
 
- [1] List of Binding keys:  urd_rx_fdec_controller_fsm.frame_pl64
+ [1] List of Binding keys:  usb_test.CRC1
 
- [2] List of Binding keys:  urd_rx_fdec_controller_fsm.newconcat_wait
+ [2] List of Binding keys:  usb_test.CRC2
 
- [3] List of Binding keys:  urd_rx_fdec_controller_fsm.frame_pl64_concat
+ [3] List of Binding keys:  usb_test.current_state
 
- [4] List of Binding keys:  urd_rx_fdec_controller_fsm.rxl_wait
+ [4] List of Binding keys:  usb_test.counter
 
- [5] List of Binding keys:  urd_rx_fdec_controller_fsm.error_frame_hdr
+ [5] List of Binding keys:  usb_test.counter_next
 
- [6] List of Binding keys:  urd_rx_fdec_controller_fsm.state
+ [6] List of Binding keys:  usb_test.next_state
 
- [7] List of Binding keys:  urd_rx_fdec_controller_fsm.rxf_flags_d
+ [7] List of Binding keys:  usb_test.tx_valid
 
- [8] List of Binding keys:  urd_rx_fdec_controller_fsm.err_ind_d
-
- [9] List of Binding keys:  urd_rx_fdec_controller_fsm.err_id_d
-
- [10] List of Binding keys:  urd_rx_fdec_controller_fsm.check_err
-
- [11] List of Binding keys:  urd_rx_fdec_controller_fsm.zero_payload_d
-
- [12] List of Binding keys:  urd_rx_fdec_controller_fsm.trigger_pl64_read
-
- [13] List of Binding keys:  urd_rx_fdec_controller_fsm.trigger_pl64_read_immediate
-
- [14] List of Binding keys:  urd_rx_fdec_controller_fsm.trigger_hdr_read
-
- [15] List of Binding keys:  urd_rx_fdec_controller_fsm.update_job_info_from_info_fifo
-
- [16] List of Binding keys:  urd_rx_fdec_controller_fsm.trigger_write_fd_job_queue
-
- [17] List of Binding keys:  urd_rx_fdec_controller_fsm.trigger_write_fd_job_queue_error_job
-
- [18] List of Binding keys:  urd_rx_fdec_controller_fsm.rxf_flags
-
- [19] List of Binding keys:  urd_rx_fdec_controller_fsm.rxf_stop
-
- [20] List of Binding keys:  urd_rx_fdec_controller_fsm.state_nxt
-
- [21] List of Binding keys:  urd_rx_fdec_controller_fsm.err_ind
-
- [22] List of Binding keys:  urd_rx_fdec_controller_fsm.err_id
-
- [23] List of Binding keys:  urd_rx_fdec_controller_fsm.check_err_nxt
-
- [24] List of Binding keys:  urd_rx_fdec_controller_fsm.rxl_load_lower_and_trigger
-
- [25] List of Binding keys:  urd_rx_fdec_controller_fsm.rxl_load_upper
+ [8] List of Binding keys:  usb_test.buff
 
 
  Generating tree structure for selected node : 
  Pyverilog function call
 
  This is how Pyverilog creates a tree internally 
-     assign urd_rx_fdec_controller_fsm.state_nxt = (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr)) ? (((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1)) ? urd_rx_fdec_controller_fsm.newframe_wait : urd_rx_fdec_controller_fsm.state) : (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64)) ? (((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1)) ? urd_rx_fdec_controller_fsm.rxl_wait : (((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1)) ? urd_rx_fdec_controller_fsm.rxl_wait : urd_rx_fdec_controller_fsm.state)) : (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.newconcat_wait)) ? ((((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1))) ? urd_rx_fdec_controller_fsm.newframe_wait : (((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ? urd_rx_fdec_controller_fsm.frame_pl64_concat : urd_rx_fdec_controller_fsm.state)) : (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat)) ? ((((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1))) ? urd_rx_fdec_controller_fsm.newframe_wait : (((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1)) ? urd_rx_fdec_controller_fsm.rxl_wait : urd_rx_fdec_controller_fsm.state)) : (((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.rxl_wait)) ? (((urd_rx_fdec_controller_fsm.rxl_result_data_con_concatenate==0)) ? urd_rx_fdec_controller_fsm.newframe_wait : (((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1)) ? urd_rx_fdec_controller_fsm.frame_pl64_concat : urd_rx_fdec_controller_fsm.newconcat_wait)) : ((1) ? ((((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1))) ? (((urd_rx_fdec_controller_fsm.current_job_e==1'b0)) ? urd_rx_fdec_controller_fsm.frame_pl64 : (((urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error==1'b1)) ? urd_rx_fdec_controller_fsm.error_frame_hdr : (((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1)) ? urd_rx_fdec_controller_fsm.error_frame_hdr : (((urd_rx_fdec_controller_fsm.current_job_e_hdr_error==1'b1)) ? urd_rx_fdec_controller_fsm.error_frame_hdr : urd_rx_fdec_controller_fsm.state)))) : urd_rx_fdec_controller_fsm.state_nxt) : urd_rx_fdec_controller_fsm.state))))));
+     assign usb_test.next_state = (((usb_test.current_state==usb_test.IDLE)) ? ((usb_test.send_data) ? usb_test.CRC1 : usb_test.current_state) : (((usb_test.current_state==usb_test.CRC1)) ? (((!usb_test.tx_ready)) ? usb_test.CRC2 : usb_test.current_state) : (((usb_test.current_state==usb_test.CRC2)) ? ((usb_test.tx_ready) ? (((usb_test.counter<9)) ? usb_test.CRC1 : usb_test.current_state) : (((usb_test.counter==10)) ? usb_test.IDLE : usb_test.next_state)) : ((1) ? usb_test.IDLE : usb_test.current_state))));
 
  *****modified function call *****
 
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+** Printing from dataflow.py usb_test.next_state Destination type  *** <class 'str'>
 
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+** Printing from dataflow.py usb_test.next_state Destination type  *** <class 'str'>
 
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+** Printing from dataflow.py usb_test.next_state Destination type  *** <class 'str'>
 
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+** Printing from dataflow.py usb_test.next_state Destination type  *** <class 'str'>
 
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+** Printing from dataflow.py usb_test.next_state Destination type  *** <class 'str'>
 
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+** Printing from dataflow.py usb_test.next_state Destination type  *** <class 'str'>
 
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+** Printing from dataflow.py usb_test.next_state Destination type  *** <class 'str'>
 
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+** Printing from dataflow.py usb_test.next_state Destination type  *** <class 'str'>
 
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
+** Printing from dataflow.py usb_test.next_state Destination type  *** <class 'str'>
 
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
-
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
-
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
-
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
-
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
-
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
-
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
-
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
-
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
-
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
-
-** Printing from dataflow.py urd_rx_fdec_controller_fsm.state_nxt Destination type  *** <class 'str'>
-
- Prinitng length of a:  3180
+ Prinitng length of a:  713
 
  Printing line_buff 
-: ["((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', '', '', " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", " ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', '', '', '', " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.newconcat_wait) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", " ((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', '', '', '', " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", " ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', '', '', '', ' ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.rxl_wait) ) && ((urd_rx_fdec_controller_fsm.rxl_result_data_con_concatenate==0) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )', " ((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newconcat_wait;', '', '', '', " (1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64 )", " ((urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", " ((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", " ((urd_rx_fdec_controller_fsm.current_job_e_hdr_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', '', '', '', '', '', '', 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', '', '', '', '', '', '', ' &&']
+: ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.current_state;', '', '', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.current_state;', '', '', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.current_state;', '', '', ' ((usb_test.counter==10) ) && |->  (usb_test.next_state == usb_test.IDLE )', '', '', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.current_state;', '', '', '', '', ' &&']
 
  Modified Line_buff 
- ["((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", " ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.newconcat_wait) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", " ((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", " ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', ' ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.rxl_wait) ) && ((urd_rx_fdec_controller_fsm.rxl_result_data_con_concatenate==0) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )', " ((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newconcat_wait;', " (1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64 )", " ((urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", " ((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", " ((urd_rx_fdec_controller_fsm.current_job_e_hdr_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;', ' &&']
+ ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 
+ 'usb_test.next_state == usb_test.current_state;', 
+ '', '',
+' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )',
+'usb_test.next_state == usb_test.current_state;', 
+'', '', 
+' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.current_state;', 
+'', '',
+' ((usb_test.counter==10) ) && |->  (usb_test.next_state == usb_test.IDLE )',
+'', '', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.current_state;', '', '', '', '', ' &&']
 
 
  Number of items in line_buff 
-:  21
+:  22
 
  type :  <class 'list'>
 
 
  True_condition_property: 
-[0]   ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )
-[1]    ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )
-[2]   urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;
-[3]    ((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )
-[4]    ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )
-[5]   urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;
-[6]    ((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )
-[7]    (1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64 )
-[8]    ((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )
-[9]   urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state;
+[0]   ((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )
+[1]   
+[2]    ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )
+[3]   
+[4]    ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) ) && |->  (usb_test.next_state == usb_test.CRC1 )
+[5]   
+[6]    ((usb_test.counter==10) ) && |->  (usb_test.next_state == usb_test.IDLE )
+[7]   
+[8]   usb_test.next_state == usb_test.current_state;
+[9]   
+[10]   
 
 
- False_condition_property:  ['urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state', " ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", " ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.newconcat_wait) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state', " ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", ' ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.rxl_wait) ) && ((urd_rx_fdec_controller_fsm.rxl_result_data_con_concatenate==0) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )', 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newconcat_wait', " ((urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", " ((urd_rx_fdec_controller_fsm.current_job_e_hdr_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )", 'urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state']
-\ length of prop_list :  10
-[0]  True part ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )
-[0]  False Part ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state )
-[1]  True part ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )
-[1]  False Part ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) )|-> ( ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait ) )
-
- Handle logic for nested conditions here
-[3]  True part ((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )
-[3]  False Part ((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state )
-[4]  True part ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )
-[4]  False Part ((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) )|-> ( ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait ) )
+ False_condition_property:  ['usb_test.next_state == usb_test.current_state', '', 'usb_test.next_state == usb_test.current_state', '', 'usb_test.next_state == usb_test.current_state', '', '', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', '', '', ' &&']
+\ length of prop_list :  11
+[0]  True part ((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 )
+[0]  False Part ((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.current_state )
 
  Handle logic for nested conditions here
-[6]  True part ((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )
-[6]  False Part ((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newconcat_wait )
-[7]  True part (1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64 )
-[7]  False Part (1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) )|-> ( ((urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr ) )
-[8]  True part ((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )
-[8]  False Part ((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) )|-> ( ((urd_rx_fdec_controller_fsm.current_job_e_hdr_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr ) )
+[2]  True part ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.next_state == usb_test.CRC2 )
+[2]  False Part ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.current_state )
+
+ Handle logic for nested conditions here
+[4]  True part ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|->  (usb_test.next_state == usb_test.CRC1 )
+[4]  False Part ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|-> (usb_test.next_state == usb_test.current_state )
+
+ Handle logic for nested conditions here
+[6]  True part ((usb_test.counter==10) )|->  (usb_test.next_state == usb_test.IDLE )
+[6]  False Part ((usb_test.counter==10) )|-> ( )
+
+ Handle logic for nested conditions here
+
+ Handle logic for nested conditions here
+
+ Handle logic for nested conditions here
+
+ Handle logic for nested conditions here
 
 
- true_part :  ["((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", "((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait )", "((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )", "((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newframe_wait )", "((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64_concat )", "(1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.frame_pl64 )", "((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) )|->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr )"]
+ true_part :  ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 )', '((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.next_state == usb_test.CRC2 )', '((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|->  (usb_test.next_state == usb_test.CRC1 )', '((usb_test.counter==10) )|->  (usb_test.next_state == usb_test.IDLE )']
 
 
- false_part :  ["((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.error_frame_hdr) ) && ((urd_rx_fdec_controller_fsm.rxf_lower_dav==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state )", "((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64) ) && ((urd_rx_fdec_controller_fsm.zero_payload_d==1'b1) )|-> ( ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait ) )", "((urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.state )", "((urd_rx_fdec_controller_fsm.state==urd_rx_fdec_controller_fsm.frame_pl64_concat) ) && (((urd_rx_fdec_controller_fsm.check_err==1'b1)&&(urd_rx_fdec_controller_fsm.err_ind_d==1'b1)) )|-> ( ((urd_rx_fdec_controller_fsm.rxf_upper_dav==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.rxl_wait ) )", "((urd_rx_fdec_controller_fsm.processing_queue_slot_available_early==1'b1) )|-> (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.newconcat_wait )", "(1 ) && (((urd_rx_fdec_controller_fsm.current_job_data_available==1'b1)&&(urd_rx_fdec_controller_fsm.processing_queue_slot_available==1'b1)) ) && ((urd_rx_fdec_controller_fsm.current_job_e==1'b0) )|-> ( ((urd_rx_fdec_controller_fsm.current_job_e_pre_urd_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr ) )", "((urd_rx_fdec_controller_fsm.current_job_e_size_error==1'b1) )|-> ( ((urd_rx_fdec_controller_fsm.current_job_e_hdr_error==1'b1) ) && |->  (urd_rx_fdec_controller_fsm.state_nxt == urd_rx_fdec_controller_fsm.error_frame_hdr ) )"]
-module_name :  urd_rx_fdec_controller_fsm
-copied_block:  module v_// Created by : ESNIVIN
-
-//`include "macros.v"
-
-module urd_rx_fdec_controller_fsm(
-									input clk,
-									input rst_n,
-									input rxf_lower_dav,
-									input zero_payload,// Deal with this    assign zero_payload = current_job.len + 'd32 == current_job.offset;
-									input processing_queue_slot_available,
-									input processing_queue_slot_available_early,
-									input current_job_data_available,
-									input rxf_upper_dav,						// mapped
-									input rxl_result_data_con_concatenate,
-									input current_job_e,
-									input current_job_e_pre_urd_error,
-								    input current_job_e_size_error,
-								    input current_job_e_hdr_error,
-//								    input rxl_result_dav,			// mapped
-								    input [7:0]rx_ev_inc_err,
-								    input [7:0]rx_ev_oversize_ip,
-								    input [7:0]rx_ev_eth_head_err,
-								    output reg rxl_load_lower_and_trigger, 			// MAPPED
-								    output reg rxl_load_upper,
-								    output reg rxf_stop,
-									output reg update_job_info_from_info_fifo,
-									output reg trigger_write_fd_job_queue,
-									output reg trigger_write_fd_job_queue_error_job
-									);
+ false_part :  ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.current_state )', '((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.current_state )', '((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|-> (usb_test.next_state == usb_test.current_state )', '((usb_test.counter==10) )|-> ( )']
+module_name :  usb_test
+copied_block:  module v_usb_test (clk, reset, send_data, tx_ready, tx_valid, buff);
 
  Adding false properties*******
 
