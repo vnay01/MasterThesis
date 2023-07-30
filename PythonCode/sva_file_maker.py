@@ -83,45 +83,49 @@ def port_direction(input_string):
 
 
 
-def true_property_add(input_file, count, property_list):
+def true_property_add(input_file, count, property_list, root_node_name):
     '''Modifies .sva file. Adds property list and assert statements to the .sva file'''
     with open(input_file, 'a') as sva_file:
 #        sva_file.write('// Default Clocking and Reset\n')
 #        sva_file.write('//default clocking (@posedge clk); clocking')
-        sva_file.write('\n// Property list \n')
+        sva_file.write('\n// ***** True property list for selected node : ' + root_node_name + '*****')
+        sva_file.write('\n'*2)
 #        sva_file.write('\n// TimeStamp: ', timestr)
         for i in range(count):
             prop_buff = property_list[i]
             sva_file.write('\n')
-            sva_file.write('property t_Prop_'+ str(i) + '; \n')
+            sva_file.write('property t_Prop_'+ root_node_name + '_' + str(i) + '; \n')
             sva_file.write('\t@(posedge clk) ('+ prop_buff + ');')
             sva_file.write('\n')
             sva_file.write('endproperty \n')
             sva_file.write('\n')
-            sva_file.write('assert_t_Prop_' + str(i) + ': assert property (t_Prop_' + str(i) +');')
+            sva_file.write('// Asserting Property\n')
+            sva_file.write('assert_t_Prop_' + root_node_name + '_' + str(i) + ': assert property (t_Prop_' + root_node_name + '_' + str(i) +');')
             sva_file.write('\n') 
-            sva_file.write('cover_t_prop_' + str(i) + ': cover property (t_Prop_'+str(i)+');')
+            sva_file.write('// Covering Property\n')
+            sva_file.write('cover_t_prop_' + root_node_name + '_' + str(i) + ': cover property (t_Prop_' + root_node_name + '_' + str(i) +');')
             sva_file.write('\n')
         sva_file.write('\n'*2)  
     sva_file.close()
     return
 
-def false_property_add(input_file, count, property_list):
+def false_property_add(input_file, count, property_list, root_node_name):
     '''Modifies .sva file. Adds property list and assert statements to the .sva file'''
     with open(input_file, 'a') as sva_file:
-        sva_file.write('\n// False Property list \n')
-        sva_file.write('\n \n // Writing properties to check if state transition conditions do not occur.')
+        sva_file.write('\n// ***** Writing False condition properties for selected node : ' + root_node_name + '*****')
+        sva_file.write('\n'*2)
+        sva_file.write('\n \n // When asserted, these properties will FAIL')
         for i in range(count):
             prop_buff = property_list[i]
             sva_file.write('\n')
-            sva_file.write('property f_Prop_'+ str(i) + '; \n')
+            sva_file.write('property f_Prop_'+ root_node_name + '_' + str(i) + '; \n')
             sva_file.write('\t@(posedge clk) ('+ prop_buff + ');')
             sva_file.write('\n')
             sva_file.write('endproperty \n')
             sva_file.write('\n')
-            sva_file.write('assert_f_Prop_' + str(i) + ': assert property (f_Prop_' + str(i) +');')
+            sva_file.write('assert_f_Prop_'  + root_node_name + '_' + str(i) + ': assert property (f_Prop_' + root_node_name + '_' + str(i) +');')
             sva_file.write('\n') 
-            sva_file.write('cover_f_prop_' + str(i) + ': cover property (f_Prop_'+str(i)+');')
+            sva_file.write('cover_f_prop_'  + root_node_name + '_' + str(i) + ': cover property (f_Prop_' + root_node_name + '_' + str(i)+');')
             sva_file.write('\n')
 
         sva_file.write('\n'*2)  

@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////
 /*Author : ESNIVIN 
 Property File : 
-File Created at : 2023/07/26- 14 hr-10 m.-11 s
+File Created at : 2023/07/30- 19 hr-25 m.-57 s
 */
 
 //////////////////////////////////////////////////
@@ -73,139 +73,253 @@ input           // concatnation of signals which control different sections of d
 
 */
 
-// Property list 
+// ***** True property list for selected node : next_state*****
 
-property t_Prop_0; 
+
+property t_Prop_next_state_0; 
 	@(posedge clk) (((controller.current_state==controller.INIT) ) && (controller.START )|->  (controller.next_state == controller.LOAD ));
 endproperty 
 
-assert_t_Prop_0: assert property (t_Prop_0);
-cover_t_prop_0: cover property (t_Prop_0);
+// Asserting Property
+assert_t_Prop_next_state_0: assert property (t_Prop_next_state_0);
+// Covering Property
+cover_t_prop_next_state_0: cover property (t_Prop_next_state_0);
 
-property t_Prop_1; 
+property t_Prop_next_state_1; 
 	@(posedge clk) (((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|->  (controller.next_state == controller.MULT ));
 endproperty 
 
-assert_t_Prop_1: assert property (t_Prop_1);
-cover_t_prop_1: cover property (t_Prop_1);
+// Asserting Property
+assert_t_Prop_next_state_1: assert property (t_Prop_next_state_1);
+// Covering Property
+cover_t_prop_next_state_1: cover property (t_Prop_next_state_1);
 
-property t_Prop_2; 
+property t_Prop_next_state_2; 
 	@(posedge clk) (((controller.current_state==controller.MULT) ) && ((controller.count==15) )|->  (controller.next_state == controller.L1_ADD ));
 endproperty 
 
-assert_t_Prop_2: assert property (t_Prop_2);
-cover_t_prop_2: cover property (t_Prop_2);
+// Asserting Property
+assert_t_Prop_next_state_2: assert property (t_Prop_next_state_2);
+// Covering Property
+cover_t_prop_next_state_2: cover property (t_Prop_next_state_2);
 
-property t_Prop_3; 
+property t_Prop_next_state_3; 
 	@(posedge clk) (((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L2_ADD ));
 endproperty 
 
-assert_t_Prop_3: assert property (t_Prop_3);
-cover_t_prop_3: cover property (t_Prop_3);
+// Asserting Property
+assert_t_Prop_next_state_3: assert property (t_Prop_next_state_3);
+// Covering Property
+cover_t_prop_next_state_3: cover property (t_Prop_next_state_3);
 
-property t_Prop_4; 
+property t_Prop_next_state_4; 
 	@(posedge clk) (((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L3_ADD ));
 endproperty 
 
-assert_t_Prop_4: assert property (t_Prop_4);
-cover_t_prop_4: cover property (t_Prop_4);
+// Asserting Property
+assert_t_Prop_next_state_4: assert property (t_Prop_next_state_4);
+// Covering Property
+cover_t_prop_next_state_4: cover property (t_Prop_next_state_4);
 
-property t_Prop_5; 
+property t_Prop_next_state_5; 
 	@(posedge clk) (((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L4_ADD ));
 endproperty 
 
-assert_t_Prop_5: assert property (t_Prop_5);
-cover_t_prop_5: cover property (t_Prop_5);
+// Asserting Property
+assert_t_Prop_next_state_5: assert property (t_Prop_next_state_5);
+// Covering Property
+cover_t_prop_next_state_5: cover property (t_Prop_next_state_5);
 
-property t_Prop_6; 
+property t_Prop_next_state_6; 
 	@(posedge clk) (((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.MEM_STORE ));
 endproperty 
 
-assert_t_Prop_6: assert property (t_Prop_6);
-cover_t_prop_6: cover property (t_Prop_6);
+// Asserting Property
+assert_t_Prop_next_state_6: assert property (t_Prop_next_state_6);
+// Covering Property
+cover_t_prop_next_state_6: cover property (t_Prop_next_state_6);
 
-property t_Prop_7; 
+property t_Prop_next_state_7; 
 	@(posedge clk) (((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|->  (controller.next_state == controller.INIT ));
 endproperty 
 
-assert_t_Prop_7: assert property (t_Prop_7);
-cover_t_prop_7: cover property (t_Prop_7);
+// Asserting Property
+assert_t_Prop_next_state_7: assert property (t_Prop_next_state_7);
+// Covering Property
+cover_t_prop_next_state_7: cover property (t_Prop_next_state_7);
 
-property t_Prop_8; 
+property t_Prop_next_state_8; 
 	@(posedge clk) ((1 )|->  (controller.next_state == controller.current_state ));
 endproperty 
 
-assert_t_Prop_8: assert property (t_Prop_8);
-cover_t_prop_8: cover property (t_Prop_8);
+// Asserting Property
+assert_t_Prop_next_state_8: assert property (t_Prop_next_state_8);
+// Covering Property
+cover_t_prop_next_state_8: cover property (t_Prop_next_state_8);
 
 
 
-// False Property list 
+// ***** Writing False condition properties for selected node : next_state*****
+
 
  
- // Writing properties to check if state transition conditions do not occur.
-property f_Prop_0; 
+ // When asserted, these properties will FAIL
+property f_Prop_next_state_0; 
 	@(posedge clk) (((controller.current_state==controller.INIT) ) && (controller.START )|-> (controller.next_state == controller.INIT ));
 endproperty 
 
-assert_f_Prop_0: assert property (f_Prop_0);
-cover_f_prop_0: cover property (f_Prop_0);
+assert_f_Prop_next_state_0: assert property (f_Prop_next_state_0);
+cover_f_prop_next_state_0: cover property (f_Prop_next_state_0);
 
-property f_Prop_1; 
+property f_Prop_next_state_1; 
 	@(posedge clk) (((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|-> ( ));
 endproperty 
 
-assert_f_Prop_1: assert property (f_Prop_1);
-cover_f_prop_1: cover property (f_Prop_1);
+assert_f_Prop_next_state_1: assert property (f_Prop_next_state_1);
+cover_f_prop_next_state_1: cover property (f_Prop_next_state_1);
 
-property f_Prop_2; 
+property f_Prop_next_state_2; 
 	@(posedge clk) (((controller.current_state==controller.MULT) ) && ((controller.count==15) )|-> ( ));
 endproperty 
 
-assert_f_Prop_2: assert property (f_Prop_2);
-cover_f_prop_2: cover property (f_Prop_2);
+assert_f_Prop_next_state_2: assert property (f_Prop_next_state_2);
+cover_f_prop_next_state_2: cover property (f_Prop_next_state_2);
 
-property f_Prop_3; 
+property f_Prop_next_state_3; 
 	@(posedge clk) (((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|-> ( ));
 endproperty 
 
-assert_f_Prop_3: assert property (f_Prop_3);
-cover_f_prop_3: cover property (f_Prop_3);
+assert_f_Prop_next_state_3: assert property (f_Prop_next_state_3);
+cover_f_prop_next_state_3: cover property (f_Prop_next_state_3);
 
-property f_Prop_4; 
+property f_Prop_next_state_4; 
 	@(posedge clk) (((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) )|-> ( ));
 endproperty 
 
-assert_f_Prop_4: assert property (f_Prop_4);
-cover_f_prop_4: cover property (f_Prop_4);
+assert_f_Prop_next_state_4: assert property (f_Prop_next_state_4);
+cover_f_prop_next_state_4: cover property (f_Prop_next_state_4);
 
-property f_Prop_5; 
+property f_Prop_next_state_5; 
 	@(posedge clk) (((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|-> ( ));
 endproperty 
 
-assert_f_Prop_5: assert property (f_Prop_5);
-cover_f_prop_5: cover property (f_Prop_5);
+assert_f_Prop_next_state_5: assert property (f_Prop_next_state_5);
+cover_f_prop_next_state_5: cover property (f_Prop_next_state_5);
 
-property f_Prop_6; 
+property f_Prop_next_state_6; 
 	@(posedge clk) (((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) )|-> ( ));
 endproperty 
 
-assert_f_Prop_6: assert property (f_Prop_6);
-cover_f_prop_6: cover property (f_Prop_6);
+assert_f_Prop_next_state_6: assert property (f_Prop_next_state_6);
+cover_f_prop_next_state_6: cover property (f_Prop_next_state_6);
 
-property f_Prop_7; 
+property f_Prop_next_state_7; 
 	@(posedge clk) (((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|-> ( ((controller.count==10) ) && |->  (controller.next_state == controller.LOAD ) ));
 endproperty 
 
-assert_f_Prop_7: assert property (f_Prop_7);
-cover_f_prop_7: cover property (f_Prop_7);
+assert_f_Prop_next_state_7: assert property (f_Prop_next_state_7);
+cover_f_prop_next_state_7: cover property (f_Prop_next_state_7);
 
-property f_Prop_8; 
+property f_Prop_next_state_8; 
 	@(posedge clk) ((1 )|-> ( ));
 endproperty 
 
-assert_f_Prop_8: assert property (f_Prop_8);
-cover_f_prop_8: cover property (f_Prop_8);
+assert_f_Prop_next_state_8: assert property (f_Prop_next_state_8);
+cover_f_prop_next_state_8: cover property (f_Prop_next_state_8);
+
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : data_path_signal*****
+
+
+property t_Prop_data_path_signal_0; 
+	@(posedge clk) (((controller.current_state==controller.INIT) )|->  (controller.data_path_signal == None ));
+endproperty 
+
+// Asserting Property
+assert_t_Prop_data_path_signal_0: assert property (t_Prop_data_path_signal_0);
+// Covering Property
+cover_t_prop_data_path_signal_0: cover property (t_Prop_data_path_signal_0);
+
+property t_Prop_data_path_signal_1; 
+	@(posedge clk) (((controller.current_state==controller.MULT) )|->  (controller.data_path_signal == None ));
+endproperty 
+
+// Asserting Property
+assert_t_Prop_data_path_signal_1: assert property (t_Prop_data_path_signal_1);
+// Covering Property
+cover_t_prop_data_path_signal_1: cover property (t_Prop_data_path_signal_1);
+
+property t_Prop_data_path_signal_2; 
+	@(posedge clk) (((controller.current_state==controller.L2_ADD) )|->  (controller.data_path_signal == None ));
+endproperty 
+
+// Asserting Property
+assert_t_Prop_data_path_signal_2: assert property (t_Prop_data_path_signal_2);
+// Covering Property
+cover_t_prop_data_path_signal_2: cover property (t_Prop_data_path_signal_2);
+
+property t_Prop_data_path_signal_3; 
+	@(posedge clk) (((controller.current_state==controller.L4_ADD) )|->  (controller.data_path_signal == None ));
+endproperty 
+
+// Asserting Property
+assert_t_Prop_data_path_signal_3: assert property (t_Prop_data_path_signal_3);
+// Covering Property
+cover_t_prop_data_path_signal_3: cover property (t_Prop_data_path_signal_3);
+
+property t_Prop_data_path_signal_4; 
+	@(posedge clk) ((1 )|->  (controller.data_path_signal == None ));
+endproperty 
+
+// Asserting Property
+assert_t_Prop_data_path_signal_4: assert property (t_Prop_data_path_signal_4);
+// Covering Property
+cover_t_prop_data_path_signal_4: cover property (t_Prop_data_path_signal_4);
+
+
+
+// ***** Writing False condition properties for selected node : data_path_signal*****
+
+
+ 
+ // When asserted, these properties will FAIL
+property f_Prop_data_path_signal_0; 
+	@(posedge clk) (((controller.current_state==controller.INIT) )|-> ( ((controller.current_state==controller.LOAD) ) && |->  (controller.data_path_signal == None ) ));
+endproperty 
+
+assert_f_Prop_data_path_signal_0: assert property (f_Prop_data_path_signal_0);
+cover_f_prop_data_path_signal_0: cover property (f_Prop_data_path_signal_0);
+
+property f_Prop_data_path_signal_1; 
+	@(posedge clk) (((controller.current_state==controller.MULT) )|-> ( ((controller.current_state==controller.L1_ADD) ) && |->  (controller.data_path_signal == None ) ));
+endproperty 
+
+assert_f_Prop_data_path_signal_1: assert property (f_Prop_data_path_signal_1);
+cover_f_prop_data_path_signal_1: cover property (f_Prop_data_path_signal_1);
+
+property f_Prop_data_path_signal_2; 
+	@(posedge clk) (((controller.current_state==controller.L2_ADD) )|-> ( ((controller.current_state==controller.L3_ADD) ) && |->  (controller.data_path_signal == None ) ));
+endproperty 
+
+assert_f_Prop_data_path_signal_2: assert property (f_Prop_data_path_signal_2);
+cover_f_prop_data_path_signal_2: cover property (f_Prop_data_path_signal_2);
+
+property f_Prop_data_path_signal_3; 
+	@(posedge clk) (((controller.current_state==controller.L4_ADD) )|-> ( ((controller.current_state==controller.MEM_STORE) ) && |->  (controller.data_path_signal == None ) ));
+endproperty 
+
+assert_f_Prop_data_path_signal_3: assert property (f_Prop_data_path_signal_3);
+cover_f_prop_data_path_signal_3: cover property (f_Prop_data_path_signal_3);
+
+property f_Prop_data_path_signal_4; 
+	@(posedge clk) ((1 )|-> (controller.data_path_signal == None ));
+endproperty 
+
+assert_f_Prop_data_path_signal_4: assert property (f_Prop_data_path_signal_4);
+cover_f_prop_data_path_signal_4: cover property (f_Prop_data_path_signal_4);
 
 
 

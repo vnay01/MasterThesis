@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////
 /*Author : ESNIVIN 
 Property File : 
-File Created at : 2023/07/28- 06 hr-56 m.-30 s
+File Created at : 2023/07/30- 19 hr-24 m.-16 s
 */
 
 //////////////////////////////////////////////////
@@ -35,69 +35,157 @@ input  buff;
 
 */
 
-// Property list 
+// ***** True property list for selected node : next_state*****
 
-property t_Prop_0; 
+
+property t_Prop_next_state_0; 
 	@(posedge clk) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 ));
 endproperty 
 
-assert_t_Prop_0: assert property (t_Prop_0);
-cover_t_prop_0: cover property (t_Prop_0);
+// Asserting Property
+assert_t_Prop_next_state_0: assert property (t_Prop_next_state_0);
+// Covering Property
+cover_t_prop_next_state_0: cover property (t_Prop_next_state_0);
 
-property t_Prop_1; 
+property t_Prop_next_state_1; 
 	@(posedge clk) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.next_state == usb_test.CRC2 ));
 endproperty 
 
-assert_t_Prop_1: assert property (t_Prop_1);
-cover_t_prop_1: cover property (t_Prop_1);
+// Asserting Property
+assert_t_Prop_next_state_1: assert property (t_Prop_next_state_1);
+// Covering Property
+cover_t_prop_next_state_1: cover property (t_Prop_next_state_1);
 
-property t_Prop_2; 
+property t_Prop_next_state_2; 
 	@(posedge clk) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|->  (usb_test.next_state == usb_test.CRC1 ));
 endproperty 
 
-assert_t_Prop_2: assert property (t_Prop_2);
-cover_t_prop_2: cover property (t_Prop_2);
+// Asserting Property
+assert_t_Prop_next_state_2: assert property (t_Prop_next_state_2);
+// Covering Property
+cover_t_prop_next_state_2: cover property (t_Prop_next_state_2);
 
-property t_Prop_3; 
+property t_Prop_next_state_3; 
 	@(posedge clk) (((usb_test.counter==10) )|->  (usb_test.next_state == usb_test.IDLE ));
 endproperty 
 
-assert_t_Prop_3: assert property (t_Prop_3);
-cover_t_prop_3: cover property (t_Prop_3);
+// Asserting Property
+assert_t_Prop_next_state_3: assert property (t_Prop_next_state_3);
+// Covering Property
+cover_t_prop_next_state_3: cover property (t_Prop_next_state_3);
 
 
 
-// False Property list 
+// ***** Writing False condition properties for selected node : next_state*****
+
 
  
- // Writing properties to check if state transition conditions do not occur.
-property f_Prop_0; 
+ // When asserted, these properties will FAIL
+property f_Prop_next_state_0; 
 	@(posedge clk) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.current_state ));
 endproperty 
 
-assert_f_Prop_0: assert property (f_Prop_0);
-cover_f_prop_0: cover property (f_Prop_0);
+assert_f_Prop_next_state_0: assert property (f_Prop_next_state_0);
+cover_f_prop_next_state_0: cover property (f_Prop_next_state_0);
 
-property f_Prop_1; 
+property f_Prop_next_state_1; 
 	@(posedge clk) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.current_state ));
 endproperty 
 
-assert_f_Prop_1: assert property (f_Prop_1);
-cover_f_prop_1: cover property (f_Prop_1);
+assert_f_Prop_next_state_1: assert property (f_Prop_next_state_1);
+cover_f_prop_next_state_1: cover property (f_Prop_next_state_1);
 
-property f_Prop_2; 
+property f_Prop_next_state_2; 
 	@(posedge clk) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|-> (usb_test.next_state == usb_test.current_state ));
 endproperty 
 
-assert_f_Prop_2: assert property (f_Prop_2);
-cover_f_prop_2: cover property (f_Prop_2);
+assert_f_Prop_next_state_2: assert property (f_Prop_next_state_2);
+cover_f_prop_next_state_2: cover property (f_Prop_next_state_2);
 
-property f_Prop_3; 
+property f_Prop_next_state_3; 
 	@(posedge clk) (((usb_test.counter==10) )|-> ( ));
 endproperty 
 
-assert_f_Prop_3: assert property (f_Prop_3);
-cover_f_prop_3: cover property (f_Prop_3);
+assert_f_Prop_next_state_3: assert property (f_Prop_next_state_3);
+cover_f_prop_next_state_3: cover property (f_Prop_next_state_3);
+
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : tx_valid*****
+
+
+property t_Prop_tx_valid_0; 
+	@(posedge clk) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.tx_valid == None ));
+endproperty 
+
+// Asserting Property
+assert_t_Prop_tx_valid_0: assert property (t_Prop_tx_valid_0);
+// Covering Property
+cover_t_prop_tx_valid_0: cover property (t_Prop_tx_valid_0);
+
+property t_Prop_tx_valid_1; 
+	@(posedge clk) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.tx_valid == None ));
+endproperty 
+
+// Asserting Property
+assert_t_Prop_tx_valid_1: assert property (t_Prop_tx_valid_1);
+// Covering Property
+cover_t_prop_tx_valid_1: cover property (t_Prop_tx_valid_1);
+
+property t_Prop_tx_valid_2; 
+	@(posedge clk) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|->  (usb_test.tx_valid == None ));
+endproperty 
+
+// Asserting Property
+assert_t_Prop_tx_valid_2: assert property (t_Prop_tx_valid_2);
+// Covering Property
+cover_t_prop_tx_valid_2: cover property (t_Prop_tx_valid_2);
+
+property t_Prop_tx_valid_3; 
+	@(posedge clk) ((1 )|->  (usb_test.tx_valid == None ));
+endproperty 
+
+// Asserting Property
+assert_t_Prop_tx_valid_3: assert property (t_Prop_tx_valid_3);
+// Covering Property
+cover_t_prop_tx_valid_3: cover property (t_Prop_tx_valid_3);
+
+
+
+// ***** Writing False condition properties for selected node : tx_valid*****
+
+
+ 
+ // When asserted, these properties will FAIL
+property f_Prop_tx_valid_0; 
+	@(posedge clk) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.tx_valid == None ));
+endproperty 
+
+assert_f_Prop_tx_valid_0: assert property (f_Prop_tx_valid_0);
+cover_f_prop_tx_valid_0: cover property (f_Prop_tx_valid_0);
+
+property f_Prop_tx_valid_1; 
+	@(posedge clk) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.tx_valid == None ));
+endproperty 
+
+assert_f_Prop_tx_valid_1: assert property (f_Prop_tx_valid_1);
+cover_f_prop_tx_valid_1: cover property (f_Prop_tx_valid_1);
+
+property f_Prop_tx_valid_2; 
+	@(posedge clk) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|-> (usb_test.tx_valid == None ));
+endproperty 
+
+assert_f_Prop_tx_valid_2: assert property (f_Prop_tx_valid_2);
+cover_f_prop_tx_valid_2: cover property (f_Prop_tx_valid_2);
+
+property f_Prop_tx_valid_3; 
+	@(posedge clk) ((1 )|-> ( ));
+endproperty 
+
+assert_f_Prop_tx_valid_3: assert property (f_Prop_tx_valid_3);
+cover_f_prop_tx_valid_3: cover property (f_Prop_tx_valid_3);
 
 
 

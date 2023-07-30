@@ -53,15 +53,14 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "usb_test.v"
-    top_module = 'usb_test'
-    """ Work starts here"""
+    rtl_file_name = "controller.v"
+    top_module = 'controller'
     
     
     #### Pass the index of desired root node:
-    root_node_list = [int(6), int(7)] 
-    root_node = int(6)                                        #### Use with caution. Works for state transition only.
+    root_node_list = [18,30] 
 
+    """ Work starts here"""
     ####### Working Test code ########
     ########## Book Keeping and setting up directory #####
     system = platform.system()
@@ -113,6 +112,11 @@ def main():
     ### Call this function to modify assignment oeprators
     replace_assignment_operator(input_file, output_file)
     
+    ## Add bind information
+    bind_adder(file_path, property_file_path)
+
+    module_info_extractor(file_path, property_file_path )    
+    
     
     data_flow = VerilogDataflowAnalyzer(output_file,top_module)         ## Create a dataflow object.
 #    print(data_flow)                                                   ## Expecting an object of class VerilogDataflowAnalyzer()
@@ -148,6 +152,13 @@ def main():
         print('\n', [i] ,'List of Binding keys: ' ,binddict_keys[i])
     
     '''
+    #### get root_node_name from keys
+    root_node_name = str(binddict_keys[root_node])
+    root_node_name = root_node_name[root_node_name.find('.')+1:]
+    print('\n Root Node Name : ', root_node_name)
+    print('\n ********** \n')
+    '''
+    '''
     for bk, bv in sorted(binddict.items(), key=lambda x: str(x[0]), reverse=False):
         for bvi in bv:
             #print(bvi.tostr())
@@ -158,101 +169,106 @@ def main():
     a=''
 
     ## Looping through list of root_nodes
-
-
-    for i in binddict.get(binddict_keys[root_node]):                   ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
-        print(i.tostr(), '\ni is printed')                             ## Converts object into string
-        print(' Pyverilog function call')
-        print('\n This is how Pyverilog creates a tree internally \n    ',i._assign())                        # actual. To be removed 
-        print(' *****modified function call *****')
-        a = i._always_combination_mod()                # calling method() on object of Bind class
-        
-        # checker code
-        # print('\n PRINITNG data stored in a :', (a))
-        
-    print('\n Prinitng length of a: ',len(a))
-#    print('\n \n Does a still have value outside the loop ?? \n', (a))
-#    print('\n Data Type of a :', type(a))
     
-    ## Lets write it to a file for manipulation!!
-    #prop_intermediate_file = temp + 'temp_prop_file.txt'
-    #file_object = open(prop_intermediate_file,'w')
-    #file_object.write(a[:-1])
-#    file_object.close()
-
-    ## proper formatting of property file  
-    ## split into lines whenever ';' is encountered
-    line_buff = ''
-#    with open(file_object,'r'):
-    line_buff = a[:-1].strip()
-    line_buff = line_buff.splitlines()                  # This creates a list of all properties but also includes empty items within the list
-    print('\n Printing line_buff \n:', line_buff)         
-# We need to remove all empty items from the list    
-#    line_buff = [value for value in line_buff if value != '']
-    print('\n Modified Line_buff \n',line_buff)
-
-## Check number of items in the list
-    print('\n\n Number of items in line_buff \n: ',len(line_buff))
-#    prop = create_property(line_buff[0])
-#    print('\n XY :: ',prop)
-    prop_list = list_pair(line_buff)                        # Split property list
-
-#    print('\n ****  Why am I missing properties ??? ***\n')
-#    print('prop_list \n',prop_list)
-    print('\n\n True_condition_property: ')    # Check correctness
-    for i in range(len(prop_list[0])):
-        print([i] ,' ', prop_list[0][i] )
+    for j in root_node_list:
+        for i in binddict.get(binddict_keys[j]):                   ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
+            print(i.tostr(), '\ni is printed')                             ## Converts object into string
+            print(' Pyverilog function call')
+            print('\n This is how Pyverilog creates a tree internally \n    ',i._assign())                        # actual. To be removed 
+            print(' *****modified function call *****')
+            a = i._always_combination_mod()                # calling method() on object of Bind class
+            
+            # checker code
+            # print('\n PRINITNG data stored in a :', (a))
+        print('\n ***** Iteration number : ', j)   
+        print('\n Prinitng length of a: ',len(a))
+    #    print('\n \n Does a still have value outside the loop ?? \n', (a))
+    #    print('\n Data Type of a :', type(a))
         
-    print('\n\n False_condition_property: ',prop_list[1])   # Check correctness
+        ## Lets write it to a file for manipulation!!
+        #prop_intermediate_file = temp + 'temp_prop_file.txt'
+        #file_object = open(prop_intermediate_file,'w')
+        #file_object.write(a[:-1])
+    #    file_object.close()
 
-    true_part = ''
-    false_part = ''
+        ## proper formatting of property file  
+        ## split into lines whenever ';' is encountered
+        line_buff = ''
+    #    with open(file_object,'r'):
+        line_buff = a[:-1].strip()
+        line_buff = line_buff.splitlines()                  # This creates a list of all properties but also includes empty items within the list
+        print('\n Printing line_buff \n:', line_buff)         
+    # We need to remove all empty items from the list    
+    #    line_buff = [value for value in line_buff if value != '']
+        print('\n Modified Line_buff \n',line_buff)
 
-    ## ammend the antecedant part of false_condition
-#def prop_make(prop_list):    
-    print('\ length of prop_list : ',len(prop_list[0]))
-## Open an sva file:
-    true_path_list = []
-    false_path_list = []
+    ## Check number of items in the list
+        print('\n\n Number of items in line_buff \n: ',len(line_buff))
+    #    prop = create_property(line_buff[0])
+    #    print('\n XY :: ',prop)
+        prop_list = list_pair(line_buff)                        # Split property list
 
-    for i in range(len(prop_list[0]) ):                                 # Use this to control the number of properties generated
-        true_part = str(prop_list[0][i])
-        false_part = str(prop_list[1][i])
-        ## search for |-> string 
-        if '|->' in true_part:                                              # Normal Operation
-            start_index = true_part.index('|->')
-            antecedant_part = true_part[: start_index].strip(' &&').strip().strip('&&')
-            #true_part = true_part.strip(' &&').strip().strip('&&').strip('&& ') + ' ;'
-            true_part = antecedant_part  + true_part[start_index: ].strip(' &&').strip().strip('&&')
-            false_part = antecedant_part + '|->' + ' ('+ false_part.strip(';') + ' )'
-            true_path_list.append(true_part)
-            false_path_list.append(false_part)
-            print([i],' True part',true_part)
-            print([i],' False Part',false_part)
-        else:                                                               ## Nested condition management
-            print('\n Handle logic for nested conditions here')
-            ''' Generally, the nested condition will appear without (current_state == xxxx )
-                So, just copy antecedant of the previous list item and append it with antecedant of the current list
-            '''
-            i+=1
-    print('\n\n true_part : ',true_path_list)
-    print('\n\n false_part : ', false_path_list)
+    #    print('\n ****  Why am I missing properties ??? ***\n')
+    #    print('prop_list \n',prop_list)
+        print('\n\n True_condition_property: ')    # Check correctness
+        for i in range(len(prop_list[0])):
+            print([i] ,' ', prop_list[0][i] )
+            
+        print('\n\n False_condition_property: ',prop_list[1])   # Check correctness
 
-    ## Add bind information
-    bind_adder(file_path, property_file_path)
+        true_part = ''
+        false_part = ''
 
-    module_info_extractor(file_path, property_file_path )
-#    print('\n Copied Antecedant :',antecedant_part)
-    count = len(true_path_list)
-    lalala = true_path_list,false_path_list
-    true_property_add(property_file_path,count , lalala[0])
+        ## ammend the antecedant part of false_condition
+    #def prop_make(prop_list):    
+        print('\ length of prop_list : ',len(prop_list[0]))
+    ## Open an sva file:
+        true_path_list = []
+        false_path_list = []
+
+        for i in range(len(prop_list[0]) ):                                 # Use this to control the number of properties generated
+            true_part = str(prop_list[0][i])
+            false_part = str(prop_list[1][i])
+            ## search for |-> string 
+            if '|->' in true_part:                                              # Normal Operation
+                start_index = true_part.index('|->')
+                antecedant_part = true_part[: start_index].strip(' &&').strip().strip('&&')
+                #true_part = true_part.strip(' &&').strip().strip('&&').strip('&& ') + ' ;'
+                true_part = antecedant_part  + true_part[start_index: ].strip(' &&').strip().strip('&&')
+                false_part = antecedant_part + '|->' + ' ('+ false_part.strip(';') + ' )'
+                true_path_list.append(true_part)
+                false_path_list.append(false_part)
+                print([i],' True part',true_part)
+                print([i],' False Part',false_part)
+            else:                                                               ## Nested condition management
+                print('\n Handle logic for nested conditions here')
+                ''' Generally, the nested condition will appear without (current_state == xxxx )
+                    So, just copy antecedant of the previous list item and append it with antecedant of the current list
+                '''
+                i+=1
+        print('\n\n true_part : ',true_path_list)
+        print('\n\n false_part : ', false_path_list)
 
 
-    print('\n Adding false properties*******\n')
-    false_property_add(property_file_path,count , lalala[1])
-    #property_add(property_file_path,count , false_path_list)
+    #    print('\n Copied Antecedant :',antecedant_part)
+        count = len(true_path_list)
+        lalala = true_path_list,false_path_list
+    #### get root_node_name from keys
+        root_node_name = str(binddict_keys[j])
+        root_node_name = root_node_name[root_node_name.find('.')+1:]
+        print('\n Root Node Name : ', root_node_name)
+        print('\n ********** \n')
+
+        true_property_add(property_file_path,count , lalala[0], root_node_name)
+
+
+        print('\n Adding false properties*******\n')
+        false_property_add(property_file_path,count , lalala[1], root_node_name)
+        #property_add(property_file_path,count , false_path_list)
+    
+    ## Closing SVA file
     endmodule(property_file_path)
-    #### Drawing graph
+        #### Drawing graph
 
 
 
