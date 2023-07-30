@@ -59,7 +59,8 @@ def main():
     
     
     #### Pass the index of desired root node:
-    root_node = int(6)                                         #### Use with caution. Works for state transition only.
+    root_node_list = [int(6), int(7)] 
+    root_node = int(6)                                        #### Use with caution. Works for state transition only.
 
     ####### Working Test code ########
     ########## Book Keeping and setting up directory #####
@@ -140,8 +141,8 @@ def main():
     print('\n')
     '''    
     # Binding information
-    binddict = data_flow.getBinddict()
-    binddict_keys = list(binddict.keys())
+    binddict = data_flow.getBinddict()          # returns a dict object
+    binddict_keys = list(binddict.keys())       # create a list of keys from previous dictionary
     print('\n These are the nodes for which dataflow trees can be generated : ')
     for i in range(len(binddict_keys)):
         print('\n', [i] ,'List of Binding keys: ' ,binddict_keys[i])
@@ -155,10 +156,14 @@ def main():
 
     print('\n\n Generating tree structure for selected node : ')
     a=''
+
+    ## Looping through list of root_nodes
+
+
     for i in binddict.get(binddict_keys[root_node]):                   ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
+        print(i.tostr(), '\ni is printed')                             ## Converts object into string
         print(' Pyverilog function call')
         print('\n This is how Pyverilog creates a tree internally \n    ',i._assign())                        # actual. To be removed 
-#        print('\n This is how Pyverilog creates a tree internally \n    ',i._assign_mod())                        # actual. To be removed 
         print(' *****modified function call *****')
         a = i._always_combination_mod()                # calling method() on object of Bind class
         

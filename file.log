@@ -6,7 +6,7 @@ True:(Branch Cond:( Lor Next:(Terminal usb_test.send_data),(Terminal usb_test._r
 
 *******************
 
-Starting Flow at... 2023/07/26- 14 hr-52 m.-40 s
+Starting Flow at... 2023/07/28- 06 hr-56 m.-29 s
 
 
 Iverilog command called with switches :  ['iverilog', '-E', '-o', 'preprocess.output']
@@ -48,6 +48,8 @@ Term:
 
 
  Generating tree structure for selected node : 
+(Bind dest:usb_test.next_state tree:(Branch Cond:(Operator Eq Next:(Terminal usb_test.current_state),(Terminal usb_test.IDLE)) True:(Branch Cond:(Terminal usb_test.send_data) True:(Terminal usb_test.CRC1) False:(Terminal usb_test.current_state)) False:(Branch Cond:(Operator Eq Next:(Terminal usb_test.current_state),(Terminal usb_test.CRC1)) True:(Branch Cond:(Operator Ulnot Next:(Terminal usb_test.tx_ready)) True:(Terminal usb_test.CRC2) False:(Terminal usb_test.current_state)) False:(Branch Cond:(Operator Eq Next:(Terminal usb_test.current_state),(Terminal usb_test.CRC2)) True:(Branch Cond:(Terminal usb_test.tx_ready) True:(Branch Cond:(Operator LessThan Next:(Terminal usb_test.counter),(IntConst 9)) True:(Terminal usb_test.CRC1) False:(Terminal usb_test.current_state)) False:(Branch Cond:(Operator Eq Next:(Terminal usb_test.counter),(IntConst 10)) True:(Terminal usb_test.IDLE))) False:(Branch Cond:(IntConst 1) True:(Terminal usb_test.IDLE) False:(Terminal usb_test.current_state)))))) 
+i is printed
  Pyverilog function call
 
  This is how Pyverilog creates a tree internally 
@@ -79,16 +81,7 @@ Term:
 : ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.current_state;', '', '', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.current_state;', '', '', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.current_state;', '', '', ' ((usb_test.counter==10) ) && |->  (usb_test.next_state == usb_test.IDLE )', '', '', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.current_state;', '', '', '', '', ' &&']
 
  Modified Line_buff 
- ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 
- 'usb_test.next_state == usb_test.current_state;', 
- '', '',
-' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )',
-'usb_test.next_state == usb_test.current_state;', 
-'', '', 
-' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.current_state;', 
-'', '',
-' ((usb_test.counter==10) ) && |->  (usb_test.next_state == usb_test.IDLE )',
-'', '', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.current_state;', '', '', '', '', ' &&']
+ ['((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.current_state;', '', '', ' ((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) ) && |->  (usb_test.next_state == usb_test.CRC2 )', 'usb_test.next_state == usb_test.current_state;', '', '', ' ((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) ) && |->  (usb_test.next_state == usb_test.CRC1 )', 'usb_test.next_state == usb_test.current_state;', '', '', ' ((usb_test.counter==10) ) && |->  (usb_test.next_state == usb_test.IDLE )', '', '', ' (1 ) && |->  (usb_test.next_state == usb_test.IDLE )', 'usb_test.next_state == usb_test.current_state;', '', '', '', '', ' &&']
 
 
  Number of items in line_buff 
