@@ -1,6 +1,8 @@
 ## New file to test if import Pyverilog works
+''' Author : ESNIVIN / vnay01'''
 #! /proj/cot/conda/envs/cot_py0/bin/python
 # #! /proj/cot/conda/envs/iverilog0/bin/iverilog
+
 
 from __future__ import absolute_import
 from __future__ import print_function
@@ -53,12 +55,27 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "controller.v"
-    top_module = 'controller'
+    rtl_file_name = "usb_test.v"
+    top_module = 'usb_test'
+
+    ##### reset type info #####
+    '''
+        0 -> active_low reset
+        1 -> active_high reset
+    '''
+    reset_name = 'reset'     # give reset name here
+    reset_type = 0           # Active_low or Active_high ?? refer comment above for details
     
+
+    if reset_type == 0:
+        reset_name = '!'+reset_name
+    else:
+        reset_name = reset_name
+    
+    print('\n RESET Name: ',reset_name)
     
     #### Pass the index of desired root node:
-    root_node_list = [18,30] 
+    root_node_list = [5,6,7] 
 
     """ Work starts here"""
     ####### Working Test code ########
@@ -172,7 +189,8 @@ def main():
     
     for j in root_node_list:
         for i in binddict.get(binddict_keys[j]):                   ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
-            print(i.tostr(), '\ni is printed')                             ## Converts object into string
+            print(i.tostr_mod(), '\n i is printed')                             ## Converts object into string & helps in debugging
+            print('\n',i.tostr(), '\n ***********\n\n')                             ## Converts object into string & helps in debugging
             print(' Pyverilog function call')
             print('\n This is how Pyverilog creates a tree internally \n    ',i._assign())                        # actual. To be removed 
             print(' *****modified function call *****')
@@ -180,21 +198,9 @@ def main():
             
             # checker code
             # print('\n PRINITNG data stored in a :', (a))
-        print('\n ***** Iteration number : ', j)   
-        print('\n Prinitng length of a: ',len(a))
-    #    print('\n \n Does a still have value outside the loop ?? \n', (a))
-    #    print('\n Data Type of a :', type(a))
-        
-        ## Lets write it to a file for manipulation!!
-        #prop_intermediate_file = temp + 'temp_prop_file.txt'
-        #file_object = open(prop_intermediate_file,'w')
-        #file_object.write(a[:-1])
-    #    file_object.close()
+        print('\n ***** Root Node Index : ', j)   
 
-        ## proper formatting of property file  
-        ## split into lines whenever ';' is encountered
         line_buff = ''
-    #    with open(file_object,'r'):
         line_buff = a[:-1].strip()
         line_buff = line_buff.splitlines()                  # This creates a list of all properties but also includes empty items within the list
         print('\n Printing line_buff \n:', line_buff)         
@@ -232,10 +238,9 @@ def main():
             ## search for |-> string 
             if '|->' in true_part:                                              # Normal Operation
                 start_index = true_part.index('|->')
-                antecedant_part = true_part[: start_index].strip(' &&').strip().strip('&&')
-                #true_part = true_part.strip(' &&').strip().strip('&&').strip('&& ') + ' ;'
-                true_part = antecedant_part  + true_part[start_index: ].strip(' &&').strip().strip('&&')
-                false_part = antecedant_part + '|->' + ' ('+ false_part.strip(';') + ' )'
+                antecedant_part = true_part[: start_index].strip(' &&').strip('&&').strip('&& ').strip(' && ').strip()
+                true_part = antecedant_part  + true_part[start_index: ].strip(' &&').strip('&&').strip('&& ').strip(' && ').strip()
+                false_part = antecedant_part + '|->' + ' ('+ false_part.strip(';').strip(' &&').strip('&&').strip('&& ') + ' )'
                 true_path_list.append(true_part)
                 false_path_list.append(false_part)
                 print([i],' True part',true_part)
@@ -252,22 +257,23 @@ def main():
 
     #    print('\n Copied Antecedant :',antecedant_part)
         count = len(true_path_list)
-        lalala = true_path_list,false_path_list
+        path_list = true_path_list,false_path_list
     #### get root_node_name from keys
         root_node_name = str(binddict_keys[j])
         root_node_name = root_node_name[root_node_name.find('.')+1:]
         print('\n Root Node Name : ', root_node_name)
         print('\n ********** \n')
 
-        true_property_add(property_file_path,count , lalala[0], root_node_name)
+        true_property_add(property_file_path,count , path_list[0], root_node_name, reset_name)
 
 
         print('\n Adding false properties*******\n')
-        false_property_add(property_file_path,count , lalala[1], root_node_name)
+        false_property_add(property_file_path,count , path_list[1], root_node_name, reset_name)
         #property_add(property_file_path,count , false_path_list)
     
     ## Closing SVA file
     endmodule(property_file_path)
+    print('\n RESET Name: ',reset_name)
         #### Drawing graph
 
 
@@ -304,11 +310,12 @@ def create_property(input_string):
         line = ''
         line = input_string
         antecedant_list = line.split('|->')
-        consequent_list = antecedant_list[1]
-        property_list = str(antecedant_list[0]).strip('&&  ') + ' |-> ' + str(consequent_list)
+        consequent_list = antecedant_list[1].strip(' &&').strip('&&').strip(' && ').strip('&& ')
+        property_list = str(antecedant_list[0]).strip(' &&').strip('&&').strip(' && ').strip('&& ') + ' |-> ' + str(consequent_list).strip(' &&').strip('&&').strip(' && ').strip('&& ')
         return property_list
     else:
         return None
 
 if __name__ == '__main__':
     main()
+
