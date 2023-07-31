@@ -1,4 +1,8 @@
+###############################################################################################################
+
 """ Read a Verilog file and extract module information"""
+''' Author : ESNIVIN / vnay01'''
+
 import time
 from module_extractor import *
 
@@ -19,8 +23,8 @@ def bind_adder(input_file, output_file):
         file.write('\n/////////////////////////////////////////////////\n')
         file.write('/*')
         file.write('Author : ESNIVIN \n')  
-        file.write('Property File : \n')
-        file.write('File Created at : ')
+        file.write('Property File : ' + ' ' + module_name)
+        file.write('\nFile Created at : ')
         file.write(timestr)
         file.write('\n*/')
         file.write('\n\n//////////////////////////////////////////////////\n')
@@ -83,50 +87,52 @@ def port_direction(input_string):
 
 
 
-def true_property_add(input_file, count, property_list, root_node_name):
+def true_property_add(input_file, count, property_list, root_node_name, reset_name):
     '''Modifies .sva file. Adds property list and assert statements to the .sva file'''
     with open(input_file, 'a') as sva_file:
 #        sva_file.write('// Default Clocking and Reset\n')
 #        sva_file.write('//default clocking (@posedge clk); clocking')
-        sva_file.write('\n// ***** True property list for selected node : ' + root_node_name + '*****')
+        sva_file.write('\n// ***** True property list for selected node : ' + root_node_name + ' *****')
         sva_file.write('\n'*2)
 #        sva_file.write('\n// TimeStamp: ', timestr)
         for i in range(count):
             prop_buff = property_list[i]
             sva_file.write('\n')
             sva_file.write('property t_Prop_'+ root_node_name + '_' + str(i) + '; \n')
-            sva_file.write('\t@(posedge clk) ('+ prop_buff + ');')
+            sva_file.write('\t@(posedge clk) disable iff (' + reset_name + ') ('+ prop_buff + ');')
             sva_file.write('\n')
             sva_file.write('endproperty \n')
             sva_file.write('\n')
-            sva_file.write('// Asserting Property\n')
+            sva_file.write('// Asserting & Cover Statements \n\n')
             sva_file.write('assert_t_Prop_' + root_node_name + '_' + str(i) + ': assert property (t_Prop_' + root_node_name + '_' + str(i) +');')
             sva_file.write('\n') 
-            sva_file.write('// Covering Property\n')
+            #sva_file.write('// Covering Property\n\n')
             sva_file.write('cover_t_prop_' + root_node_name + '_' + str(i) + ': cover property (t_Prop_' + root_node_name + '_' + str(i) +');')
-            sva_file.write('\n')
+            sva_file.write('\n\n\n')
         sva_file.write('\n'*2)  
     sva_file.close()
     return
 
-def false_property_add(input_file, count, property_list, root_node_name):
+def false_property_add(input_file, count, property_list, root_node_name, reset_name):
     '''Modifies .sva file. Adds property list and assert statements to the .sva file'''
     with open(input_file, 'a') as sva_file:
-        sva_file.write('\n// ***** Writing False condition properties for selected node : ' + root_node_name + '*****')
+        sva_file.write('\n// ***** Writing False condition properties for selected node : ' + root_node_name + ' *****')
         sva_file.write('\n'*2)
         sva_file.write('\n \n // When asserted, these properties will FAIL')
         for i in range(count):
             prop_buff = property_list[i]
             sva_file.write('\n')
             sva_file.write('property f_Prop_'+ root_node_name + '_' + str(i) + '; \n')
-            sva_file.write('\t@(posedge clk) ('+ prop_buff + ');')
+            sva_file.write('\t@(posedge clk) disable iff (' + reset_name + ') ('+ prop_buff + ');')
             sva_file.write('\n')
             sva_file.write('endproperty \n')
             sva_file.write('\n')
+            sva_file.write('// Asserting & Cover Statements \n\n')
             sva_file.write('assert_f_Prop_'  + root_node_name + '_' + str(i) + ': assert property (f_Prop_' + root_node_name + '_' + str(i) +');')
-            sva_file.write('\n') 
-            sva_file.write('cover_f_prop_'  + root_node_name + '_' + str(i) + ': cover property (f_Prop_' + root_node_name + '_' + str(i)+');')
             sva_file.write('\n')
+            #sva_file.write('// Covering Property\n\n')
+            sva_file.write('cover_f_prop_'  + root_node_name + '_' + str(i) + ': cover property (f_Prop_' + root_node_name + '_' + str(i)+');')
+            sva_file.write('\n'*2)
 
         sva_file.write('\n'*2)  
         sva_file.write('\n // Add additional Properties here : \n')     
@@ -142,4 +148,3 @@ def endmodule(input_file):
 def sva_module_info_extractor(input_file):
     '''Takes RTL file as input and writes module info. into SVA file'''
     file_object = open(input_file, 'r')
-    
