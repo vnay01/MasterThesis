@@ -7,6 +7,11 @@
 # License: Apache 2.0
 # Contributor: ryosuke fukatani
 # -------------------------------------------------------------------------------
+
+
+#! /proj/cot/conda/envs/cot_py0/bin/python
+#! /proj/cot/conda/envs/iverilog0/bin/iverilog
+
 from __future__ import absolute_import
 from __future__ import print_function
 import sys
@@ -53,6 +58,10 @@ class DFNode(object):
     def tostr(self): pass
 
     def tocode(self, dest='dest'): return self.__repr__()
+
+    def tocode_mod(self, dest='dest'):      # Added by vinay
+        print('DFNode : to_code_mod ', self)
+        return self.__repr__()
 
     def tolabel(self): return self.__repr__()
 
@@ -142,12 +151,16 @@ class DFConstant(DFNode):
         ret = '(Constant ' + str(self.value) + ')'
         return ret
 
+    def tostr_mod(self):                            # Added by vinay
+        ret = '(Constant ' + str(self.value) + ')'
+        return ret    
+
     def children(self):
         nodelist = []
         return tuple(nodelist)
 
     def eval(self):
-        return None
+        return (self)               ## Changed fron None to self : esnivin / vnay01
 
     def __eq__(self, other):
         if type(self) != type(other):
@@ -164,15 +177,20 @@ class DFIntConst(DFConstant):
 
     ### function added by vnay01
     def tostr_mod(self):
-        ret = '(IntConst ' + str(self.value) + ')'
-        return ret
-    def tocode_mod(self,dest):
-        pass    
-    
+        ret = '( ' + str(self.value) + ')'
+        return ret   
+
     def tostr(self):
         ret = '(IntConst ' + str(self.value) + ')'
         return ret
 
+    '''
+    # This causes issues while mapping constant values to root node!
+    
+    def tocode_mod(self,dest):
+        pass 
+    '''
+      
     def eval(self):
         targ = self.value.replace('_', '')
         signed = False
@@ -192,6 +210,29 @@ class DFIntConst(DFConstant):
         if match is not None:
             return int(match.group(1), 2)
         return int(targ, 10)
+    '''
+
+    ### Added by vnay01 ( ESNIVIN ) 
+    def eval(self):
+        targ = self.value.replace('_', '')
+        signed = False
+        match = re.search(r'[Ss](.+)', targ)
+        if match is not None:
+            signed = True
+        match = re.search(r'[Hh](.+)', targ)
+        if match is not None:
+            return str(match.group(1))
+        match = re.search(r'[Dd](.+)', targ)
+        if match is not None:
+            return str(match.group(1))
+        match = re.search(r'[Oo](.+)', targ)
+        if match is not None:
+            return str(match.group(1))
+        match = re.search(r'[Bb](.+)', targ)
+        if match is not None:
+            return str(match.group(1))
+        return str(targ)
+    '''
 
     def width(self):
         targ = self.value.replace('_', '')
@@ -520,7 +561,7 @@ class DFBranch(DFNotTerminal):
         if self.condnode is not None:
             ret += self.condnode.tostr_mod()          
         if self.truenode is not None:
-            ret += ' True:' + self.truenode.tostr_mod()            
+            ret += self.truenode.tostr_mod()            
         print('Printing after truenode: ', ret)
         if self.falsenode is not None:
             ret += ' False:' + self.falsenode.tostr_mod()            
@@ -626,7 +667,7 @@ class DFBranch(DFNotTerminal):
             elif always == 'clockedge':
                 ret += dest + ' <= ' + self.truenode.tocode_mod(dest)
             elif always == 'combination':
-                ret += ' |->  (' + dest + ' == ' + self.truenode.tocode_mod(dest) + ' )'       ### (condition 1) 
+                ret += ' |->  (' + dest + ' == ' + str(self.truenode.tocode_mod(dest)) + ' )'       ### (condition 1) 
         ret += '\n'
         ### Writing a new property for False node    
         if self.falsenode is not None:          
@@ -635,7 +676,7 @@ class DFBranch(DFNotTerminal):
             elif always == 'clockedge':
                 ret += dest + ' <= ' + self.falsenode.tocode_mod(dest) + ';\n'
             elif always == 'combination':
-                ret += dest + ' == ' + self.falsenode.tocode_mod(dest) + ';\n'
+                ret += dest + ' == ' + str(self.falsenode.tocode_mod(dest)) + ';\n'
                 consequent = ret
             ret += '\n'
         
