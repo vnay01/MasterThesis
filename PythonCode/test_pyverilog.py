@@ -55,8 +55,8 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "usb_test.v"
-    top_module = 'usb_test'
+    rtl_file_name = "usbf_top.v"
+    top_module = 'usbf_top'
 
     ##### reset type info #####
     '''
@@ -75,7 +75,7 @@ def main():
     print('\n RESET Name: ',reset_name)
     
     #### Pass the index of desired root node(s):
-    root_node_list = [10] 
+    root_node_list = [7] 
 
     """ Work starts here"""
     ####### Working Test code ########
@@ -112,7 +112,8 @@ def main():
 
     """ RTL file details & node selection"""
 
-    rtl_file_path = working_dir + 'VerilogFiles/'
+    rtl_file_path = working_dir + 'VerilogFiles/usb/trunk/rtl/verilog/'
+    #/home/vnay01/Desktop/MasterThesis/VerilogFiles/usb/trunk/rtl/verilog/usbf_top.v
 
     file_path = rtl_file_path + rtl_file_name
     translated_file_path = rtl_file_path + top_module +'_translated.v'

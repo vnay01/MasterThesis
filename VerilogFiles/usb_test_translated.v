@@ -120,12 +120,39 @@ always@(posedge clk)
         if(!reset)
         shift_reg <= {5{{1'b0},{1'b1}}};
         else
-        shift_reg[9:1] <= shift_reg[8:0] 
+        shift_reg[9:1] <= shift_reg[8:0]; 
     end
 
 initial begin
     $display("Done Compilation...");
     $display(shift_reg);
 end
+endmodule
+
+
+// Testbench
+
+module tb();
+
+reg tb_tx_send_data;
+reg tb_send_data;
+reg tb_tx_ready;
+reg tb_tx_valid;
+reg [9:0] tb_buff;
+reg tb_a;
+reg tb_b;
+reg [1:0] tb_sum;
+
+
+v_usb_test usb_test (.clk(tb_clk), 
+                     .reset(tb_reset), 
+                     .send_data(tb_send_data), 
+                     .tx_ready(tb_tx_ready), 
+                     .tx_valid(tb_tx_valid), 
+                     .buff(tb_buff), 
+                     .a(tb_a), 
+                     .b(tb_b), 
+                     .sum(tb_sum));
+
 endmodule
 
