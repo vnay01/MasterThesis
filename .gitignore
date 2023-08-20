@@ -16,18 +16,26 @@
 
 /shelf/
 /workspace.xml
-PythonCode/__pycache__/
+*__pycache__*
 build/
 .idea/
 /.pytest_cache/
 /.vscode/
-/.sva
-/.out
-/.dot
-/.txt
+
+*.sva
+*.out
+*.log
+*.dot
+*.txt
+*.svg
+*.png
+
 /Cookies
 /Cookies-journal
 /languagepacks.json
 /machineid
 /Network Persistent State
 /TransportSecurity
+/temp
+*.DS_Store
+*.github/
