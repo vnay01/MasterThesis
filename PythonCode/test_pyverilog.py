@@ -55,8 +55,8 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "state_machine.v"
-    top_module = 'state_machine'
+    rtl_file_name = "controller.v"
+    top_module = 'controller'
 
     ##### reset type info #####
     '''
@@ -75,7 +75,7 @@ def main():
     print('\n RESET Name: ',reset_name)
     
     #### Pass the index of desired root node(s):
-    root_node_list = [7] 
+    root_node_list = [11,12,18,30] 
 
     """ Work starts here"""
     ####### Working Test code ########
@@ -112,12 +112,14 @@ def main():
 
     """ RTL file details & node selection"""
 
-    rtl_file_path = working_dir + 'VerilogFiles/fpga-median/trunk/rtl/'
+    rtl_file_path = working_dir + 'VerilogFiles/'                                        # path to directory of verilog file
     #/home/vnay01/Desktop/MasterThesis/VerilogFiles/usb/trunk/rtl/verilog/usbf_top.v
     #/home/vnay01/Desktop/MasterThesis/VerilogFiles/fpga-median/trunk/rtl/state_machine.v
 
     file_path = rtl_file_path + rtl_file_name
     translated_file_path = rtl_file_path + top_module +'_translated.v'
+    
+    # Inputs 
     input_file = file_path
     output_file = translated_file_path
 
@@ -134,26 +136,31 @@ def main():
     ## Add bind information
     bind_adder(file_path, property_file_path)
 
+    # Extract top module info
     module_info_extractor(file_path, property_file_path )    
     
-    
-    data_flow = VerilogDataflowAnalyzer(output_file,top_module)         ## Create a dataflow object.
+    ## Create a dataflow object
+    data_flow = VerilogDataflowAnalyzer(output_file,top_module)        
 #    print(data_flow)                                                   ## Expecting an object of class VerilogDataflowAnalyzer()
     
     ## Using generate() to get an object of type  'VerilogDataflowAnalyzer'
     data_flow.generate()
-
-    directives = data_flow.get_directives()         ## Checks for directives ( i.e. #define , `include etc. )
     
-    terms = data_flow.getTerms()                    ## This returns a dictionary of all terms in RTL
+    ## Checks for directives ( i.e. #define , `include etc. )
+    directives = data_flow.get_directives()         
+    
+    ## This returns a dictionary of all terms in RTL
+    terms = data_flow.getTerms()                    
+
     # checker code to determine the type of nodes
     print('\nTerm:')
     for tk, tv in sorted(terms.items(), key=lambda x: str(x[0])):
         print(tv.tostr())
 
        
+    ## Returns a dict_key type object. This can be used to select root nodes of dataflow tree
+    terms_keys = terms.keys()                       
 
-    terms_keys = terms.keys()                       ## Returns a dict_key type object. This can be used to select root nodes of dataflow tree
     # Since dict_key is non-subscriptable, we convert it into subscriptable type - either a list or tuple
     terms_keys_list=list(terms_keys)
 
