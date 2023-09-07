@@ -39,3 +39,5 @@ build/
 /temp
 *.DS_Store
 *.github/
+*translated*
+/Images_presentation

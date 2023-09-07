@@ -55,8 +55,8 @@ def main():
 
     print('Starting Flow at...', timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "usbf_top.v"
-    top_module = 'usbf_top'
+    rtl_file_name = "state_machine.v"
+    top_module = 'state_machine'
 
     ##### reset type info #####
     '''
@@ -112,8 +112,9 @@ def main():
 
     """ RTL file details & node selection"""
 
-    rtl_file_path = working_dir + 'VerilogFiles/usb/trunk/rtl/verilog/'
+    rtl_file_path = working_dir + 'VerilogFiles/fpga-median/trunk/rtl/'
     #/home/vnay01/Desktop/MasterThesis/VerilogFiles/usb/trunk/rtl/verilog/usbf_top.v
+    #/home/vnay01/Desktop/MasterThesis/VerilogFiles/fpga-median/trunk/rtl/state_machine.v
 
     file_path = rtl_file_path + rtl_file_name
     translated_file_path = rtl_file_path + top_module +'_translated.v'
