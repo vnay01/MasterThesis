@@ -22,7 +22,7 @@ def bind_adder(input_file, output_file):
         file.write('\n// This file is a product of Master Thesis done by Vinay Singh (ESNIVIN) at Ericcson \n')
         file.write('\n/////////////////////////////////////////////////\n')
         file.write('/*')
-        file.write('Author : ESNIVIN \n')  
+        file.write('Author : ESNIVIN :: Vinay Singh \n')  
         file.write('Property File : ' + ' ' + module_name)
         file.write('\nFile Created at : ')
         file.write(timestr)
