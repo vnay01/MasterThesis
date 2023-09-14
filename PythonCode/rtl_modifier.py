@@ -9,7 +9,9 @@ def replace_assignment_operator(input_file, output_file):
 
     lines = rtl_code.split('\n')
     for line in lines:
-        if 'always@' in line:
+        if 'assign' in line:
+            always_block = False
+        elif 'always@' in line:
             always_block = True
         elif line.startswith('end'):
             always_block = False
