@@ -1,0 +1,469 @@
+// DO NOT REMOVE //
+// This file is a product of Master Thesis done by Vinay Singh (ESNIVIN) at Ericcson 
+
+/////////////////////////////////////////////////
+/*Author : ESNIVIN 
+Property File :  controller
+File Created at : 2023/09/07- 21 hr-30 m.-23 s
+*/
+
+//////////////////////////////////////////////////
+bind controller v_controller i_controller ( .* );
+
+
+module v_controller(  
+                     input clk,
+                     input reset,
+                     input START,      
+                     input MEM_READ,   
+                     output reg BUSY,
+                     output reg DONE,
+                     output reg input_matrix_ram_en,
+                     output reg input_matrix_ram_read_en,
+                     output reg [9:0] input_matrix_ram_address,
+                     output reg filter_matrix_rom_en,
+                     output reg filter_matrix_rom_read_en,
+                     output reg filter_matrix_rom_address,
+                     output reg [4:0] data_path_signal,          // concatnation of signals which control different sections of datapath
+                     output reg [1:0] fifo_command                          
+    );
+
+// Setting Port direction //
+input   
+                     input clk;
+input 
+                     input reset;
+input 
+                     input START;
+input       
+                     input MEM_READ;
+input    
+                     input reg BUSY;
+input 
+                     input reg DONE;
+input 
+                     input reg input_matrix_ram_en;
+input 
+                     input reg input_matrix_ram_read_en;
+input 
+                     input reg [9:0] input_matrix_ram_address;
+input 
+                     input reg filter_matrix_rom_en;
+input 
+                     input reg filter_matrix_rom_read_en;
+input 
+                     input reg filter_matrix_rom_address;
+input 
+                     input reg [4:0] data_path_signal;
+input           // concatnation of signals which control different sections of datapath
+                     input reg [1:0] fifo_command                          
+    ;
+
+
+ /* // Add your ports here, for eg internal state registers and typedefs 
+
+
+
+
+
+
+
+
+
+
+*/
+
+// ***** True property list for selected node : count *****
+
+
+property t_Prop_count_0; 
+	@(posedge clk) disable iff (!reset) (((!controller.reset) )|->  (controller.count == {{1'b0},{1'b0},{1'b0},{1'b0},{1'b0},{1'b0},{1'b0},{1'b0},{1'b0},{1'b0}} ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_count_0: assert property (t_Prop_count_0);
+cover_t_prop_count_0: cover property (t_Prop_count_0);
+
+
+
+
+
+// ***** Writing False condition properties for selected node : count *****
+
+
+ 
+ // When asserted, these properties will FAIL
+property f_Prop_count_0; 
+	@(posedge clk) disable iff (!reset) (((!controller.reset) )|-> (controller.count == controller.count_next ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_count_0: assert property (f_Prop_count_0);
+cover_f_prop_count_0: cover property (f_Prop_count_0);
+
+
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : state_counter *****
+
+
+property t_Prop_state_counter_0; 
+	@(posedge clk) disable iff (!reset) (((!controller.reset) )|->  (controller.state_counter == {{1'b0},{1'b0},{1'b0},{1'b0},{1'b0},{1'b0},{1'b0},{1'b0},{1'b0},{1'b0}} ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_state_counter_0: assert property (t_Prop_state_counter_0);
+cover_t_prop_state_counter_0: cover property (t_Prop_state_counter_0);
+
+
+
+
+
+// ***** Writing False condition properties for selected node : state_counter *****
+
+
+ 
+ // When asserted, these properties will FAIL
+property f_Prop_state_counter_0; 
+	@(posedge clk) disable iff (!reset) (((!controller.reset) )|-> (controller.state_counter == controller.state_counter_next ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_state_counter_0: assert property (f_Prop_state_counter_0);
+cover_f_prop_state_counter_0: cover property (f_Prop_state_counter_0);
+
+
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : next_state *****
+
+
+property t_Prop_next_state_0; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.INIT) ) && (controller.START )|->  (controller.next_state == controller.LOAD ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_0: assert property (t_Prop_next_state_0);
+cover_t_prop_next_state_0: cover property (t_Prop_next_state_0);
+
+
+
+property t_Prop_next_state_1; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|->  (controller.next_state == controller.MULT ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_1: assert property (t_Prop_next_state_1);
+cover_t_prop_next_state_1: cover property (t_Prop_next_state_1);
+
+
+
+property t_Prop_next_state_2; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.MULT) ) && ((controller.count==15) )|->  (controller.next_state == controller.L1_ADD ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_2: assert property (t_Prop_next_state_2);
+cover_t_prop_next_state_2: cover property (t_Prop_next_state_2);
+
+
+
+property t_Prop_next_state_3; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L2_ADD ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_3: assert property (t_Prop_next_state_3);
+cover_t_prop_next_state_3: cover property (t_Prop_next_state_3);
+
+
+
+property t_Prop_next_state_4; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L3_ADD ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_4: assert property (t_Prop_next_state_4);
+cover_t_prop_next_state_4: cover property (t_Prop_next_state_4);
+
+
+
+property t_Prop_next_state_5; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.L4_ADD ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_5: assert property (t_Prop_next_state_5);
+cover_t_prop_next_state_5: cover property (t_Prop_next_state_5);
+
+
+
+property t_Prop_next_state_6; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) )|->  (controller.next_state == controller.MEM_STORE ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_6: assert property (t_Prop_next_state_6);
+cover_t_prop_next_state_6: cover property (t_Prop_next_state_6);
+
+
+
+property t_Prop_next_state_7; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|->  (controller.next_state == controller.INIT ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_7: assert property (t_Prop_next_state_7);
+cover_t_prop_next_state_7: cover property (t_Prop_next_state_7);
+
+
+
+property t_Prop_next_state_8; 
+	@(posedge clk) disable iff (!reset) ((1 )|->  (controller.next_state == controller.current_state ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_8: assert property (t_Prop_next_state_8);
+cover_t_prop_next_state_8: cover property (t_Prop_next_state_8);
+
+
+
+
+
+// ***** Writing False condition properties for selected node : next_state *****
+
+
+ 
+ // When asserted, these properties will FAIL
+property f_Prop_next_state_0; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.INIT) ) && (controller.START )|-> (controller.next_state == controller.INIT ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_0: assert property (f_Prop_next_state_0);
+cover_f_prop_next_state_0: cover property (f_Prop_next_state_0);
+
+
+property f_Prop_next_state_1; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.LOAD) ) && ((controller.count==10) )|-> ( ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_1: assert property (f_Prop_next_state_1);
+cover_f_prop_next_state_1: cover property (f_Prop_next_state_1);
+
+
+property f_Prop_next_state_2; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.MULT) ) && ((controller.count==15) )|-> ( ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_2: assert property (f_Prop_next_state_2);
+cover_f_prop_next_state_2: cover property (f_Prop_next_state_2);
+
+
+property f_Prop_next_state_3; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.L1_ADD) ) && ((controller.count==7) )|-> ( ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_3: assert property (f_Prop_next_state_3);
+cover_f_prop_next_state_3: cover property (f_Prop_next_state_3);
+
+
+property f_Prop_next_state_4; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.L2_ADD) ) && ((controller.count==7) )|-> ( ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_4: assert property (f_Prop_next_state_4);
+cover_f_prop_next_state_4: cover property (f_Prop_next_state_4);
+
+
+property f_Prop_next_state_5; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.L3_ADD) ) && ((controller.count==7) )|-> ( ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_5: assert property (f_Prop_next_state_5);
+cover_f_prop_next_state_5: cover property (f_Prop_next_state_5);
+
+
+property f_Prop_next_state_6; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.L4_ADD) ) && ((controller.count==7) )|-> ( ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_6: assert property (f_Prop_next_state_6);
+cover_f_prop_next_state_6: cover property (f_Prop_next_state_6);
+
+
+property f_Prop_next_state_7; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.MEM_STORE) ) && ((controller.state_counter==256) )|-> (((controller.count==10) ) && |->  (controller.next_state == controller.LOAD ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_7: assert property (f_Prop_next_state_7);
+cover_f_prop_next_state_7: cover property (f_Prop_next_state_7);
+
+
+property f_Prop_next_state_8; 
+	@(posedge clk) disable iff (!reset) ((1 )|-> ( ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_8: assert property (f_Prop_next_state_8);
+cover_f_prop_next_state_8: cover property (f_Prop_next_state_8);
+
+
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : data_path_signal *****
+
+
+property t_Prop_data_path_signal_0; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.INIT) )|->  (controller.data_path_signal == 5'b00000 ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_data_path_signal_0: assert property (t_Prop_data_path_signal_0);
+cover_t_prop_data_path_signal_0: cover property (t_Prop_data_path_signal_0);
+
+
+
+property t_Prop_data_path_signal_1; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.MULT) )|->  (controller.data_path_signal == 5'b10000 ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_data_path_signal_1: assert property (t_Prop_data_path_signal_1);
+cover_t_prop_data_path_signal_1: cover property (t_Prop_data_path_signal_1);
+
+
+
+property t_Prop_data_path_signal_2; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.L2_ADD) )|->  (controller.data_path_signal == 5'b00100 ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_data_path_signal_2: assert property (t_Prop_data_path_signal_2);
+cover_t_prop_data_path_signal_2: cover property (t_Prop_data_path_signal_2);
+
+
+
+property t_Prop_data_path_signal_3; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.L4_ADD) )|->  (controller.data_path_signal == 5'b00001 ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_data_path_signal_3: assert property (t_Prop_data_path_signal_3);
+cover_t_prop_data_path_signal_3: cover property (t_Prop_data_path_signal_3);
+
+
+
+property t_Prop_data_path_signal_4; 
+	@(posedge clk) disable iff (!reset) ((1 )|->  (controller.data_path_signal == 5'b00000 ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_data_path_signal_4: assert property (t_Prop_data_path_signal_4);
+cover_t_prop_data_path_signal_4: cover property (t_Prop_data_path_signal_4);
+
+
+
+
+
+// ***** Writing False condition properties for selected node : data_path_signal *****
+
+
+ 
+ // When asserted, these properties will FAIL
+property f_Prop_data_path_signal_0; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.INIT) )|-> (((controller.current_state==controller.LOAD) ) && |->  (controller.data_path_signal == 5'b00000 ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_data_path_signal_0: assert property (f_Prop_data_path_signal_0);
+cover_f_prop_data_path_signal_0: cover property (f_Prop_data_path_signal_0);
+
+
+property f_Prop_data_path_signal_1; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.MULT) )|-> (((controller.current_state==controller.L1_ADD) ) && |->  (controller.data_path_signal == 5'b01000 ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_data_path_signal_1: assert property (f_Prop_data_path_signal_1);
+cover_f_prop_data_path_signal_1: cover property (f_Prop_data_path_signal_1);
+
+
+property f_Prop_data_path_signal_2; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.L2_ADD) )|-> (((controller.current_state==controller.L3_ADD) ) && |->  (controller.data_path_signal == 5'b00010 ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_data_path_signal_2: assert property (f_Prop_data_path_signal_2);
+cover_f_prop_data_path_signal_2: cover property (f_Prop_data_path_signal_2);
+
+
+property f_Prop_data_path_signal_3; 
+	@(posedge clk) disable iff (!reset) (((controller.current_state==controller.L4_ADD) )|-> (((controller.current_state==controller.MEM_STORE) ) && |->  (controller.data_path_signal == 5'b00000 ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_data_path_signal_3: assert property (f_Prop_data_path_signal_3);
+cover_f_prop_data_path_signal_3: cover property (f_Prop_data_path_signal_3);
+
+
+property f_Prop_data_path_signal_4; 
+	@(posedge clk) disable iff (!reset) ((1 )|-> (controller.data_path_signal == 5'b00000 ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_data_path_signal_4: assert property (f_Prop_data_path_signal_4);
+cover_f_prop_data_path_signal_4: cover property (f_Prop_data_path_signal_4);
+
+
+
+
+ // Add additional Properties here : 
+
+
+endmodule

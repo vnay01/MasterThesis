@@ -1,0 +1,588 @@
+// DO NOT REMOVE //
+// This file is a product of Master Thesis done by Vinay Singh (ESNIVIN) at Ericcson 
+
+/////////////////////////////////////////////////
+/*Author : ESNIVIN :: Vinay Singh 
+Property File :  usbf_idma
+File Created at : 2023/09/14- 21 hr-31 m.-24 s
+*/
+
+//////////////////////////////////////////////////
+bind usbf_idma v_usbf_idma i_usbf_idma ( .* );
+
+
+module v_usbf_idma(	clk, rst,
+
+		// Packet Disassembler/Assembler interface
+		rx_data_st, rx_data_valid, rx_data_done, 
+		send_data, tx_data_st, rd_next,
+
+		// Protocol Engine
+		rx_dma_en, tx_dma_en,
+		abort, idma_done,
+		buf_size, dma_en,
+		send_zero_length,
+
+		// Register File Manager Interface
+		adr, size, sizu_c,
+
+		// Memory Arb interface
+		madr, mdout, mdin, mwe, mreq, mack
+		);
+
+// Setting Port direction //
+input 	clk;
+input  rst;
+input 
+
+		// Packet Disassembler/Assembler interface
+		rx_data_st;
+input  rx_data_valid;
+input  rx_data_done;
+input  
+		send_data;
+input  tx_data_st;
+input  rd_next;
+input 
+
+		// Protocol Engine
+		rx_dma_en;
+input  tx_dma_en;
+input 
+		abort;
+input  idma_done;
+input 
+		buf_size;
+input  dma_en;
+input 
+		send_zero_length;
+input 
+
+		// Register File Manager Interface
+		adr;
+input  size;
+input  sizu_c;
+input 
+
+		// Memory Arb interface
+		madr;
+input  mdout;
+input  mdin;
+input  mwe;
+input  mreq;
+input  mack
+		;
+
+
+ /* // Add your ports here, for eg internal state registers and typedefs 
+
+
+
+
+
+
+
+
+
+
+*/
+
+// ***** True property list for selected node : send_data_r *****
+
+
+property t_Prop_send_data_r_0; 
+	@(posedge clk) disable iff (!reset) (((!usbf_idma.rst) )|->  (usbf_idma.send_data_r == 1'b0 ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_send_data_r_0: assert property (t_Prop_send_data_r_0);
+cover_t_prop_send_data_r_0: cover property (t_Prop_send_data_r_0);
+
+
+
+property t_Prop_send_data_r_1; 
+	@(posedge clk) disable iff (!reset) (((((usbf_idma.sizd_c==14'h1)&&usbf_idma.rd_next)||usbf_idma.sizd_is_zero_d) )|->  (usbf_idma.send_data_r == 1'b0 ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_send_data_r_1: assert property (t_Prop_send_data_r_1);
+cover_t_prop_send_data_r_1: cover property (t_Prop_send_data_r_1);
+
+
+
+
+
+// ***** Writing False condition properties for selected node : send_data_r *****
+
+
+ 
+ // When asserted, these properties will FAIL
+property f_Prop_send_data_r_0; 
+	@(posedge clk) disable iff (!reset) (((!usbf_idma.rst) )|-> ((usbf_idma.rd_first ) && |->  (usbf_idma.send_data_r == 1'b1 ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_send_data_r_0: assert property (f_Prop_send_data_r_0);
+cover_f_prop_send_data_r_0: cover property (f_Prop_send_data_r_0);
+
+
+property f_Prop_send_data_r_1; 
+	@(posedge clk) disable iff (!reset) (((((usbf_idma.sizd_c==14'h1)&&usbf_idma.rd_next)||usbf_idma.sizd_is_zero_d) )|-> ( ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_send_data_r_1: assert property (f_Prop_send_data_r_1);
+cover_f_prop_send_data_r_1: cover property (f_Prop_send_data_r_1);
+
+
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : tx_data_st *****
+
+
+property t_Prop_tx_data_st_0; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.adrb_next[2:0]==3'h0) )|->  (usbf_idma.tx_data_st == usbf_idma.rd_buf0[07:00] ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_tx_data_st_0: assert property (t_Prop_tx_data_st_0);
+cover_t_prop_tx_data_st_0: cover property (t_Prop_tx_data_st_0);
+
+
+
+property t_Prop_tx_data_st_1; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.adrb_next[2:0]==3'h2) )|->  (usbf_idma.tx_data_st == usbf_idma.rd_buf0[23:16] ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_tx_data_st_1: assert property (t_Prop_tx_data_st_1);
+cover_t_prop_tx_data_st_1: cover property (t_Prop_tx_data_st_1);
+
+
+
+property t_Prop_tx_data_st_2; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.adrb_next[2:0]==3'h4) )|->  (usbf_idma.tx_data_st == usbf_idma.rd_buf1[07:00] ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_tx_data_st_2: assert property (t_Prop_tx_data_st_2);
+cover_t_prop_tx_data_st_2: cover property (t_Prop_tx_data_st_2);
+
+
+
+property t_Prop_tx_data_st_3; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.adrb_next[2:0]==3'h6) )|->  (usbf_idma.tx_data_st == usbf_idma.rd_buf1[23:16] ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_tx_data_st_3: assert property (t_Prop_tx_data_st_3);
+cover_t_prop_tx_data_st_3: cover property (t_Prop_tx_data_st_3);
+
+
+
+
+
+// ***** Writing False condition properties for selected node : tx_data_st *****
+
+
+ 
+ // When asserted, these properties will FAIL
+property f_Prop_tx_data_st_0; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.adrb_next[2:0]==3'h0) )|-> (((usbf_idma.adrb_next[2:0]==3'h1) ) && |->  (usbf_idma.tx_data_st == usbf_idma.rd_buf0[15:08] ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_tx_data_st_0: assert property (f_Prop_tx_data_st_0);
+cover_f_prop_tx_data_st_0: cover property (f_Prop_tx_data_st_0);
+
+
+property f_Prop_tx_data_st_1; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.adrb_next[2:0]==3'h2) )|-> (((usbf_idma.adrb_next[2:0]==3'h3) ) && |->  (usbf_idma.tx_data_st == usbf_idma.rd_buf0[31:24] ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_tx_data_st_1: assert property (f_Prop_tx_data_st_1);
+cover_f_prop_tx_data_st_1: cover property (f_Prop_tx_data_st_1);
+
+
+property f_Prop_tx_data_st_2; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.adrb_next[2:0]==3'h4) )|-> (((usbf_idma.adrb_next[2:0]==3'h5) ) && |->  (usbf_idma.tx_data_st == usbf_idma.rd_buf1[15:08] ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_tx_data_st_2: assert property (f_Prop_tx_data_st_2);
+cover_f_prop_tx_data_st_2: cover property (f_Prop_tx_data_st_2);
+
+
+property f_Prop_tx_data_st_3; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.adrb_next[2:0]==3'h6) )|-> (((usbf_idma.adrb_next[2:0]==3'h7) ) && |->  (usbf_idma.tx_data_st == usbf_idma.rd_buf1[31:24] ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_tx_data_st_3: assert property (f_Prop_tx_data_st_3);
+cover_f_prop_tx_data_st_3: cover property (f_Prop_tx_data_st_3);
+
+
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : sizd_is_zero_d *****
+
+
+
+
+// ***** Writing False condition properties for selected node : sizd_is_zero_d *****
+
+
+ 
+ // When asserted, these properties will FAIL
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : rx_data_done_r *****
+
+
+
+
+// ***** Writing False condition properties for selected node : rx_data_done_r *****
+
+
+ 
+ // When asserted, these properties will FAIL
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : sizu_c *****
+
+
+property t_Prop_sizu_c_0; 
+	@(posedge clk) disable iff (!reset) (((!usbf_idma.rst) )|->  (usbf_idma.sizu_c == 11'h0 ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_sizu_c_0: assert property (t_Prop_sizu_c_0);
+cover_t_prop_sizu_c_0: cover property (t_Prop_sizu_c_0);
+
+
+
+property t_Prop_sizu_c_1; 
+	@(posedge clk) disable iff (!reset) ((usbf_idma.siz_inc )|->  (usbf_idma.sizu_c == (usbf_idma.sizu_c+11'h1) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_sizu_c_1: assert property (t_Prop_sizu_c_1);
+cover_t_prop_sizu_c_1: cover property (t_Prop_sizu_c_1);
+
+
+
+
+
+// ***** Writing False condition properties for selected node : sizu_c *****
+
+
+ 
+ // When asserted, these properties will FAIL
+property f_Prop_sizu_c_0; 
+	@(posedge clk) disable iff (!reset) (((!usbf_idma.rst) )|-> ((usbf_idma.rx_dma_en_r ) && |->  (usbf_idma.sizu_c == 11'h0 ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_sizu_c_0: assert property (f_Prop_sizu_c_0);
+cover_f_prop_sizu_c_0: cover property (f_Prop_sizu_c_0);
+
+
+property f_Prop_sizu_c_1; 
+	@(posedge clk) disable iff (!reset) ((usbf_idma.siz_inc )|-> ( ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_sizu_c_1: assert property (f_Prop_sizu_c_1);
+cover_f_prop_sizu_c_1: cover property (f_Prop_sizu_c_1);
+
+
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : madr *****
+
+
+
+
+// ***** Writing False condition properties for selected node : madr *****
+
+
+ 
+ // When asserted, these properties will FAIL
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : mdout *****
+
+
+
+
+// ***** Writing False condition properties for selected node : mdout *****
+
+
+ 
+ // When asserted, these properties will FAIL
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : mwe *****
+
+
+
+
+// ***** Writing False condition properties for selected node : mwe *****
+
+
+ 
+ // When asserted, these properties will FAIL
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : mreq *****
+
+
+
+
+// ***** Writing False condition properties for selected node : mreq *****
+
+
+ 
+ // When asserted, these properties will FAIL
+
+
+ // Add additional Properties here : 
+
+// ***** True property list for selected node : next_state *****
+
+
+property t_Prop_next_state_0; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.IDLE) ) && (((usbf_idma.tx_dma_en_r&&(!usbf_idma.abort))&&(!usbf_idma.send_zero_length_r)) )|->  (usbf_idma.next_state == usbf_idma.MEM_RD1 ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_0: assert property (t_Prop_next_state_0);
+cover_t_prop_next_state_0: cover property (t_Prop_next_state_0);
+
+
+
+property t_Prop_next_state_1; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.WAIT_MRD) ) && (usbf_idma.abort )|->  (usbf_idma.next_state == usbf_idma.IDLE ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_1: assert property (t_Prop_next_state_1);
+cover_t_prop_next_state_1: cover property (t_Prop_next_state_1);
+
+
+
+property t_Prop_next_state_2; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.MEM_WR) ) && (usbf_idma.abort )|->  (usbf_idma.next_state == usbf_idma.IDLE ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_2: assert property (t_Prop_next_state_2);
+cover_t_prop_next_state_2: cover property (t_Prop_next_state_2);
+
+
+
+property t_Prop_next_state_3; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.MEM_WR1) ) && (usbf_idma.abort )|->  (usbf_idma.next_state == usbf_idma.IDLE ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_3: assert property (t_Prop_next_state_3);
+cover_t_prop_next_state_3: cover property (t_Prop_next_state_3);
+
+
+
+property t_Prop_next_state_4; 
+	@(posedge clk) disable iff (!reset) ((usbf_idma.wr_done )|->  (usbf_idma.next_state == usbf_idma.IDLE ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_4: assert property (t_Prop_next_state_4);
+cover_t_prop_next_state_4: cover property (t_Prop_next_state_4);
+
+
+
+property t_Prop_next_state_5; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.MEM_WR2) ) && (usbf_idma.mack_r )|->  (usbf_idma.next_state == usbf_idma.IDLE ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_5: assert property (t_Prop_next_state_5);
+cover_t_prop_next_state_5: cover property (t_Prop_next_state_5);
+
+
+
+property t_Prop_next_state_6; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.MEM_RD1) ) && (usbf_idma.abort )|->  (usbf_idma.next_state == usbf_idma.IDLE ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_6: assert property (t_Prop_next_state_6);
+cover_t_prop_next_state_6: cover property (t_Prop_next_state_6);
+
+
+
+property t_Prop_next_state_7; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.MEM_RD2) ) && (usbf_idma.abort )|->  (usbf_idma.next_state == usbf_idma.IDLE ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_7: assert property (t_Prop_next_state_7);
+cover_t_prop_next_state_7: cover property (t_Prop_next_state_7);
+
+
+
+property t_Prop_next_state_8; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.MEM_RD3) ) && ((usbf_idma.sizd_is_zero||usbf_idma.abort) )|->  (usbf_idma.next_state == usbf_idma.IDLE ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_t_Prop_next_state_8: assert property (t_Prop_next_state_8);
+cover_t_prop_next_state_8: cover property (t_Prop_next_state_8);
+
+
+
+
+
+// ***** Writing False condition properties for selected node : next_state *****
+
+
+ 
+ // When asserted, these properties will FAIL
+property f_Prop_next_state_0; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.IDLE) ) && (((usbf_idma.tx_dma_en_r&&(!usbf_idma.abort))&&(!usbf_idma.send_zero_length_r)) )|-> (((usbf_idma.rx_dma_en_r&&(!usbf_idma.abort)) ) && |->  (usbf_idma.next_state == usbf_idma.WAIT_MRD ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_0: assert property (f_Prop_next_state_0);
+cover_f_prop_next_state_0: cover property (f_Prop_next_state_0);
+
+
+property f_Prop_next_state_1; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.WAIT_MRD) ) && (usbf_idma.abort )|-> ((usbf_idma.mack_r ) && |->  (usbf_idma.next_state == usbf_idma.MEM_WR ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_1: assert property (f_Prop_next_state_1);
+cover_f_prop_next_state_1: cover property (f_Prop_next_state_1);
+
+
+property f_Prop_next_state_2; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.MEM_WR) ) && (usbf_idma.abort )|-> ((usbf_idma.rx_data_done_r2 ) && |->  (usbf_idma.next_state == usbf_idma.MEM_WR1 ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_2: assert property (f_Prop_next_state_2);
+cover_f_prop_next_state_2: cover property (f_Prop_next_state_2);
+
+
+property f_Prop_next_state_3; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.MEM_WR1) ) && (usbf_idma.abort )|-> ((usbf_idma.wr_last ) && |->  (usbf_idma.next_state == usbf_idma.MEM_WR2 ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_3: assert property (f_Prop_next_state_3);
+cover_f_prop_next_state_3: cover property (f_Prop_next_state_3);
+
+
+property f_Prop_next_state_4; 
+	@(posedge clk) disable iff (!reset) ((usbf_idma.wr_done )|-> (usbf_idma.next_state == usbf_idma.state ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_4: assert property (f_Prop_next_state_4);
+cover_f_prop_next_state_4: cover property (f_Prop_next_state_4);
+
+
+property f_Prop_next_state_5; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.MEM_WR2) ) && (usbf_idma.mack_r )|-> (usbf_idma.next_state == usbf_idma.state ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_5: assert property (f_Prop_next_state_5);
+cover_f_prop_next_state_5: cover property (f_Prop_next_state_5);
+
+
+property f_Prop_next_state_6; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.MEM_RD1) ) && (usbf_idma.abort )|-> ((usbf_idma.mack_r ) && |->  (usbf_idma.next_state == usbf_idma.MEM_RD2 ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_6: assert property (f_Prop_next_state_6);
+cover_f_prop_next_state_6: cover property (f_Prop_next_state_6);
+
+
+property f_Prop_next_state_7; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.MEM_RD2) ) && (usbf_idma.abort )|-> ((usbf_idma.mack_r ) && |->  (usbf_idma.next_state == usbf_idma.MEM_RD3 ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_7: assert property (f_Prop_next_state_7);
+cover_f_prop_next_state_7: cover property (f_Prop_next_state_7);
+
+
+property f_Prop_next_state_8; 
+	@(posedge clk) disable iff (!reset) (((usbf_idma.state==usbf_idma.MEM_RD3) ) && ((usbf_idma.sizd_is_zero||usbf_idma.abort) )|-> (((usbf_idma.adrb_is_3&&usbf_idma.rd_next) ) && |->  (usbf_idma.next_state == usbf_idma.MEM_RD2 ) ));
+endproperty 
+
+// Asserting & Cover Statements 
+
+assert_f_Prop_next_state_8: assert property (f_Prop_next_state_8);
+cover_f_prop_next_state_8: cover property (f_Prop_next_state_8);
+
+
+
+
+ // Add additional Properties here : 
+
+
+endmodule

@@ -75,7 +75,7 @@ def main():
     print("\n RESET Name: ", reset_name)
 
     #### Pass the index of desired root node(s):
-    root_node_list = [54]
+    root_node_list = [51,47,32,16,34,11,10,12,9,54]
 
     """ Work starts here"""
     ####### Working Test code ########
