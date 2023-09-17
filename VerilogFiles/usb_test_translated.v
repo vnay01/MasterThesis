@@ -33,26 +33,27 @@ always@(posedge clk)
 
 always@(*)
     begin
-        next_state = current_state;
+        next_state <= current_state;
 
         case(current_state)
-            IDLE: begin tx_valid = 1'b1;
-                  if(send_data) next_state=CRC1;
+            IDLE: begin tx_valid <= 1'b1;
+                  if(send_data) next_state<=CRC1;
             end
 
-            CRC1: begin tx_valid = 1'b1;
-                  if(tx_ready) next_state=CRC2;                  
+            CRC1: begin tx_valid <= 1'b1;
+                  if(tx_ready) next_state<=CRC2;                  
             end
 
-            CRC2: begin tx_valid = 1'b0;
+            CRC2: begin tx_valid <= 1'b0;
                 if(tx_ready)  
-                    next_state=IDLE;
+                    next_state<=IDLE;
                 end
             default: begin
-                tx_valid = 1'b0;
-                next_state=IDLE;
+                tx_valid <= 1'b0;
+                next_state<=IDLE;
                 end 
         endcase
     end
 endmodule
+
 

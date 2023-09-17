@@ -2,16 +2,16 @@
 // This file is a product of Master Thesis done by Vinay Singh (ESNIVIN) at Ericcson 
 
 /////////////////////////////////////////////////
-/*Author : ESNIVIN 
+/*Author : ESNIVIN :: Vinay Singh 
 Property File :  usb_test
-File Created at : 2023/09/07- 21 hr-24 m.-14 s
+File Created at : 2023/09/17- 13 hr-45 m.-28 s
 */
 
 //////////////////////////////////////////////////
 bind usb_test v_usb_test i_usb_test ( .* );
 
 
-module v_usb_test (clk, reset, send_data, tx_ready, tx_valid, buff, a, b, sum);
+module v_usb_test (clk, reset, send_data, tx_ready, tx_valid);
 
 // Setting Port direction //
 input clk;
@@ -19,10 +19,6 @@ input  reset;
 input  send_data;
 input  tx_ready;
 input  tx_valid;
-input  buff;
-input  a;
-input  b;
-input  sum;
 
 
  /* // Add your ports here, for eg internal state registers and typedefs 
@@ -42,7 +38,7 @@ input  sum;
 
 
 property t_Prop_next_state_0; 
-	@(posedge clk) disable iff (!reset) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 ));
+	@(posedge clk) disable iff (reset) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.next_state == usb_test.CRC1 ));
 endproperty 
 
 // Asserting & Cover Statements 
@@ -53,7 +49,7 @@ cover_t_prop_next_state_0: cover property (t_Prop_next_state_0);
 
 
 property t_Prop_next_state_1; 
-	@(posedge clk) disable iff (!reset) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.next_state == usb_test.CRC2 ));
+	@(posedge clk) disable iff (reset) (((usb_test.current_state==usb_test.CRC1) ) && (usb_test.tx_ready )|->  (usb_test.next_state == usb_test.CRC2 ));
 endproperty 
 
 // Asserting & Cover Statements 
@@ -64,7 +60,7 @@ cover_t_prop_next_state_1: cover property (t_Prop_next_state_1);
 
 
 property t_Prop_next_state_2; 
-	@(posedge clk) disable iff (!reset) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|->  (usb_test.next_state == usb_test.CRC1 ));
+	@(posedge clk) disable iff (reset) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|->  (usb_test.next_state == usb_test.IDLE ));
 endproperty 
 
 // Asserting & Cover Statements 
@@ -75,7 +71,7 @@ cover_t_prop_next_state_2: cover property (t_Prop_next_state_2);
 
 
 property t_Prop_next_state_3; 
-	@(posedge clk) disable iff (!reset) (((usb_test.counter==10) )|->  (usb_test.next_state == usb_test.IDLE ));
+	@(posedge clk) disable iff (reset) ((1 )|->  (usb_test.next_state == usb_test.IDLE ));
 endproperty 
 
 // Asserting & Cover Statements 
@@ -93,7 +89,7 @@ cover_t_prop_next_state_3: cover property (t_Prop_next_state_3);
  
  // When asserted, these properties will FAIL
 property f_Prop_next_state_0; 
-	@(posedge clk) disable iff (!reset) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.current_state ));
+	@(posedge clk) disable iff (reset) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.next_state == usb_test.current_state ));
 endproperty 
 
 // Asserting & Cover Statements 
@@ -103,7 +99,7 @@ cover_f_prop_next_state_0: cover property (f_Prop_next_state_0);
 
 
 property f_Prop_next_state_1; 
-	@(posedge clk) disable iff (!reset) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.next_state == usb_test.current_state ));
+	@(posedge clk) disable iff (reset) (((usb_test.current_state==usb_test.CRC1) ) && (usb_test.tx_ready )|-> (usb_test.next_state == usb_test.current_state ));
 endproperty 
 
 // Asserting & Cover Statements 
@@ -113,7 +109,7 @@ cover_f_prop_next_state_1: cover property (f_Prop_next_state_1);
 
 
 property f_Prop_next_state_2; 
-	@(posedge clk) disable iff (!reset) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready ) && ((usb_test.counter<9) )|-> (usb_test.next_state == usb_test.current_state ));
+	@(posedge clk) disable iff (reset) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|-> (usb_test.next_state == usb_test.current_state ));
 endproperty 
 
 // Asserting & Cover Statements 
@@ -123,160 +119,13 @@ cover_f_prop_next_state_2: cover property (f_Prop_next_state_2);
 
 
 property f_Prop_next_state_3; 
-	@(posedge clk) disable iff (!reset) (((usb_test.counter==10) )|-> ( ));
+	@(posedge clk) disable iff (reset) ((1 )|-> (usb_test.next_state == usb_test.current_state ));
 endproperty 
 
 // Asserting & Cover Statements 
 
 assert_f_Prop_next_state_3: assert property (f_Prop_next_state_3);
 cover_f_prop_next_state_3: cover property (f_Prop_next_state_3);
-
-
-
-
- // Add additional Properties here : 
-
-// ***** True property list for selected node : tx_valid *****
-
-
-property t_Prop_tx_valid_0; 
-	@(posedge clk) disable iff (!reset) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|->  (usb_test.tx_valid == 1'b1 ));
-endproperty 
-
-// Asserting & Cover Statements 
-
-assert_t_Prop_tx_valid_0: assert property (t_Prop_tx_valid_0);
-cover_t_prop_tx_valid_0: cover property (t_Prop_tx_valid_0);
-
-
-
-property t_Prop_tx_valid_1; 
-	@(posedge clk) disable iff (!reset) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|->  (usb_test.tx_valid == 1'b1 ));
-endproperty 
-
-// Asserting & Cover Statements 
-
-assert_t_Prop_tx_valid_1: assert property (t_Prop_tx_valid_1);
-cover_t_prop_tx_valid_1: cover property (t_Prop_tx_valid_1);
-
-
-
-property t_Prop_tx_valid_2; 
-	@(posedge clk) disable iff (!reset) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|->  (usb_test.tx_valid == 1'b0 ));
-endproperty 
-
-// Asserting & Cover Statements 
-
-assert_t_Prop_tx_valid_2: assert property (t_Prop_tx_valid_2);
-cover_t_prop_tx_valid_2: cover property (t_Prop_tx_valid_2);
-
-
-
-property t_Prop_tx_valid_3; 
-	@(posedge clk) disable iff (!reset) ((1 )|->  (usb_test.tx_valid == 1'b0 ));
-endproperty 
-
-// Asserting & Cover Statements 
-
-assert_t_Prop_tx_valid_3: assert property (t_Prop_tx_valid_3);
-cover_t_prop_tx_valid_3: cover property (t_Prop_tx_valid_3);
-
-
-
-
-
-// ***** Writing False condition properties for selected node : tx_valid *****
-
-
- 
- // When asserted, these properties will FAIL
-property f_Prop_tx_valid_0; 
-	@(posedge clk) disable iff (!reset) (((usb_test.current_state==usb_test.IDLE) ) && (usb_test.send_data )|-> (usb_test.tx_valid == 1'b1 ));
-endproperty 
-
-// Asserting & Cover Statements 
-
-assert_f_Prop_tx_valid_0: assert property (f_Prop_tx_valid_0);
-cover_f_prop_tx_valid_0: cover property (f_Prop_tx_valid_0);
-
-
-property f_Prop_tx_valid_1; 
-	@(posedge clk) disable iff (!reset) (((usb_test.current_state==usb_test.CRC1) ) && ((!usb_test.tx_ready) )|-> (usb_test.tx_valid == 1'b1 ));
-endproperty 
-
-// Asserting & Cover Statements 
-
-assert_f_Prop_tx_valid_1: assert property (f_Prop_tx_valid_1);
-cover_f_prop_tx_valid_1: cover property (f_Prop_tx_valid_1);
-
-
-property f_Prop_tx_valid_2; 
-	@(posedge clk) disable iff (!reset) (((usb_test.current_state==usb_test.CRC2) ) && (usb_test.tx_ready )|-> (usb_test.tx_valid == 1'b0 ));
-endproperty 
-
-// Asserting & Cover Statements 
-
-assert_f_Prop_tx_valid_2: assert property (f_Prop_tx_valid_2);
-cover_f_prop_tx_valid_2: cover property (f_Prop_tx_valid_2);
-
-
-property f_Prop_tx_valid_3; 
-	@(posedge clk) disable iff (!reset) ((1 )|-> ( ));
-endproperty 
-
-// Asserting & Cover Statements 
-
-assert_f_Prop_tx_valid_3: assert property (f_Prop_tx_valid_3);
-cover_f_prop_tx_valid_3: cover property (f_Prop_tx_valid_3);
-
-
-
-
- // Add additional Properties here : 
-
-// ***** True property list for selected node : buff *****
-
-
-
-
-// ***** Writing False condition properties for selected node : buff *****
-
-
- 
- // When asserted, these properties will FAIL
-
-
- // Add additional Properties here : 
-
-// ***** True property list for selected node : sum *****
-
-
-property t_Prop_sum_0; 
-	@(posedge clk) disable iff (!reset) (((!usb_test.reset) )|->  (usb_test.sum == {{1'b0},{1'b0}} ));
-endproperty 
-
-// Asserting & Cover Statements 
-
-assert_t_Prop_sum_0: assert property (t_Prop_sum_0);
-cover_t_prop_sum_0: cover property (t_Prop_sum_0);
-
-
-
-
-
-// ***** Writing False condition properties for selected node : sum *****
-
-
- 
- // When asserted, these properties will FAIL
-property f_Prop_sum_0; 
-	@(posedge clk) disable iff (!reset) (((!usb_test.reset) )|-> (usb_test.sum == (usb_test.a+usb_test.b) ));
-endproperty 
-
-// Asserting & Cover Statements 
-
-assert_f_Prop_sum_0: assert property (f_Prop_sum_0);
-cover_f_prop_sum_0: cover property (f_Prop_sum_0);
 
 
 
