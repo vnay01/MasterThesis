@@ -65,7 +65,7 @@ def module_info_extractor(input_file, output_file):
         file.write('\n'*10)
         file.write('*/\n')
 
-    return
+    return copied_block
 
 
 def port_direction(input_string):

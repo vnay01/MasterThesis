@@ -56,8 +56,8 @@ def main():
 
     print("Starting Flow at...", timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "usb_test.v"
-    top_module = "usb_test"
+    rtl_file_name = "test.v"
+    top_module = "test"
 
     ##### reset type info #####
     """
@@ -75,7 +75,7 @@ def main():
     print("\n RESET Name: ", reset_name)
 
     #### Pass the index of desired root node(s):
-    root_node_list = [4]
+    root_node_list = [5]
 
     """ Work starts here"""
     ####### Working Test code ########
@@ -133,19 +133,24 @@ def main():
     ## Add bind information
     bind_adder(file_path, property_file_path)
 
-    module_info_extractor(file_path, property_file_path)
+    port_name=module_info_extractor(file_path, property_file_path)
+    start_string='('
+    end_string = ')'
+    start_index = port_name.index(start_string)
+    end_index = port_name.index(end_string)
+    port_name = port_name[start_index+1:end_index]
+    
+    # create a list of port names
+    port_name_list = port_name.split(', ')
+    print("Printing extracted port names " + str(port_name_list))
 
-    data_flow = VerilogDataflowAnalyzer(
-        output_file, top_module
-    )  ## Create a dataflow object.
+    data_flow = VerilogDataflowAnalyzer(output_file, top_module)  ## Create a dataflow object.
     #    print(data_flow)                                                   ## Expecting an object of class VerilogDataflowAnalyzer()
 
     ## Using generate() to get an object of type  'VerilogDataflowAnalyzer'
     data_flow.generate()
 
-    directives = (
-        data_flow.get_directives()
-    )  ## Checks for directives ( i.e. #define , `include etc. )
+    directives = (data_flow.get_directives())  ## Checks for directives ( i.e. #define , `include etc. )
 
     terms = data_flow.getTerms()  ## This returns a dictionary of all terms in RTL
     # checker code to determine the type of nodes
@@ -153,9 +158,7 @@ def main():
     for tk, tv in sorted(terms.items(), key=lambda x: str(x[0])):
         print(tv.tostr())
 
-    terms_keys = (
-        terms.keys()
-    )  ## Returns a dict_key type object. This can be used to select root nodes of dataflow tree
+    terms_keys = (terms.keys())  ## Returns a dict_key type object. This can be used to select root nodes of dataflow tree
     # Since dict_key is non-subscriptable, we convert it into subscriptable type - either a list or tuple
     terms_keys_list = list(terms_keys)
 
@@ -167,9 +170,7 @@ def main():
     """
     # Binding information
     binddict = data_flow.getBinddict()  # returns a dict object
-    binddict_keys = list(
-        binddict.keys()
-    )  # create a list of keys from previous dictionary
+    binddict_keys = list(binddict.keys())  # create a list of keys from previous dictionary
     print("\n These are the nodes for which dataflow trees can be generated : ")
     for i in range(len(binddict_keys)):
         print("\n", [i], "List of Binding keys: ", binddict_keys[i])
@@ -194,19 +195,11 @@ def main():
     ## Looping through list of root_nodes
 
     for j in root_node_list:
-        for i in binddict.get(
-            binddict_keys[j]
-        ):  ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
-            print(
-                i.tostr_mod(), "\n i is printed"
-            )  ## Converts object into string & helps in debugging
-            print(
-                "\n", i.tostr(), "\n ***********\n\n"
-            )  ## Converts object into string & helps in debugging
+        for i in binddict.get(binddict_keys[j]):  ## Use 'keys' for generating properties for cycling through root nodes. This is required to increase Formal Coverage
+            print(i.tostr_mod(), "\n i is printed")  ## Converts object into string & helps in debugging
+            print("\n", i.tostr(), "\n ***********\n\n")  ## Converts object into string & helps in debugging
             print(" Pyverilog function call")
-            print(
-                "\n This is how Pyverilog creates a tree internally \n    ", i._assign()
-            )  # actual. To be removed
+            print("\n This is how Pyverilog creates a tree internally \n    ", i._assign())  # actual. To be removed
             print(" *****modified function call *****")
             a = i._always_combination_mod()  # calling method() on object of Bind class
 
@@ -216,9 +209,7 @@ def main():
 
         line_buff = ""
         line_buff = a[:-1].strip()
-        line_buff = (
-            line_buff.splitlines()
-        )  # This creates a list of all properties but also includes empty items within the list
+        line_buff = (line_buff.splitlines())  # This creates a list of all properties but also includes empty items within the list
         print("\n Printing line_buff \n:", line_buff)
         # We need to remove all empty items from the list
         #    line_buff = [value for value in line_buff if value != '']
@@ -229,8 +220,6 @@ def main():
         #    prop = create_property(line_buff[0])
         #    print('\n XY :: ',prop)
         prop_list = list_pair(line_buff)  # Split property list
-
-        #    print('\n ****  Why am I missing properties ??? ***\n')
         #    print('prop_list \n',prop_list)
         print("\n\n True_condition_property: ")  # Check correctness
         for i in range(len(prop_list[0])):
@@ -248,43 +237,21 @@ def main():
         true_path_list = []
         false_path_list = []
 
-        for i in range(
-            len(prop_list[0])
-        ):  # Use this to control the number of properties generated
+        for i in range(len(prop_list[0])):  # Use this to control the number of properties generated
             true_part = str(prop_list[0][i])
+            print("Printing TRUE PART of branch properties ::  \n" + true_part)
             false_part = str(prop_list[1][i])
             ## search for |-> string
             if "|->" in true_part:  # Normal Operation
                 start_index = true_part.index("|->")
-                antecedant_part = (
-                    true_part[:start_index]
-                    .strip(" &&")
-                    .strip("&&")
-                    .strip("&& ")
-                    .strip(" && ")
-                    .strip()
-                )
-                true_part = (
-                    antecedant_part
-                    + true_part[start_index:]
-                    .strip(" &&")
-                    .strip("&&")
-                    .strip("&& ")
-                    .strip(" && ")
-                    .strip()
-                )
-                false_part = (
-                    antecedant_part
-                    + "|->"
-                    + " ("
-                    + false_part.strip(";").strip(" &&").strip("&&").strip("&& ")
-                    + " )"
-                )
+                antecedant_part = (true_part[:start_index].strip(" &&").strip("&&").strip("&& ").strip(" && ").strip())
+                true_part = (antecedant_part + true_part[start_index:].strip(" &&").strip("&&").strip("&& ").strip(" && ").strip())
+                false_part = (antecedant_part+ "|->"+ " ("+ false_part.strip(";").strip(" &&").strip("&&").strip("&& ")+ " )")
                 true_path_list.append(true_part)
                 false_path_list.append(false_part)
                 print([i], " True part", true_part)
                 print([i], " False Part", false_part)
-            else:  ## Nested condition management
+            else:  ## Nested condition management : TO DO
                 print("\n Handle logic for nested conditions here")
                 """ Generally, the nested condition will appear without (current_state == xxxx )
                     So, just copy antecedant of the previous list item and append it with antecedant of the current list
@@ -302,14 +269,10 @@ def main():
         print("\n Root Node Name : ", root_node_name)
         print("\n ********** \n")
 
-        true_property_add(
-            property_file_path, count, path_list[0], root_node_name, reset_name
-        )
+        true_property_add(property_file_path, count, path_list[0], root_node_name, reset_name)
 
         print("\n Adding false properties*******\n")
-        false_property_add(
-            property_file_path, count, path_list[1], root_node_name, reset_name
-        )
+        false_property_add(property_file_path, count, path_list[1], root_node_name, reset_name)
         # property_add(property_file_path,count , false_path_list)
 
     ## Closing SVA file
@@ -349,15 +312,10 @@ def create_property(input_string):
     if input_string is not None:
         line = ""
         line = input_string
+        print("Printing Input string to Create Property :: " + line)
         antecedant_list = line.split("|->")
-        consequent_list = (
-            antecedant_list[1].strip(" &&").strip("&&").strip(" && ").strip("&& ")
-        )
-        property_list = (
-            str(antecedant_list[0]).strip(" &&").strip("&&").strip(" && ").strip("&& ")
-            + " |-> "
-            + str(consequent_list).strip(" &&").strip("&&").strip(" && ").strip("&& ")
-        )
+        consequent_list = (antecedant_list[1].strip(" &&").strip("&&").strip(" && ").strip("&& "))
+        property_list = (str(antecedant_list[0]).strip(" &&").strip("&&").strip(" && ").strip("&& ") + " |-> " + str(consequent_list).strip(" &&").strip("&&").strip(" && ").strip("&& "))
         return property_list
     else:
         return None
