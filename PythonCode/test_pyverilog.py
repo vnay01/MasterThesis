@@ -75,7 +75,7 @@ def main():
     print("\n RESET Name: ", reset_name)
 
     #### Pass the index of desired root node(s):
-    root_node_list = [5]
+    root_node_list = [4,5]
 
     """ Work starts here"""
     ####### Working Test code ########
@@ -269,10 +269,10 @@ def main():
         print("\n Root Node Name : ", root_node_name)
         print("\n ********** \n")
 
-        true_property_add(property_file_path, count, path_list[0], root_node_name, reset_name)
+        true_property_add(property_file_path, count, path_list[0], root_node_name, module_name, reset_name, port_name_list)
 
         print("\n Adding false properties*******\n")
-        false_property_add(property_file_path, count, path_list[1], root_node_name, reset_name)
+        false_property_add(property_file_path, count, path_list[1], root_node_name, module_name,reset_name, port_name_list)
         # property_add(property_file_path,count , false_path_list)
 
     ## Closing SVA file

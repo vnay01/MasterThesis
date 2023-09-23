@@ -87,7 +87,7 @@ def port_direction(input_string):
 
 
 
-def true_property_add(input_file, count, property_list, root_node_name, reset_name):
+def true_property_add(input_file, count, property_list, root_node_name, module_name,reset_name, port_name_list):
     '''Modifies .sva file. Adds property list and assert statements to the .sva file'''
     with open(input_file, 'a') as sva_file:
 #        sva_file.write('// Default Clocking and Reset\n')
@@ -95,8 +95,18 @@ def true_property_add(input_file, count, property_list, root_node_name, reset_na
         sva_file.write('\n// ***** True property list for selected node : ' + root_node_name + ' *****')
         sva_file.write('\n'*2)
 #        sva_file.write('\n// TimeStamp: ', timestr)
+        search_string = module_name + "."
+        for i in range(len(property_list)):
+            for item in port_name_list:
+                property_list[i] = property_list[i].replace(search_string + item, item)       # modify port nodes
+#                    for modified_string in property_list:
+#                        print(modified_string)
+                print("modified_property list : " , property_list)
         for i in range(count):
-            prop_buff = property_list[i]
+            ## check for input ports here
+#            print("Supplied property list to function : ", property_list[i])
+            prop_buff = property_list[i]        
+            print("buffER : " , prop_buff)
             sva_file.write('\n')
             sva_file.write('property t_Prop_'+ root_node_name + '_' + str(i) + '; \n')
             sva_file.write('\t@(posedge clk) disable iff (' + reset_name + ') ('+ prop_buff + ');')
@@ -113,12 +123,20 @@ def true_property_add(input_file, count, property_list, root_node_name, reset_na
     sva_file.close()
     return
 
-def false_property_add(input_file, count, property_list, root_node_name, reset_name):
+def false_property_add(input_file, count, property_list, root_node_name, module_name,reset_name, port_name_list):
     '''Modifies .sva file. Adds property list and assert statements to the .sva file'''
     with open(input_file, 'a') as sva_file:
         sva_file.write('\n// ***** Writing False condition properties for selected node : ' + root_node_name + ' *****')
         sva_file.write('\n'*2)
         sva_file.write('\n \n // When asserted, these properties will FAIL')
+        search_string = module_name + "."
+
+        for i in range(len(property_list)):
+            for item in port_name_list:
+                property_list[i] = property_list[i].replace(search_string + item, item)       # modify port nodes
+#                    for modified_string in property_list:
+#                        print(modified_string)
+                print("modified_property list : " , property_list)
         for i in range(count):
             prop_buff = property_list[i]
             sva_file.write('\n')
@@ -148,3 +166,4 @@ def endmodule(input_file):
 def sva_module_info_extractor(input_file):
     '''Takes RTL file as input and writes module info. into SVA file'''
     file_object = open(input_file, 'r')
+

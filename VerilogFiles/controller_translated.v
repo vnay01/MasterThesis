@@ -16,24 +16,24 @@ Signal brief:
         */
 
 module controller(  
-                     input clk,
-                     input reset,
-                     input START,      
-                     input MEM_READ,   
-                     output reg BUSY,
-                     output reg DONE,
-                     output reg input_matrix_ram_en,
-                     output reg input_matrix_ram_read_en,
-                     output reg [9:0] input_matrix_ram_address,
-                     output reg filter_matrix_rom_en,
-                     output reg filter_matrix_rom_read_en,
-                     output reg filter_matrix_rom_address,
-                     output reg [4:0] data_path_signal,          // concatnation of signals which control different sections of datapath
-                     output reg [1:0] fifo_command                          
+                      clk,
+                      reset,
+                      START,      
+                      MEM_READ,   
+                      BUSY,
+                      DONE,
+                      input_matrix_ram_en,
+                      input_matrix_ram_read_en,
+                      input_matrix_ram_address,
+                      filter_matrix_rom_en,
+                      filter_matrix_rom_read_en,
+                      filter_matrix_rom_address,
+                      data_path_signal,          // concatnation of signals which control different sections of datapath
+                      fifo_command                          
     );
     
 /// Port directions
-/*
+
 input clk;
 input reset;
 input START;      
@@ -48,7 +48,7 @@ output reg filter_matrix_rom_read_en;
 output reg filter_matrix_rom_address;
 output reg [4:0] data_path_signal;          // concatnation of signals which control different sections of datapath
 output reg [1:0] fifo_command;
-*/
+
 // Internal counters
 parameter counter_size = 10;
 
@@ -249,44 +249,44 @@ begin
     
     INIT: begin
           BUSY <= 1'b0;
-//          input_matrix_ram_en <= 1'b0;
+//          input_matrix_ram_en = 1'b0;
           end
           
     LOAD: 
            begin           
-           input_matrix_ram_en <= 1'b1;
-           filter_matrix_rom_en <= 1'b1;
-           data_path_signal <= 5'b00000;
+           input_matrix_ram_en = 1'b1;
+           filter_matrix_rom_en = 1'b1;
+           data_path_signal = 5'b00000;
            end  
     MULT:
             
            begin          
-           data_path_signal <= 5'b10000;          
+           data_path_signal = 5'b10000;          
            end           
     L1_ADD:
            begin
-           data_path_signal <= 5'b01000;
+           data_path_signal = 5'b01000;
            end 
     L2_ADD:
            begin
-           data_path_signal <= 5'b00100;
+           data_path_signal = 5'b00100;
            end 
     L3_ADD:
            begin
-           data_path_signal <= 5'b00010;
+           data_path_signal = 5'b00010;
            end 
     L4_ADD:
            begin
-           data_path_signal <= 5'b00001;
+           data_path_signal = 5'b00001;
            end 
     MEM_STORE:
            begin
-           data_path_signal <= 5'b00000;
+           data_path_signal = 5'b00000;
            //// fifo_command will need to be made such that MEM_STORE can be eliminated 
            end              
     default : 
            begin
-           data_path_signal <= 5'b00000;   
+           data_path_signal = 5'b00000;   
            end                                                                      
     
     endcase
