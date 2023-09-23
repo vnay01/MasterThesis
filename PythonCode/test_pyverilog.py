@@ -56,8 +56,8 @@ def main():
 
     print("Starting Flow at...", timestr)
     ### Globals -- These need to be changed as arguments later
-    rtl_file_name = "usbf_idma.v"
-    top_module = "usbf_idma"
+    rtl_file_name = "usb_test.v"
+    top_module = "usb_test"
 
     ##### reset type info #####
     """
@@ -65,7 +65,7 @@ def main():
         1 -> active_high reset
     """
     reset_name = "reset"  # give reset name here
-    reset_type = 0  # Active_low or Active_high ?? refer comment above for details
+    reset_type = 1  # Active_low or Active_high ?? refer comment above for details
 
     if reset_type == 0:
         reset_name = "!" + reset_name
@@ -75,7 +75,7 @@ def main():
     print("\n RESET Name: ", reset_name)
 
     #### Pass the index of desired root node(s):
-    root_node_list = [51,47,32,16,34,11,10,12,9,54]
+    root_node_list = [4]
 
     """ Work starts here"""
     ####### Working Test code ########
@@ -111,7 +111,7 @@ def main():
 
     """ RTL file details & node selection"""
 
-    rtl_file_path = working_dir + "VerilogFiles/usb/trunk/rtl/verilog/"
+    rtl_file_path = working_dir + "VerilogFiles/"
     # /home/vnay01/Desktop/MasterThesis/VerilogFiles/usb/trunk/rtl/verilog/usbf_top.v
     # /home/vnay01/Desktop/MasterThesis/VerilogFiles/fpga-median/trunk/rtl/state_machine.v
 

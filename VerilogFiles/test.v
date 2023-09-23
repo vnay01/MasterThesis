@@ -4,7 +4,7 @@
     */
 
 
-module usb_test (clk, reset, send_data, tx_ready, tx_valid);
+module test (clk, reset, send_data, tx_ready, tx_valid);
 
 input clk;
 input reset;
